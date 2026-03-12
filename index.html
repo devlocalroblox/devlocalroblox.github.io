@@ -70,6 +70,7 @@
     body {
       margin: 0;
       min-width: 320px;
+      font-size: 15px;
       font-family: "Inter", "Segoe UI", sans-serif;
       color: var(--text);
       background:
@@ -78,6 +79,9 @@
         linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 18%, var(--bg) 100%);
       line-height: 1.6;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
 
     body * {
@@ -147,7 +151,6 @@
     .theme-toggle,
     .work-card {
       transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background-color 220ms ease, color 220ms ease;
-      will-change: transform;
     }
 
     .surface:hover,
@@ -201,11 +204,11 @@
 
     .header-inner {
       position: relative;
-      min-height: var(--header-height);
+      min-height: 78px;
       display: grid;
       grid-template-columns: auto 1fr auto;
       align-items: center;
-      gap: 18px;
+      gap: 16px;
     }
 
     .brand {
@@ -218,17 +221,45 @@
     .brand-mark {
       display: grid;
       place-items: center;
-      width: 42px;
-      height: 42px;
+      width: 38px;
+      height: 38px;
       border-radius: 14px;
       border: 1px solid var(--line-strong);
       background: linear-gradient(135deg, rgba(187, 165, 255, 0.22), rgba(112, 74, 226, 0.22));
       color: var(--text);
-      font-size: 0.9rem;
-      font-weight: 800;
-      letter-spacing: 0.16em;
+      overflow: hidden;
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
       flex: none;
+      position: relative;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-mark.is-missing img {
+      opacity: 0;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      color: var(--text);
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      transition: opacity 180ms ease;
+    }
+
+    .brand-mark.is-missing::after {
+      content: attr(data-fallback);
+      opacity: 1;
     }
 
     .brand-copy {
@@ -238,7 +269,7 @@
     }
 
     .brand-copy strong {
-      font-size: 1rem;
+      font-size: 0.96rem;
       font-weight: 700;
       line-height: 1.1;
       letter-spacing: -0.02em;
@@ -246,7 +277,7 @@
 
     .brand-copy span {
       color: var(--muted);
-      font-size: 0.88rem;
+      font-size: 0.8rem;
       line-height: 1.1;
     }
 
@@ -272,27 +303,32 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 16px;
+      padding: 9px 14px;
       border-radius: 999px;
       color: var(--muted-strong);
-      font-size: 0.94rem;
+      font-size: 0.88rem;
       font-weight: 600;
       white-space: nowrap;
     }
 
     .site-nav a:hover,
-    .site-nav a:focus-visible,
-    .site-nav a.is-active {
-      transform: translateY(-2px) scale(1.03);
+    .site-nav a:focus-visible {
+      transform: translateY(-2px) scale(1.02);
       color: var(--text);
       background: rgba(255, 255, 255, 0.06);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
       outline: none;
     }
 
+    .site-nav a.is-active {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
     .theme-toggle {
-      width: 46px;
-      height: 46px;
+      width: 42px;
+      height: 42px;
       border: 1px solid var(--line);
       border-radius: 15px;
       background: var(--surface);
@@ -326,23 +362,23 @@
     }
 
     .hero {
-      padding-top: 54px;
+      padding-top: 38px;
     }
 
     .hero-layout {
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
       align-items: start;
-      gap: 34px;
+      gap: 28px;
     }
 
     .hero-copy {
-      padding-top: 28px;
+      padding-top: 20px;
     }
 
     .hero-title {
       margin: 0;
-      font-size: clamp(4.4rem, 10vw, 7.1rem);
+      font-size: clamp(3.9rem, 9vw, 6.4rem);
       line-height: 0.9;
       letter-spacing: -0.085em;
       font-weight: 800;
@@ -362,13 +398,13 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      margin-top: 20px;
-      padding: 12px 16px;
+      margin-top: 16px;
+      padding: 10px 14px;
       border: 1px solid var(--line);
       border-radius: 999px;
       background: var(--surface-soft);
       color: var(--muted-strong);
-      font-size: 1rem;
+      font-size: 0.92rem;
       font-weight: 600;
       letter-spacing: -0.02em;
       box-shadow: var(--shadow-soft);
@@ -393,7 +429,7 @@
     }
 
     .rotator-label {
-      font-size: 1.12rem;
+      font-size: 1rem;
       font-weight: 600;
       color: var(--muted-strong);
     }
@@ -405,25 +441,19 @@
       justify-content: flex-start;
       width: min(var(--rotator-width), 100%);
       max-width: 100%;
-      min-height: 48px;
-      padding: 11px 18px;
+      min-height: 44px;
+      padding: 10px 16px;
       border: 1px solid var(--line-strong);
       border-radius: 999px;
       background: var(--surface-soft);
       box-shadow: var(--shadow-soft);
       overflow: hidden;
-      transition: width 320ms ease, transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
-    }
-
-    .rotator-shell:hover {
-      transform: translateY(-4px) scale(1.02);
-      border-color: var(--line-strong);
-      box-shadow: var(--shadow-soft);
+      transition: width 320ms ease, border-color 220ms ease, box-shadow 220ms ease;
     }
 
     .rotator-text,
     .rotator-measure {
-      font-size: 1rem;
+      font-size: 0.94rem;
       font-weight: 600;
       letter-spacing: -0.02em;
       white-space: nowrap;
@@ -450,33 +480,34 @@
 
     .hero-lead {
       max-width: 60ch;
-      margin: 26px 0 0;
+      margin: 22px 0 0;
       color: var(--muted-strong);
-      font-size: 1.06rem;
+      font-size: 0.98rem;
     }
 
     .hero-actions {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      margin-top: 32px;
+      margin-top: 26px;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 14px 20px;
+      padding: 12px 18px;
       border-radius: 16px;
       border: 1px solid var(--line);
       font-weight: 700;
+      font-size: 0.94rem;
       letter-spacing: -0.02em;
       box-shadow: var(--shadow-soft);
     }
 
     .button:hover,
     .button:focus-visible {
-      transform: translateY(-4px) scale(1.03);
+      transform: translateY(-3px) scale(1.018);
       border-color: var(--line-strong);
       outline: none;
     }
@@ -495,32 +526,44 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 18px;
+      margin-top: 16px;
     }
 
     .inline-tag {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 14px;
+      gap: 8px;
+      padding: 8px 12px;
       border-radius: 999px;
       border: 1px solid var(--line);
       background: rgba(255, 255, 255, 0.03);
       color: var(--muted);
-      font-size: 0.92rem;
+      font-size: 0.84rem;
       font-weight: 600;
     }
 
+    .inline-tag svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.9;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex: none;
+    }
+
     .inline-tag:hover {
-      transform: translateY(-3px) scale(1.03);
+      transform: translateY(-3px) scale(1.018);
       border-color: var(--line-strong);
       color: var(--text);
     }
 
     .contact-card {
-      padding: 22px;
+      padding: 18px;
       border: 1px solid var(--line);
-      border-radius: 30px;
+      border-radius: 26px;
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 22%),
         var(--surface-strong);
@@ -529,17 +572,17 @@
 
     .contact-head {
       display: grid;
-      grid-template-columns: 132px minmax(0, 1fr);
-      gap: 18px;
-      align-items: center;
-      margin-bottom: 18px;
+      grid-template-columns: minmax(0, 1fr) 94px;
+      gap: 14px;
+      align-items: start;
+      margin-bottom: 14px;
     }
 
     .profile-frame {
       position: relative;
       aspect-ratio: 1;
       width: 100%;
-      border-radius: 24px;
+      border-radius: 20px;
       overflow: hidden;
       border: 1px solid var(--line);
       background:
@@ -589,15 +632,15 @@
 
     .contact-copy h2 {
       margin: 0;
-      font-size: 2rem;
+      font-size: 1.68rem;
       line-height: 1;
       letter-spacing: -0.05em;
     }
 
     .contact-copy p {
-      margin: 10px 0 0;
+      margin: 8px 0 0;
       color: var(--muted);
-      font-size: 1rem;
+      font-size: 0.92rem;
     }
 
     .contact-list {
@@ -607,7 +650,7 @@
     }
 
     .contact-item {
-      padding: 15px 16px;
+      padding: 13px 14px;
       border: 1px solid var(--line);
       border-radius: 20px;
       background: rgba(255, 255, 255, 0.03);
@@ -625,7 +668,7 @@
     .contact-item dd {
       margin: 7px 0 0;
       color: var(--text);
-      font-size: 1.02rem;
+      font-size: 0.96rem;
       font-weight: 700;
       word-break: break-word;
     }
@@ -638,7 +681,7 @@
 
     .section-head h2 {
       margin: 0;
-      font-size: clamp(2.3rem, 4vw, 3.4rem);
+      font-size: clamp(2rem, 3.6vw, 3rem);
       line-height: 0.98;
       letter-spacing: -0.055em;
     }
@@ -647,14 +690,14 @@
       width: min(100%, 80ch);
       margin: 0;
       color: var(--muted-strong);
-      font-size: 1rem;
+      font-size: 0.94rem;
     }
 
     .expertise-grid,
     .workflow-grid,
     .rates-grid,
     .testimonials-grid,
-    .terms-grid {
+    .terms-layout {
       display: grid;
       gap: 18px;
     }
@@ -664,7 +707,7 @@
     }
 
     .card {
-      padding: 24px;
+      padding: 20px;
       border: 1px solid var(--line);
       border-radius: 26px;
       background:
@@ -674,7 +717,7 @@
     }
 
     .skill-card {
-      min-height: 224px;
+      min-height: 206px;
     }
 
     .card-number {
@@ -693,8 +736,8 @@
     }
 
     .card h3 {
-      margin: 18px 0 10px;
-      font-size: 1.18rem;
+      margin: 16px 0 10px;
+      font-size: 1.08rem;
       line-height: 1.18;
       letter-spacing: -0.03em;
     }
@@ -702,7 +745,14 @@
     .card p {
       margin: 0;
       color: var(--muted);
-      font-size: 0.98rem;
+      font-size: 0.92rem;
+    }
+
+    .skill-card:hover,
+    .skill-card:focus-within {
+      transform: translateY(-6px) scale(1.025);
+      border-color: var(--line-strong);
+      box-shadow: var(--shadow-soft);
     }
 
     .tool-note {
@@ -735,14 +785,18 @@
       color: var(--muted-strong);
     }
 
+    .tool-note:hover {
+      transform: translateY(-5px) scale(1.015);
+    }
+
     .work-grid {
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 18px;
+      gap: 16px;
     }
 
     .work-card {
-      padding: 14px;
+      padding: 12px 12px 14px;
       border: 1px solid var(--line);
       border-radius: 26px;
       background:
@@ -753,6 +807,7 @@
       grid-template-rows: minmax(0, 1fr) auto;
       gap: 14px;
       text-align: center;
+      align-items: start;
     }
 
     .work-card:hover,
@@ -775,6 +830,10 @@
       position: relative;
       aspect-ratio: 1;
       width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
       border-radius: 20px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -792,12 +851,10 @@
     .work-thumb img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      transition: transform 240ms ease, opacity 180ms ease;
-    }
-
-    .work-card:hover .work-thumb img {
-      transform: scale(1.04);
+      object-fit: contain;
+      object-position: center;
+      border-radius: 14px;
+      transition: opacity 180ms ease;
     }
 
     .work-thumb.is-missing img {
@@ -834,10 +891,14 @@
       width: 100%;
       text-align: center;
       color: var(--text);
-      font-size: 1rem;
+      min-height: 2.75em;
+      font-size: 0.96rem;
       font-weight: 700;
       line-height: 1.35;
       letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .work-card.featured .work-title {
@@ -909,17 +970,37 @@
     }
 
     .workflow-card {
-      min-height: 210px;
+      min-height: 192px;
     }
 
     .rates-grid {
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(6, minmax(0, 1fr));
     }
 
     .rate-card {
       min-height: 100%;
       display: flex;
       flex-direction: column;
+      position: relative;
+    }
+
+    .popular-card {
+      border-color: var(--gold-line);
+      box-shadow: var(--gold-glow), var(--shadow);
+    }
+
+    .popular-card:hover,
+    .popular-card:focus-within {
+      border-color: rgba(241, 204, 113, 0.62);
+      box-shadow: 0 0 36px rgba(241, 204, 113, 0.2), var(--shadow-soft);
+    }
+
+    .rates-grid .rate-card:nth-child(-n+3) {
+      grid-column: span 2;
+    }
+
+    .rates-grid .rate-card:nth-child(n+4) {
+      grid-column: span 3;
     }
 
     .rate-head {
@@ -944,16 +1025,20 @@
       text-transform: uppercase;
       box-shadow: var(--gold-glow);
       white-space: nowrap;
+      position: absolute;
+      top: 16px;
+      right: 16px;
     }
 
     .rate-head h3 {
       margin: 0;
+      padding-right: 82px;
     }
 
     .rate-amount {
-      margin: 16px 0 14px;
+      margin: 14px 0 12px;
       color: var(--text);
-      font-size: 1.9rem;
+      font-size: 1.72rem;
       font-weight: 800;
       line-height: 1;
       letter-spacing: -0.05em;
@@ -967,9 +1052,17 @@
       font-size: 0.93rem;
     }
 
-    .terms-grid {
+    .terms-layout {
       margin-top: 22px;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      display: grid;
+      grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .terms-stack {
+      display: grid;
+      gap: 18px;
     }
 
     .text-card ol,
@@ -989,14 +1082,14 @@
     }
 
     .payment-card {
-      margin-top: 18px;
+      margin-top: 0;
     }
 
     .payment-methods {
       list-style: none;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
+      grid-template-columns: 1fr;
+      gap: 10px;
       padding: 0;
       margin: 18px 0 0;
     }
@@ -1004,14 +1097,14 @@
     .payment-method {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       min-height: 100%;
-      padding: 18px;
+      padding: 14px 16px;
       border: 1px solid var(--line);
       border-radius: 20px;
       background: rgba(255, 255, 255, 0.03);
       color: var(--text);
-      text-align: center;
+      text-align: left;
       font-weight: 600;
     }
 
@@ -1079,7 +1172,7 @@
     }
 
     .footer-inner {
-      padding: 42px 0 22px;
+      padding: 36px 0 22px;
     }
 
     .footer-grid {
@@ -1156,6 +1249,10 @@
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
+      .rates-grid .rate-card:nth-child(-n+5) {
+        grid-column: span 1;
+      }
+
       .work-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
@@ -1194,7 +1291,7 @@
       .expertise-grid,
       .why-grid,
       .testimonials-grid,
-      .terms-grid {
+      .terms-layout {
         grid-template-columns: 1fr;
       }
 
@@ -1202,8 +1299,8 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .payment-methods {
-        grid-template-columns: 1fr;
+      .rates-grid .rate-card:nth-child(-n+5) {
+        grid-column: span 1;
       }
 
       .cta-panel,
@@ -1262,6 +1359,10 @@
         grid-template-columns: 1fr;
       }
 
+      .rates-grid .rate-card:nth-child(-n+5) {
+        grid-column: span 1;
+      }
+
       .hero-actions .button {
         width: 100%;
       }
@@ -1316,7 +1417,9 @@
     </div>
     <div class="container header-inner">
       <a class="brand" href="#home" aria-label="Local home">
-        <span class="brand-mark">LO</span>
+        <span class="brand-mark" data-fallback="L">
+          <img src="Images/Profile.jpg" alt="" loading="eager">
+        </span>
         <span class="brand-copy">
           <strong>Local</strong>
           <span>Premium Roblox Scripter</span>
@@ -1343,7 +1446,7 @@
       <div class="container hero-layout">
         <div class="hero-copy reveal">
           <h1 class="hero-title">Local</h1>
-          <div class="hero-subtitle">Premium &amp; Advanced Roblox Scripter • 5+ Years Experience</div>
+          <div class="hero-subtitle">Premium &amp; Advanced Roblox Scripter &bull; 5+ Years Experience</div>
           <div class="rotator-row" aria-live="polite">
             <span class="rotator-label">Building</span>
             <span class="rotator-shell" id="rotator-shell">
@@ -1357,21 +1460,30 @@
             <a class="button button-secondary" href="#past-work">Past Work</a>
           </div>
           <div class="hero-tags">
-            <span class="inline-tag">Performance</span>
-            <span class="inline-tag">Security</span>
-            <span class="inline-tag">Scalability</span>
+            <span class="inline-tag">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18h16M7 14l3-3 2 2 5-5"></path><path d="M14 8h3v3"></path></svg>
+              <span>Performance</span>
+            </span>
+            <span class="inline-tag">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-2.8 8.4-7 10-4.2-1.6-7-5.5-7-10V6l7-3z"></path><path d="M9.5 12.2l1.7 1.7 3.6-3.6"></path></svg>
+              <span>Security</span>
+            </span>
+            <span class="inline-tag">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16"></path><path d="M7 9l5-5 5 5"></path><path d="M7 15l5 5 5-5"></path></svg>
+              <span>Scalability</span>
+            </span>
           </div>
         </div>
 
         <aside class="contact-card surface reveal" id="contact">
           <div class="contact-head">
-            <figure class="profile-frame" data-fallback="Local">
-              <img src="Images/Profile.jpg" alt="Local profile portrait" loading="eager">
-            </figure>
             <div class="contact-copy">
               <h2>Contact Me</h2>
               <p>Direct contact details to get in touch with me.</p>
             </div>
+            <figure class="profile-frame" data-fallback="Local">
+              <img src="Images/Profile.jpg" alt="Local profile portrait" loading="eager">
+            </figure>
           </div>
 
           <dl class="contact-list">
@@ -1631,7 +1743,7 @@
             <div class="rate-head">
               <h3>Advanced Systems</h3>
             </div>
-            <p class="rate-amount">$75 – $200</p>
+            <p class="rate-amount">$75 &ndash; $200</p>
             <p>Complex systems that require a structured architecture, networking, or multiple components.</p>
             <p class="rate-note">(For example, a complex inventory system, saving system, progression system, etc.)</p>
           </article>
@@ -1643,10 +1755,10 @@
             <p>Large-scale systems that power a major portion of the game.</p>
             <p class="rate-note">(For example, an entire economy system, core gameplay loop, full UI framework, etc.)</p>
           </article>
-          <article class="card rate-card surface reveal">
+          <article class="card rate-card popular-card surface reveal">
+            <span class="rate-badge">Popular</span>
             <div class="rate-head">
               <h3>Full Game Development</h3>
-              <span class="rate-badge">Popular</span>
             </div>
             <p class="rate-amount">$500 - $1,000+</p>
             <p>Scripting full games from the ground up or large-scale production-level projects.</p>
@@ -1654,17 +1766,28 @@
           </article>
         </div>
 
-        <div class="terms-grid">
-          <article class="card text-card surface reveal">
-            <h3>Payment Terms</h3>
-            <p>My core principle is that you never pay upfront. Payment can be handled in 3 different ways:</p>
-            <ol>
-              <li>Milestones (per approved task, pay after each core task is completed)</li>
-              <li>Daily/weekly/monthly (pay every day/every week/every month)</li>
-              <li>Upon completion (pay after all work is done; this payment method requires the most background checking &amp; verification)</li>
-            </ol>
-            <p class="supporting-copy">Note that a background check &amp; proof of payment is required before development.</p>
-          </article>
+        <div class="terms-layout">
+          <div class="terms-stack">
+            <article class="card text-card surface reveal">
+              <h3>Payment Terms</h3>
+              <p>My core principle is that you never pay upfront. Payment can be handled in 3 different ways:</p>
+              <ol>
+                <li>Milestones (per approved task, pay after each core task is completed)</li>
+                <li>Daily/weekly/monthly (pay every day/every week/every month)</li>
+                <li>Upon completion (pay after all work is done; this payment method requires the most background checking &amp; verification)</li>
+              </ol>
+              <p class="supporting-copy">Note that a background check &amp; proof of payment is required before development.</p>
+            </article>
+
+            <article class="card text-card payment-card surface reveal">
+              <h3>Accepted Payment Methods</h3>
+              <ul class="payment-methods">
+                <li class="payment-method">Robux ($1 USD = 150 Robux)</li>
+                <li class="payment-method">PayPal (Goods &amp; Services preferred, Friends &amp; Family accepted)</li>
+                <li class="payment-method">Roblox Gift Cards (Less common &amp; requires more verification, though still an accepted option in some cases)</li>
+              </ul>
+            </article>
+          </div>
 
           <article class="card text-card surface reveal">
             <h3>Percentage Deals (%)</h3>
@@ -1677,15 +1800,6 @@
             <p class="supporting-copy">Percentages can range anywhere from 5% to 25%+</p>
           </article>
         </div>
-
-        <article class="card text-card payment-card surface reveal">
-          <h3>Accepted Payment Methods</h3>
-          <ul class="payment-methods">
-            <li class="payment-method">Robux ($1 USD = 150 Robux)</li>
-            <li class="payment-method">PayPal (Goods &amp; Services preferred, Friends &amp; Family accepted)</li>
-            <li class="payment-method">Roblox Gift Cards (Less common &amp; requires more verification, though still an accepted option in some cases)</li>
-          </ul>
-        </article>
       </div>
     </section>
 
@@ -1731,7 +1845,9 @@
       <div class="footer-grid">
         <div>
           <a class="brand" href="#home" aria-label="Local home">
-            <span class="brand-mark">LO</span>
+            <span class="brand-mark" data-fallback="L">
+              <img src="Images/Profile.jpg" alt="" loading="lazy">
+            </span>
             <span class="brand-copy">
               <strong>Local</strong>
             </span>
@@ -1774,7 +1890,7 @@
     const revealItems = document.querySelectorAll(".reveal");
     const navLinks = document.querySelectorAll(".site-nav a");
     const observedSections = document.querySelectorAll("main section[id]");
-    const imageFrames = document.querySelectorAll(".work-thumb, .profile-frame");
+    const imageFrames = document.querySelectorAll(".work-thumb, .profile-frame, .brand-mark");
     const phrases = [
       "full game frameworks",
       "clean production codebases",
@@ -1853,42 +1969,43 @@
       }
     );
 
-    const sectionObserver = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) {
-            return;
-          }
+    function updateActiveNav() {
+      const offset = window.scrollY + 140;
+      let currentId = observedSections[0] ? observedSections[0].id : "";
 
-          navLinks.forEach(link => {
-            link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`);
-          });
-        });
-      },
-      {
-        threshold: 0.42,
-        rootMargin: "-18% 0px -44% 0px"
-      }
-    );
+      observedSections.forEach(section => {
+        if (offset >= section.offsetTop) {
+          currentId = section.id;
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.toggle("is-active", link.getAttribute("href") === `#${currentId}`);
+      });
+    }
 
     applyTheme(activeTheme);
     syncRotatorWidth(phrases[0]);
     updateProgress();
+    updateActiveNav();
 
     themeToggle.addEventListener("click", () => {
       applyTheme(activeTheme === "dark" ? "light" : "dark");
     });
 
-    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("scroll", () => {
+      updateProgress();
+      updateActiveNav();
+    }, { passive: true });
     window.addEventListener("resize", () => {
       updateProgress();
       syncRotatorWidth(rotatorText.textContent);
+      updateActiveNav();
     });
 
     window.setInterval(rotatePhrase, 3000);
 
     revealItems.forEach(item => revealObserver.observe(item));
-    observedSections.forEach(section => sectionObserver.observe(section));
 
     imageFrames.forEach(frame => {
       const image = frame.querySelector("img");
