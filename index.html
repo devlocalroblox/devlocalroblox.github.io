@@ -1,1 +1,1758 @@
-
++<!DOCTYPE html>
++<html lang="en">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <title>Local | Premium Roblox Scripter</title>
++  <link rel="preconnect" href="https://fonts.googleapis.com">
++  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
++  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
++  <style>
++    :root {
++      color-scheme: dark;
++      --bg: #09070d;
++      --bg-elev: rgba(17, 13, 26, 0.88);
++      --bg-soft: rgba(28, 20, 43, 0.78);
++      --card: rgba(19, 14, 30, 0.82);
++      --card-strong: rgba(28, 20, 43, 0.94);
++      --text: #f4f1ff;
++      --muted: #b1a8ca;
++      --line: rgba(203, 184, 255, 0.15);
++      --line-strong: rgba(203, 184, 255, 0.26);
++      --accent: #a855f7;
++      --accent-2: #7c3aed;
++      --accent-soft: rgba(168, 85, 247, 0.18);
++      --surface-glow: 0 28px 80px rgba(77, 30, 139, 0.28);
++      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
++      --gold: #f4cf64;
++      --gold-line: rgba(244, 207, 100, 0.45);
++      --gold-glow: 0 0 30px rgba(244, 207, 100, 0.28);
++      --progress: linear-gradient(90deg, #f4cf64 0%, #c084fc 50%, #8b5cf6 100%);
++      --grid: rgba(242, 236, 255, 0.12);
++      --container: min(1220px, calc(100vw - 40px));
++      --radius-lg: 28px;
++      --radius-md: 20px;
++      --radius-sm: 16px;
++      --header-height: 88px;
++    }
++
++    body[data-theme="light"] {
++      color-scheme: light;
++      --bg: #f5f1ff;
++      --bg-elev: rgba(255, 255, 255, 0.9);
++      --bg-soft: rgba(239, 231, 255, 0.88);
++      --card: rgba(255, 255, 255, 0.86);
++      --card-strong: rgba(247, 241, 255, 0.96);
++      --text: #191326;
++      --muted: #65597d;
++      --line: rgba(92, 63, 163, 0.14);
++      --line-strong: rgba(92, 63, 163, 0.24);
++      --accent: #7c3aed;
++      --accent-2: #9333ea;
++      --accent-soft: rgba(124, 58, 237, 0.12);
++      --surface-glow: 0 24px 70px rgba(137, 86, 231, 0.16);
++      --shadow: 0 20px 60px rgba(77, 41, 134, 0.1);
++      --gold-line: rgba(214, 161, 35, 0.32);
++      --grid: rgba(98, 75, 132, 0.1);
++    }
++
++    * {
++      box-sizing: border-box;
++    }
++
++    html {
++      scroll-behavior: smooth;
++    }
++
++    body {
++      margin: 0;
++      min-width: 320px;
++      font-family: "Inter", "Segoe UI", sans-serif;
++      color: var(--text);
++      background:
++        radial-gradient(circle at 12% 16%, rgba(171, 101, 255, 0.16), transparent 24%),
++        radial-gradient(circle at 88% 10%, rgba(110, 55, 212, 0.22), transparent 28%),
++        radial-gradient(circle at 78% 82%, rgba(168, 85, 247, 0.1), transparent 30%),
++        var(--bg);
++      line-height: 1.6;
++      overflow-x: hidden;
++    }
++
++    body::before,
++    body::after {
++      content: "";
++      position: fixed;
++      inset: 0;
++      pointer-events: none;
++      z-index: -2;
++    }
++
++    body::before {
++      background:
++        linear-gradient(var(--grid) 1px, transparent 1px),
++        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
++      background-size: 48px 48px;
++      mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.9), transparent 82%);
++      opacity: 0.8;
++    }
++
++    body::after {
++      z-index: -3;
++      background:
++        radial-gradient(circle at center, transparent 36%, rgba(0, 0, 0, 0.26) 100%);
++    }
++
++    a {
++      color: inherit;
++      text-decoration: none;
++    }
++
++    img {
++      display: block;
++      max-width: 100%;
++    }
++
++    button,
++    input,
++    textarea,
++    select {
++      font: inherit;
++    }
++
++    .container {
++      width: var(--container);
++      margin: 0 auto;
++    }
++
++    .section {
++      padding: 96px 0 0;
++      scroll-margin-top: 112px;
++    }
++
++    .site-header {
++      position: sticky;
++      top: 0;
++      z-index: 50;
++      padding-top: 14px;
++    }
++
++    .header-shell {
++      position: relative;
++      width: var(--container);
++      margin: 0 auto;
++      border: 1px solid var(--line);
++      border-radius: 22px;
++      background: color-mix(in srgb, var(--bg-elev) 88%, transparent);
++      backdrop-filter: blur(22px);
++      box-shadow: var(--shadow);
++      overflow: hidden;
++    }
++
++    .progress-track {
++      position: absolute;
++      inset: 0 0 auto;
++      height: 3px;
++      background: rgba(255, 255, 255, 0.04);
++    }
++
++    .progress-bar {
++      display: block;
++      width: 100%;
++      height: 100%;
++      background: var(--progress);
++      transform-origin: left center;
++      transform: scaleX(0);
++      transition: transform 0.14s linear;
++    }
++
++    .header-inner {
++      min-height: var(--header-height);
++      display: flex;
++      align-items: center;
++      justify-content: space-between;
++      gap: 20px;
++      padding: 18px 22px 18px 20px;
++    }
++
++    .brand {
++      display: inline-flex;
++      align-items: center;
++      gap: 14px;
++      min-width: 0;
++      transition: transform 180ms ease, color 180ms ease;
++    }
++
++    .brand:hover {
++      transform: translateY(-2px);
++      color: #ffffff;
++    }
++
++    body[data-theme="light"] .brand:hover {
++      color: #120e1c;
++    }
++
++    .brand-mark {
++      display: grid;
++      place-items: center;
++      width: 44px;
++      height: 44px;
++      border-radius: 14px;
++      border: 1px solid var(--line-strong);
++      background:
++        linear-gradient(160deg, rgba(255, 255, 255, 0.06), transparent 60%),
++        rgba(134, 72, 223, 0.18);
++      color: var(--text);
++      font-size: 0.9rem;
++      font-weight: 800;
++      letter-spacing: 0.16em;
++      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
++      flex: none;
++    }
++
++    .brand-text {
++      min-width: 0;
++    }
++
++    .brand-name {
++      margin: 0;
++      font-size: 1rem;
++      font-weight: 700;
++      line-height: 1.1;
++      letter-spacing: -0.02em;
++    }
++
++    .brand-subtitle {
++      margin: 4px 0 0;
++      color: var(--muted);
++      font-size: 0.79rem;
++      line-height: 1.2;
++    }
++
++    .header-actions {
++      display: flex;
++      align-items: center;
++      justify-content: flex-end;
++      gap: 12px;
++      flex: 1;
++      min-width: 0;
++    }
++
++    .site-nav ul {
++      list-style: none;
++      display: flex;
++      align-items: center;
++      gap: 10px;
++      padding: 0;
++      margin: 0;
++      flex-wrap: wrap;
++      justify-content: flex-end;
++    }
++
++    .site-nav a {
++      display: inline-flex;
++      align-items: center;
++      justify-content: center;
++      padding: 10px 14px;
++      border-radius: 999px;
++      color: var(--muted);
++      font-size: 0.92rem;
++      font-weight: 500;
++      transition: transform 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
++    }
++
++    .site-nav a:hover,
++    .site-nav a:focus-visible {
++      color: var(--text);
++      background: rgba(255, 255, 255, 0.05);
++      transform: translateY(-2px);
++      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
++      outline: none;
++    }
++
++    .theme-toggle {
++      width: 46px;
++      height: 46px;
++      padding: 0;
++      border: 1px solid var(--line-strong);
++      border-radius: 14px;
++      background:
++        linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent),
++        var(--card);
++      color: var(--text);
++      display: inline-grid;
++      place-items: center;
++      cursor: pointer;
++      flex: none;
++      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
++      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
++    }
++
++    .theme-toggle:hover,
++    .theme-toggle:focus-visible {
++      transform: translateY(-2px);
++      border-color: rgba(203, 184, 255, 0.38);
++      box-shadow: var(--surface-glow);
++      outline: none;
++    }
++
++    .theme-toggle svg {
++      width: 20px;
++      height: 20px;
++      stroke: currentColor;
++      fill: none;
++      stroke-width: 1.75;
++      stroke-linecap: round;
++      stroke-linejoin: round;
++    }
++
++    .hero {
++      min-height: calc(100svh - 112px);
++      display: grid;
++      align-items: center;
++      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.82fr);
++      gap: 34px;
++      padding-top: 48px;
++    }
++
++    .hero-copy {
++      padding: 28px 0 18px;
++    }
++
++    .hero-name {
++      margin: 0 0 18px;
++      color: #cfbaf8;
++      font-size: 0.82rem;
++      font-weight: 700;
++      letter-spacing: 0.28em;
++      text-transform: uppercase;
++    }
++
++    .hero-title {
++      max-width: 12ch;
++      margin: 0;
++      font-size: clamp(2.8rem, 5vw, 5.2rem);
++      line-height: 0.98;
++      letter-spacing: -0.05em;
++    }
++
++    .hero-subtitle {
++      margin: 20px 0 0;
++      color: var(--muted);
++      font-size: clamp(1rem, 1.3vw, 1.18rem);
++      font-weight: 600;
++      letter-spacing: -0.02em;
++    }
++
++    .rotator-row {
++      margin-top: 30px;
++      display: flex;
++      align-items: center;
++      gap: 14px;
++      flex-wrap: wrap;
++      font-size: clamp(1.05rem, 2vw, 1.35rem);
++      font-weight: 600;
++    }
++
++    .rotator-label {
++      color: var(--text);
++    }
++
++    .rotator-shell {
++      position: relative;
++      display: inline-flex;
++      align-items: center;
++      min-height: 56px;
++      min-width: min(100%, 440px);
++      padding: 14px 18px;
++      border-radius: 16px;
++      border: 1px solid var(--line-strong);
++      background:
++        linear-gradient(135deg, rgba(255, 255, 255, 0.07), transparent 70%),
++        rgba(104, 53, 190, 0.15);
++      color: #efe8ff;
++      overflow: hidden;
++      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
++    }
++
++    body[data-theme="light"] .rotator-shell {
++      color: #241c35;
++    }
++
++    .rotator-shell::before {
++      content: "";
++      position: absolute;
++      inset: -1px;
++      background: linear-gradient(120deg, rgba(255, 255, 255, 0.12), transparent 42%, rgba(168, 85, 247, 0.16));
++      opacity: 0.7;
++      pointer-events: none;
++    }
++
++    .rotator-text {
++      position: relative;
++      display: inline-block;
++      line-height: 1.1;
++      letter-spacing: -0.03em;
++      transition: opacity 220ms ease, transform 220ms ease;
++      will-change: opacity, transform;
++    }
++
++    .rotator-text.is-changing {
++      opacity: 0;
++      transform: translateY(-45%);
++    }
++
++    .rotator-text.is-settling {
++      opacity: 1;
++      transform: translateY(0);
++    }
++
++    .hero-copy > .lead {
++      max-width: 62ch;
++      margin: 26px 0 0;
++      color: var(--muted);
++      font-size: 1.04rem;
++    }
++
++    .hero-actions {
++      display: flex;
++      align-items: center;
++      gap: 14px;
++      margin-top: 34px;
++      flex-wrap: wrap;
++    }
++
++    .button {
++      display: inline-flex;
++      align-items: center;
++      justify-content: center;
++      gap: 10px;
++      padding: 14px 18px;
++      border-radius: 14px;
++      border: 1px solid var(--line-strong);
++      font-weight: 600;
++      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background-color 180ms ease;
++    }
++
++    .button:hover,
++    .button:focus-visible {
++      transform: translateY(-2px);
++      box-shadow: var(--surface-glow);
++      outline: none;
++    }
++
++    .button-primary {
++      background: linear-gradient(135deg, rgba(192, 132, 252, 0.18), rgba(124, 58, 237, 0.22));
++      color: var(--text);
++    }
++
++    .button-secondary {
++      background: rgba(255, 255, 255, 0.04);
++      color: var(--text);
++    }
++
++    .panel {
++      position: relative;
++      border: 1px solid var(--line);
++      border-radius: var(--radius-lg);
++      background:
++        linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 18%),
++        color-mix(in srgb, var(--card) 92%, transparent);
++      box-shadow: var(--shadow);
++      overflow: hidden;
++    }
++
++    .panel::after {
++      content: "";
++      position: absolute;
++      inset: auto -20% -45% auto;
++      width: 220px;
++      height: 220px;
++      border-radius: 50%;
++      background: radial-gradient(circle, rgba(168, 85, 247, 0.18), transparent 64%);
++      pointer-events: none;
++    }
++
++    .contact-card {
++      padding: 32px;
++      align-self: stretch;
++      display: flex;
++      flex-direction: column;
++      justify-content: center;
++      gap: 28px;
++      min-height: 100%;
++    }
++
++    .card-title {
++      margin: 0;
++      font-size: 1.55rem;
++      line-height: 1.1;
++      letter-spacing: -0.03em;
++    }
++
++    .card-copy {
++      margin: 10px 0 0;
++      color: var(--muted);
++      font-size: 0.98rem;
++    }
++
++    .contact-list {
++      margin: 0;
++      display: grid;
++      gap: 16px;
++    }
++
++    .contact-item {
++      padding: 16px 18px;
++      border: 1px solid var(--line);
++      border-radius: 18px;
++      background: rgba(255, 255, 255, 0.03);
++      transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
++    }
++
++    .contact-item:hover {
++      transform: translateY(-2px);
++      border-color: var(--line-strong);
++      background: rgba(255, 255, 255, 0.05);
++    }
++
++    .contact-item dt {
++      color: var(--muted);
++      font-size: 0.86rem;
++      font-weight: 600;
++      letter-spacing: 0.04em;
++      text-transform: uppercase;
++    }
++
++    .contact-item dd {
++      margin: 8px 0 0;
++      font-size: 1rem;
++      font-weight: 600;
++      word-break: break-word;
++    }
++
++    .section-head {
++      display: flex;
++      flex-direction: column;
++      gap: 14px;
++      margin-bottom: 32px;
++    }
++
++    .section-head h2 {
++      margin: 0;
++      font-size: clamp(2rem, 3vw, 3rem);
++      line-height: 1.04;
++      letter-spacing: -0.045em;
++    }
++
++    .section-head p {
++      max-width: 62ch;
++      margin: 0;
++      color: var(--muted);
++      font-size: 1rem;
++    }
++
++    .expertise-grid,
++    .workflow-grid,
++    .testimonials-grid,
++    .rates-grid {
++      display: grid;
++      gap: 18px;
++    }
++
++    .expertise-grid {
++      grid-template-columns: repeat(3, minmax(0, 1fr));
++    }
++
++    .skill-card {
++      min-height: 220px;
++      padding: 24px;
++      border: 1px solid var(--line);
++      border-radius: 24px;
++      background:
++        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 20%),
++        var(--card);
++      box-shadow: var(--shadow);
++      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
++    }
++
++    .skill-card:hover,
++    .skill-card:focus-within {
++      transform: translateY(-4px);
++      border-color: var(--line-strong);
++      box-shadow: var(--surface-glow);
++    }
++
++    .skill-number {
++      color: #d7c6ff;
++      font-size: 0.88rem;
++      font-weight: 700;
++      letter-spacing: 0.16em;
++      text-transform: uppercase;
++    }
++
++    .skill-card h3 {
++      margin: 14px 0 10px;
++      font-size: 1.15rem;
++      line-height: 1.2;
++      letter-spacing: -0.03em;
++    }
++
++    .skill-card p {
++      margin: 0;
++      color: var(--muted);
++      font-size: 0.96rem;
++    }
++
++    .tool-note {
++      margin-top: 24px;
++      display: flex;
++      align-items: flex-start;
++      gap: 16px;
++      padding: 22px 24px;
++      border: 1px solid var(--line);
++      border-radius: 22px;
++      background: color-mix(in srgb, var(--card) 84%, transparent);
++      box-shadow: var(--shadow);
++    }
++
++    .tool-note-mark {
++      width: 34px;
++      height: 34px;
++      border-radius: 12px;
++      display: grid;
++      place-items: center;
++      font-size: 1rem;
++      font-weight: 700;
++      background: rgba(255, 255, 255, 0.06);
++      color: #e8ddff;
++      flex: none;
++    }
++
++    body[data-theme="light"] .tool-note-mark {
++      color: #291f3e;
++    }
++
++    .tool-note p {
++      margin: 0;
++      color: var(--muted);
++    }
++
++    .work-grid {
++      display: grid;
++      grid-template-columns: repeat(5, minmax(0, 1fr));
++      gap: 18px;
++    }
++
++    .work-card {
++      display: flex;
++      flex-direction: column;
++      gap: 14px;
++      padding: 16px;
++      border: 1px solid var(--line);
++      border-radius: 24px;
++      background:
++        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 20%),
++        var(--card);
++      box-shadow: var(--shadow);
++      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
++    }
++
++    .work-card:hover,
++    .work-card:focus-visible {
++      transform: translateY(-5px);
++      border-color: var(--line-strong);
++      box-shadow: var(--surface-glow);
++      outline: none;
++    }
++
++    .work-card.featured {
++      border-color: var(--gold-line);
++      box-shadow: var(--gold-glow), var(--shadow);
++      background:
++        linear-gradient(180deg, rgba(244, 207, 100, 0.09), transparent 22%),
++        var(--card-strong);
++    }
++
++    .work-thumb {
++      position: relative;
++      aspect-ratio: 1;
++      border-radius: 18px;
++      overflow: hidden;
++      background:
++        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12), transparent 34%),
++        linear-gradient(145deg, rgba(87, 46, 164, 0.4), rgba(17, 12, 27, 0.84));
++      border: 1px solid rgba(255, 255, 255, 0.06);
++    }
++
++    body[data-theme="light"] .work-thumb {
++      background:
++        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.65), transparent 32%),
++        linear-gradient(145deg, rgba(167, 129, 244, 0.34), rgba(232, 221, 255, 0.92));
++    }
++
++    .work-thumb img {
++      width: 100%;
++      height: 100%;
++      object-fit: cover;
++      transition: transform 260ms ease, opacity 180ms ease;
++    }
++
++    .work-card:hover .work-thumb img {
++      transform: scale(1.03);
++    }
++
++    .work-thumb.is-missing img {
++      opacity: 0;
++    }
++
++    .work-thumb::after {
++      content: "";
++      position: absolute;
++      inset: 0;
++      opacity: 0;
++      display: grid;
++      place-items: center;
++      padding: 18px;
++      text-align: center;
++      font-size: 0.94rem;
++      font-weight: 700;
++      line-height: 1.4;
++      color: rgba(255, 255, 255, 0.88);
++      transition: opacity 180ms ease;
++    }
++
++    body[data-theme="light"] .work-thumb::after {
++      color: rgba(25, 19, 38, 0.78);
++    }
++
++    .work-thumb.is-missing::after {
++      content: attr(data-fallback);
++      opacity: 1;
++    }
++
++    .work-title {
++      font-size: 1rem;
++      font-weight: 700;
++      line-height: 1.35;
++      letter-spacing: -0.02em;
++    }
++
++    .work-card.featured .work-title {
++      color: #ffe7a4;
++      text-shadow: 0 0 16px rgba(244, 207, 100, 0.32), 0 0 32px rgba(244, 207, 100, 0.16);
++    }
++
++    .why-layout {
++      display: grid;
++      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
++      gap: 20px;
++    }
++
++    .copy-panel,
++    .list-panel,
++    .text-card,
++    .workflow-card,
++    .testimonial,
++    .cta-panel {
++      border: 1px solid var(--line);
++      border-radius: 24px;
++      background:
++        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 18%),
++        var(--card);
++      box-shadow: var(--shadow);
++    }
++
++    .copy-panel,
++    .list-panel,
++    .text-card,
++    .workflow-card,
++    .testimonial {
++      padding: 26px;
++      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
++    }
++
++    .copy-panel:hover,
++    .list-panel:hover,
++    .text-card:hover,
++    .workflow-card:hover,
++    .testimonial:hover {
++      transform: translateY(-4px);
++      border-color: var(--line-strong);
++      box-shadow: var(--surface-glow);
++    }
++
++    .copy-panel h3,
++    .text-card h3 {
++      margin: 0 0 14px;
++      font-size: 1.3rem;
++      line-height: 1.15;
++      letter-spacing: -0.03em;
++    }
++
++    .copy-panel p,
++    .text-card p,
++    .text-card li,
++    .workflow-card p,
++    .testimonial p {
++      color: var(--muted);
++      margin: 0;
++    }
++
++    .checklist {
++      list-style: none;
++      padding: 0;
++      margin: 0;
++      display: grid;
++      gap: 16px;
++    }
++
++    .checklist li {
++      display: flex;
++      align-items: flex-start;
++      gap: 12px;
++      padding: 15px 16px;
++      border-radius: 18px;
++      background: rgba(255, 255, 255, 0.03);
++      transition: transform 180ms ease, background-color 180ms ease;
++    }
++
++    .checklist li:hover {
++      transform: translateX(4px);
++      background: rgba(255, 255, 255, 0.05);
++    }
++
++    .check-icon {
++      width: 22px;
++      height: 22px;
++      border-radius: 999px;
++      display: inline-grid;
++      place-items: center;
++      color: white;
++      background: linear-gradient(135deg, #8b5cf6, #a855f7);
++      box-shadow: 0 10px 22px rgba(139, 92, 246, 0.24);
++      flex: none;
++      margin-top: 1px;
++    }
++
++    .check-icon svg {
++      width: 12px;
++      height: 12px;
++      stroke: currentColor;
++      fill: none;
++      stroke-width: 2.2;
++      stroke-linecap: round;
++      stroke-linejoin: round;
++    }
++
++    .workflow-grid {
++      grid-template-columns: repeat(4, minmax(0, 1fr));
++    }
++
++    .workflow-card {
++      min-height: 220px;
++    }
++
++    .workflow-number {
++      display: inline-block;
++      color: #d7c6ff;
++      font-size: 0.86rem;
++      font-weight: 700;
++      letter-spacing: 0.16em;
++      text-transform: uppercase;
++    }
++
++    .workflow-card h3 {
++      margin: 16px 0 10px;
++      font-size: 1.15rem;
++      line-height: 1.2;
++      letter-spacing: -0.03em;
++    }
++
++    .rates-grid {
++      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
++    }
++
++    .rate-card {
++      min-height: 100%;
++      padding: 24px;
++      border: 1px solid var(--line);
++      border-radius: 24px;
++      background:
++        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 18%),
++        var(--card);
++      box-shadow: var(--shadow);
++      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
++    }
++
++    .rate-card:hover {
++      transform: translateY(-4px);
++      border-color: var(--line-strong);
++      box-shadow: var(--surface-glow);
++    }
++
++    .rate-card h3 {
++      margin: 0;
++      font-size: 1.15rem;
++      line-height: 1.2;
++      letter-spacing: -0.03em;
++    }
++
++    .rate-amount {
++      margin: 14px 0;
++      font-size: 1.8rem;
++      font-weight: 800;
++      letter-spacing: -0.05em;
++    }
++
++    .rate-card p {
++      margin: 0;
++      color: var(--muted);
++      font-size: 0.96rem;
++    }
++
++    .rate-card .rate-note {
++      margin-top: 16px;
++      padding-top: 16px;
++      border-top: 1px solid var(--line);
++      font-size: 0.92rem;
++    }
++
++    .info-grid {
++      margin-top: 22px;
++      display: grid;
++      grid-template-columns: 1.05fr 1.05fr 0.9fr;
++      gap: 18px;
++    }
++
++    .text-card ol,
++    .text-card ul {
++      margin: 16px 0 0;
++      padding-left: 20px;
++      color: var(--muted);
++    }
++
++    .text-card li + li {
++      margin-top: 10px;
++    }
++
++    .text-card .supporting-copy {
++      margin-top: 16px;
++    }
++
++    .payment-methods {
++      list-style: none;
++      padding: 0;
++      margin: 16px 0 0;
++      display: grid;
++      gap: 14px;
++    }
++
++    .payment-methods li {
++      padding: 14px 16px;
++      border-radius: 18px;
++      background: rgba(255, 255, 255, 0.03);
++    }
++
++    .testimonials-grid {
++      grid-template-columns: repeat(2, minmax(0, 1fr));
++    }
++
++    .testimonial {
++      display: flex;
++      flex-direction: column;
++      justify-content: space-between;
++      gap: 18px;
++      min-height: 210px;
++    }
++
++    .testimonial .quote {
++      font-size: 1rem;
++      line-height: 1.7;
++    }
++
++    .rating {
++      color: #f4cf64;
++      font-weight: 700;
++      letter-spacing: 0.04em;
++    }
++
++    .cta-panel {
++      margin-top: 22px;
++      padding: 30px;
++      display: flex;
++      align-items: center;
++      justify-content: space-between;
++      gap: 22px;
++      background:
++        linear-gradient(135deg, rgba(168, 85, 247, 0.12), transparent 64%),
++        var(--card-strong);
++    }
++
++    .cta-panel h2 {
++      margin: 0 0 10px;
++      font-size: clamp(1.8rem, 3vw, 2.5rem);
++      line-height: 1.05;
++      letter-spacing: -0.04em;
++    }
++
++    .cta-panel p {
++      margin: 0;
++      max-width: 58ch;
++      color: var(--muted);
++    }
++
++    .site-footer {
++      padding: 24px 0 28px;
++    }
++
++    .footer-shell {
++      margin-top: 96px;
++      padding: 30px;
++      border: 1px solid var(--line);
++      border-radius: 28px;
++      background:
++        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 20%),
++        color-mix(in srgb, var(--bg-elev) 88%, transparent);
++      box-shadow: var(--shadow);
++    }
++
++    .footer-top {
++      display: grid;
++      grid-template-columns: minmax(0, 1.1fr) auto auto;
++      gap: 28px;
++      align-items: start;
++    }
++
++    .footer-brand .brand {
++      margin-bottom: 14px;
++    }
++
++    .footer-copy {
++      max-width: 56ch;
++      margin: 0;
++      color: var(--muted);
++    }
++
++    .footer-links,
++    .footer-contact {
++      display: grid;
++      gap: 12px;
++      align-content: start;
++    }
++
++    .footer-links a,
++    .footer-contact a,
++    .footer-contact span {
++      color: var(--muted);
++      transition: color 180ms ease, transform 180ms ease;
++    }
++
++    .footer-links a:hover,
++    .footer-links a:focus-visible,
++    .footer-contact a:hover,
++    .footer-contact a:focus-visible {
++      color: var(--text);
++      transform: translateX(2px);
++      outline: none;
++    }
++
++    .footer-label {
++      color: var(--text);
++      font-weight: 600;
++    }
++
++    .footer-bottom {
++      margin-top: 28px;
++      padding-top: 18px;
++      border-top: 1px solid var(--line);
++      color: rgba(177, 168, 202, 0.84);
++      font-size: 0.9rem;
++    }
++
++    .reveal {
++      opacity: 0;
++      transform: translateY(26px);
++      transition: opacity 520ms ease, transform 520ms ease;
++    }
++
++    .reveal.visible {
++      opacity: 1;
++      transform: translateY(0);
++    }
++
++    @media (max-width: 1120px) {
++      .hero {
++        grid-template-columns: 1fr;
++        min-height: auto;
++      }
++
++      .hero-title {
++        max-width: 14ch;
++      }
++
++      .contact-card {
++        min-height: 0;
++      }
++
++      .work-grid {
++        grid-template-columns: repeat(3, minmax(0, 1fr));
++      }
++
++      .workflow-grid {
++        grid-template-columns: repeat(2, minmax(0, 1fr));
++      }
++
++      .info-grid,
++      .footer-top {
++        grid-template-columns: 1fr;
++      }
++    }
++
++    @media (max-width: 920px) {
++      .header-inner {
++        flex-wrap: wrap;
++      }
++
++      .header-actions {
++        width: 100%;
++        justify-content: space-between;
++      }
++
++      .site-nav ul {
++        justify-content: flex-start;
++      }
++
++      .expertise-grid,
++      .testimonials-grid,
++      .why-layout {
++        grid-template-columns: 1fr;
++      }
++
++      .cta-panel {
++        flex-direction: column;
++        align-items: flex-start;
++      }
++    }
++
++    @media (max-width: 720px) {
++      :root {
++        --container: min(100vw - 24px, 1220px);
++      }
++
++      .section {
++        padding-top: 78px;
++      }
++
++      .site-header {
++        padding-top: 10px;
++      }
++
++      .header-shell {
++        border-radius: 20px;
++      }
++
++      .header-inner {
++        padding: 16px;
++      }
++
++      .site-nav ul {
++        gap: 8px;
++      }
++
++      .site-nav a {
++        padding: 9px 12px;
++        font-size: 0.88rem;
++      }
++
++      .hero {
++        padding-top: 30px;
++      }
++
++      .hero-copy {
++        padding-top: 12px;
++      }
++
++      .hero-title {
++        max-width: none;
++      }
++
++      .rotator-shell {
++        min-width: 0;
++        width: 100%;
++      }
++
++      .contact-card,
++      .copy-panel,
++      .list-panel,
++      .text-card,
++      .workflow-card,
++      .testimonial,
++      .rate-card,
++      .skill-card {
++        border-radius: 22px;
++      }
++
++      .expertise-grid,
++      .workflow-grid,
++      .testimonials-grid,
++      .work-grid {
++        grid-template-columns: 1fr;
++      }
++
++      .button {
++        width: 100%;
++      }
++    }
++
++    @media (prefers-reduced-motion: reduce) {
++      html {
++        scroll-behavior: auto;
++      }
++
++      *,
++      *::before,
++      *::after {
++        animation-duration: 0.01ms !important;
++        animation-iteration-count: 1 !important;
++        transition-duration: 0.01ms !important;
++        scroll-behavior: auto !important;
++      }
++
++      .reveal {
++        opacity: 1;
++        transform: none;
++      }
++    }
++  </style>
++</head>
++<body data-theme="dark">
++  <header class="site-header">
++    <div class="header-shell">
++      <div class="progress-track" aria-hidden="true">
++        <span class="progress-bar" id="scroll-progress"></span>
++      </div>
++      <div class="header-inner">
++        <a class="brand" href="#home" aria-label="Local home">
++          <span class="brand-mark">LO</span>
++          <span class="brand-text">
++            <span class="brand-name">Local</span>
++            <span class="brand-subtitle">Premium Roblox Scripter</span>
++          </span>
++        </a>
++        <div class="header-actions">
++          <nav class="site-nav" aria-label="Primary">
++            <ul>
++              <li><a href="#home">Home</a></li>
++              <li><a href="#expertise">Expertise</a></li>
++              <li><a href="#past-work">Past Work</a></li>
++              <li><a href="#why-choose-me">Why Choose Me</a></li>
++              <li><a href="#workflow">Workflow</a></li>
++              <li><a href="#rates">Rates</a></li>
++            </ul>
++          </nav>
++          <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch theme"></button>
++        </div>
++      </div>
++    </div>
++  </header>
++
++  <main>
++    <section class="hero container section" id="home">
++      <div class="hero-copy reveal">
++        <p class="hero-name">Local</p>
++        <h1 class="hero-title">Premium &amp; Advanced Roblox Scripter</h1>
++        <p class="hero-subtitle">5+ Years Experience</p>
++        <div class="rotator-row" aria-live="polite">
++          <span class="rotator-label">Building</span>
++          <span class="rotator-shell">
++            <span class="rotator-text" id="rotator-text">full game frameworks</span>
++          </span>
++        </div>
++        <p class="lead">Hey! I'm Local. I am an advanced Roblox Luau scripter focused on production-ready codebases designed for real player load. From core features to full game frameworks, I deliver professional-grade work that you can scale and maintain.</p>
++        <div class="hero-actions">
++          <a class="button button-primary" href="#contact">Contact Me</a>
++          <a class="button button-secondary" href="#past-work">Past Work</a>
++        </div>
++      </div>
++
++      <aside class="contact-card panel reveal" id="contact">
++        <div>
++          <h2 class="card-title">Contact Me</h2>
++          <p class="card-copy">Direct contact details to get in touch with me.</p>
++        </div>
++        <dl class="contact-list">
++          <div class="contact-item">
++            <dt>Email</dt>
++            <dd><a href="mailto:imdevlocal@gmail.com">imdevlocal@gmail.com</a></dd>
++          </div>
++          <div class="contact-item">
++            <dt>Discord Username</dt>
++            <dd>o1et</dd>
++          </div>
++          <div class="contact-item">
++            <dt>Roblox Username</dt>
++            <dd>BlackCH40S</dd>
++          </div>
++        </dl>
++      </aside>
++    </section>
++
++    <section class="section container" id="expertise">
++      <div class="section-head reveal">
++        <h2>Skills &amp; Expertise</h2>
++        <p>Systems are designed for long-term development, live updates, and predictable behavior at scale.</p>
++      </div>
++
++      <div class="expertise-grid">
++        <article class="skill-card reveal">
++          <span class="skill-number">01</span>
++          <h3>Core Architecture</h3>
++          <p>Modular frameworks, scalable system design, OOP patterns, and maintainable game architecture.</p>
++        </article>
++        <article class="skill-card reveal">
++          <span class="skill-number">02</span>
++          <h3>Data Handling</h3>
++          <p>ProfileStore, DataStore2, and custom DataStore wrappers for secure server-owned data handling &amp; data loss prevention.</p>
++        </article>
++        <article class="skill-card reveal">
++          <span class="skill-number">03</span>
++          <h3>Security &amp; Anti-Exploit</h3>
++          <p>Server authority, remote validation, anti-exploit layers, and abuse-resistant logic paths.</p>
++        </article>
++        <article class="skill-card reveal">
++          <span class="skill-number">04</span>
++          <h3>Performance Optimization</h3>
++          <p>Optimized systems that stay smooth under pressure, even at scale with high frame rates &amp; low NetworkPing.</p>
++        </article>
++        <article class="skill-card reveal">
++          <span class="skill-number">05</span>
++          <h3>UI/UX Systems</h3>
++          <p>Appealing frontend with interactive GUIs, dynamic menus, and polished tween behavior that feels responsive.</p>
++        </article>
++        <article class="skill-card reveal">
++          <span class="skill-number">06</span>
++          <h3>Networking</h3>
++          <p>Efficient networking &amp; smart architecture decisions with reliable RemoteEvent and RemoteFunction pipelines &amp; clear client/server responsibility.</p>
++        </article>
++        <article class="skill-card reveal">
++          <span class="skill-number">07</span>
++          <h3>Monetization</h3>
++          <p>DevProducts, Gamepasses, and analytics-ready purchase flows tied to game economy design</p>
++        </article>
++        <article class="skill-card reveal">
++          <span class="skill-number">08</span>
++          <h3>Systems Design</h3>
++          <p>Designing gameplay loops, progression systems, and scalable mechanics that support long-term player retention.</p>
++        </article>
++        <article class="skill-card reveal">
++          <span class="skill-number">09</span>
++          <h3>Debugging &amp; Reliability</h3>
++          <p>Identifying edge cases, fixing complex bugs, and scripting systems that remain stable under load.</p>
++        </article>
++      </div>
++
++      <div class="tool-note reveal">
++        <span class="tool-note-mark">&gt;</span>
++        <p>I am also familiar with various development tools such as Funnels, Knit &amp; Aero, Telemetry, Visual Studio Code &amp; Rojo, Git-based version control, Script performance tools, and much more!</p>
++      </div>
++    </section>
++
++    <section class="section container" id="past-work">
++      <div class="section-head reveal">
++        <h2>Past Work</h2>
++        <p>A selection of recent projects I've worked on across different genres.</p>
++      </div>
++
++      <div class="work-grid">
++        <a class="work-card featured reveal" href="https://www.roblox.com/games/134354795189883/Mow-Ur-Snow" target="_blank" rel="noreferrer">
++          <figure class="work-thumb" data-fallback="Mow Ur Snow! ❄️">
++            <img src="Images/MowUrSnow.webp" alt="Mow Ur Snow! ❄️" loading="lazy">
++          </figure>
++          <span class="work-title">Mow Ur Snow! ❄️</span>
++        </a>
++        <a class="work-card featured reveal" href="https://www.roblox.com/games/125718366148964/Miner-Army" target="_blank" rel="noreferrer">
++          <figure class="work-thumb" data-fallback="⛏️ Miner Army!">
++            <img src="Images/MinerArmy.webp" alt="⛏️ Miner Army!" loading="lazy">
++          </figure>
++          <span class="work-title">⛏️ Miner Army!</span>
++        </a>
++        <a class="work-card featured reveal" href="https://www.roblox.com/games/76194768511184/Avoid-Trains-For-Eggs" target="_blank" rel="noreferrer">
++          <figure class="work-thumb" data-fallback="Avoid Trains For Eggs!">
++            <img src="Images/AvoidTrainsForEggs.webp" alt="Avoid Trains For Eggs!" loading="lazy">
++          </figure>
++          <span class="work-title">Avoid Trains For Eggs!</span>
++        </a>
++        <a class="work-card reveal" href="https://www.roblox.com/games/113317945633040/Swing-Obby-for-Brainrot-Eggs" target="_blank" rel="noreferrer">
++          <figure class="work-thumb" data-fallback="Swing Obby for Brainrot Eggs!">
++            <img src="Images/SwingObbyForBrainrotEggs.webp" alt="Swing Obby for Brainrot Eggs!" loading="lazy">
++          </figure>
++          <span class="work-title">Swing Obby for Brainrot Eggs!</span>
++        </a>
++        <a class="work-card reveal" href="https://www.roblox.com/games/103884408720920/One-Punch-Troll-Tower" target="_blank" rel="noreferrer">
++          <figure class="work-thumb" data-fallback="One Punch Troll Tower 👊">
++            <img src="Images/OnePunchTrollTower.webp" alt="One Punch Troll Tower 👊" loading="lazy">
++          </figure>
++          <span class="work-title">One Punch Troll Tower 👊</span>
++        </a>
++        <a class="work-card reveal" href="https://www.roblox.com/games/111982085751100/Mega-Minigames" target="_blank" rel="noreferrer">
++          <figure class="work-thumb" data-fallback="🤡 Mega Minigames">
++            <img src="Images/MegaMinigames.webp" alt="🤡 Mega Minigames" loading="lazy">
++          </figure>
++          <span class="work-title">🤡 Mega Minigames</span>
++        </a>
++        <a class="work-card reveal" href="https://www.roblox.com/games/73699023542441/Button-Trees" target="_blank" rel="noreferrer">
++          <figure class="work-thumb" data-fallback="Button Trees! 🌲">
++            <img src="Images/ButtonTrees.webp" alt="Button Trees! 🌲" loading="lazy">
++          </figure>
++          <span class="work-title">Button Trees! 🌲</span>
++        </a>
++        <a class="work-card reveal" href="https://www.roblox.com/games/103924653201062/Curzys-Incremental" target="_blank" rel="noreferrer">
++          <figure class="work-thumb" data-fallback="Curzy's Incremental! 🤑">
++            <img src="Images/CurzysIncremental.webp" alt="Curzy's Incremental! 🤑" loading="lazy">
++          </figure>
++          <span class="work-title">Curzy's Incremental! 🤑</span>
++        </a>
++        <a class="work-card reveal" href="https://www.roblox.com/games/115656072207322/Color-Bridges" target="_blank" rel="noreferrer">
++          <figure class="work-thumb" data-fallback="Color Bridges 🌈">
++            <img src="Images/ColorBridges.webp" alt="Color Bridges 🌈" loading="lazy">
++          </figure>
++          <span class="work-title">Color Bridges 🌈</span>
++        </a>
++        <a class="work-card reveal" href="https://www.roblox.com/games/82509271555958/Compton-Life-REMASTERED" target="_blank" rel="noreferrer">
++          <figure class="work-thumb" data-fallback="Compton Life REMASTERED">
++            <img src="Images/ComptonLifeREMASTERED.webp" alt="Compton Life REMASTERED" loading="lazy">
++          </figure>
++          <span class="work-title">Compton Life REMASTERED</span>
++        </a>
++      </div>
++    </section>
++
++    <section class="section container" id="why-choose-me">
++      <div class="section-head reveal">
++        <h2>Why Choose Me</h2>
++        <p>I prioritize codebase quality, clear communication, and reliable delivery so projects move forward without technical debt. I don't just make things work, I make them work well.</p>
++      </div>
++
++      <div class="why-layout">
++        <article class="copy-panel reveal">
++          <h3>Professional Delivery, No Shortcuts</h3>
++          <p>You get clean, professional-grade systems designed for iteration. I build with exploits, edge cases &amp; low-end devices in mind, ensure systems are designed for future updates, keep communication direct, and deliver in milestones so scope and progress stay clear from start to finish. I also structure each delivery so future features can be added without rewriting half of the game.</p>
++        </article>
++        <article class="list-panel reveal">
++          <ul class="checklist">
++            <li>
++              <span class="check-icon" aria-hidden="true">
++                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg>
++              </span>
++              <span>High-quality systems built to last</span>
++            </li>
++            <li>
++              <span class="check-icon" aria-hidden="true">
++                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg>
++              </span>
++              <span>Fast responses and transparent updates</span>
++            </li>
++            <li>
++              <span class="check-icon" aria-hidden="true">
++                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg>
++              </span>
++              <span>On-time milestone delivery</span>
++            </li>
++            <li>
++              <span class="check-icon" aria-hidden="true">
++                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg>
++              </span>
++              <span>Security and performance as baseline standards</span>
++            </li>
++            <li>
++              <span class="check-icon" aria-hidden="true">
++                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg>
++              </span>
++              <span>Comfortable with both single features and full games</span>
++            </li>
++            <li>
++              <span class="check-icon" aria-hidden="true">
++                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg>
++              </span>
++              <span>Implementation aligned to your exact game vision</span>
++            </li>
++          </ul>
++        </article>
++      </div>
++    </section>
++
++    <section class="section container" id="workflow">
++      <div class="section-head reveal">
++        <h2>How I Work</h2>
++        <p>A straightforward process that keeps the workflow quality high.</p>
++      </div>
++
++      <div class="workflow-grid">
++        <article class="workflow-card reveal">
++          <span class="workflow-number">01</span>
++          <h3>Scope Review</h3>
++          <p>Task, requirements, constraints, and technical risks are mapped out before production starts.</p>
++        </article>
++        <article class="workflow-card reveal">
++          <span class="workflow-number">02</span>
++          <h3>System Build</h3>
++          <p>Features are implemented with clean architectures and professional-grade polish from the start with no shortcuts.</p>
++        </article>
++        <article class="workflow-card reveal">
++          <span class="workflow-number">03</span>
++          <h3>Validation</h3>
++          <p>Check &amp; test for bugs, edge cases, performance, and reliability before delivery.</p>
++        </article>
++        <article class="workflow-card reveal">
++          <span class="workflow-number">04</span>
++          <h3>Delivery</h3>
++          <p>Milestone deliveries with clear notes and plans for a professional &amp; clear workflow.</p>
++        </article>
++      </div>
++    </section>
++
++    <section class="section container" id="rates">
++      <div class="section-head reveal">
++        <h2>Payment &amp; Rates</h2>
++        <p>Pricing varies widely by the project, here is a general pricing tier to give you an idea of my rates.</p>
++      </div>
++
++      <div class="rates-grid">
++        <article class="rate-card reveal">
++          <h3>Small Tasks</h3>
++          <p class="rate-amount">$10 - $20</p>
++          <p>Simple scripts, minor bug fixes, and small gameplay mechanics.</p>
++          <p class="rate-note">(For example, fixing small scripts, adding small mechanics, tweaking UI scripts, etc.)</p>
++        </article>
++        <article class="rate-card reveal">
++          <h3>Gameplay Features</h3>
++          <p class="rate-amount">$25 - $50</p>
++          <p>Standalone gameplay mechanics or feature implementations with moderate complexity.</p>
++          <p class="rate-note">(For example, a UI feature, expanding a feature, a daily rewards system, etc.)</p>
++        </article>
++        <article class="rate-card reveal">
++          <h3>Advanced Systems</h3>
++          <p class="rate-amount">$75 – $200</p>
++          <p>Complex systems that require a structured architecture, networking, or multiple components.</p>
++          <p class="rate-note">(For example, a complex inventory system, saving system, progression system, etc.)</p>
++        </article>
++        <article class="rate-card reveal">
++          <h3>Major Game Systems</h3>
++          <p class="rate-amount">$250 - $500</p>
++          <p>Large-scale systems that power a major portion of the game.</p>
++          <p class="rate-note">(For example, an entire economy system, core gameplay loop, full UI framework, etc.)</p>
++        </article>
++        <article class="rate-card reveal">
++          <h3>Full Game Development</h3>
++          <p class="rate-amount">$500 - $1,000+</p>
++          <p>Scripting full games from the ground up or large-scale production-level projects.</p>
++          <p class="rate-note">(For example, scripting an entire simulator game or an entire RPG game; the full game package.)<br>Note that for full games, pricing varies widely and can be negotiated.</p>
++        </article>
++      </div>
++
++      <div class="info-grid">
++        <article class="text-card reveal">
++          <h3>Payment Terms</h3>
++          <p>My core principle is that you never pay upfront. Payment can be handled in 3 different ways:</p>
++          <ol>
++            <li>Milestones (per approved task, pay after each core task is completed)</li>
++            <li>Daily/weekly/monthly (pay every day/every week/every month)</li>
++            <li>Upon completion (pay after all work is done; this payment method requires the most background checking &amp; verification)</li>
++          </ol>
++          <p class="supporting-copy">Note that a background check &amp; proof of payment is required before development.</p>
++        </article>
++
++        <article class="text-card reveal">
++          <h3>Percentage Deals (%)</h3>
++          <p>Percentage deals are only accepted if:</p>
++          <ul>
++            <li>A) Your game is already generating revenue (requires proof of revenue analytics)</li>
++            <li>B) Your game is legitimately expecting significant revenue (requires proof of ad funds &amp; or an existing fanbase; also requires a personal interview). In some cases, you can hire me entirely on percentage long-term without fixed pay for brand new games if there is legitimate potential; I am always open to serious opportunities and willing to work with developers who are genuinely committed to the project's success.</li>
++            <li>C) The percentage is paired with a fixed payment. If game is not already generating revenue, or does not have concrete proof of expecting significant revenue, a percentage can be added to slightly reduce your fixed payment (though exact amount depends entirely on the revenue proof, project scope, and game potential.)</li>
++          </ul>
++          <p class="supporting-copy">Percentages can range anywhere from 5% to 25%+</p>
++        </article>
++
++        <article class="text-card reveal">
++          <h3>Accepted Payment Methods</h3>
++          <ul class="payment-methods">
++            <li>Robux ($1 USD = 150 Robux)</li>
++            <li>PayPal (Goods &amp; Services preferred, Friends &amp; Family accepted)</li>
++            <li>Roblox Gift Cards (Less common &amp; requires more verification, though still an accepted option in some cases)</li>
++          </ul>
++        </article>
++      </div>
++    </section>
++
++    <section class="section container" id="testimonials">
++      <div class="section-head reveal">
++        <h2>Client Testimonials</h2>
++        <p>Feedback from previous major clients.</p>
++      </div>
++
++      <div class="testimonials-grid">
++        <article class="testimonial reveal">
++          <p class="quote">"Scripter here. I also worked with Local, and he is the most technically skilled person I know." - DevKruzy</p>
++          <p class="rating">☆ 5/5</p>
++        </article>
++        <article class="testimonial reveal">
++          <p class="quote">"Best scripter ever. I've worked with 4 different scripters, and Local was 100% the best one." - Lana</p>
++          <p class="rating">☆ 5/5</p>
++        </article>
++        <article class="testimonial reveal">
++          <p class="quote">"Very good scripter. Made me a good army fighting game in 3 days, and it worked perfect." - Warlord</p>
++          <p class="rating">☆ 5/5</p>
++        </article>
++        <article class="testimonial reveal">
++          <p class="quote">"Honestly a really good scripter. Scripts came out clean and exactly how I wanted, and he's very reliable." - Reedz</p>
++          <p class="rating">☆ 5/5</p>
++        </article>
++      </div>
++
++      <div class="cta-panel reveal">
++        <div>
++          <h2>Ready to work with me?</h2>
++          <p>Send over the details, timeline, and target release window. I'll keep delivery structured from day one.</p>
++        </div>
++        <a class="button button-primary" href="mailto:imdevlocal@gmail.com">Contact Me</a>
++      </div>
++    </section>
++  </main>
++
++  <footer class="site-footer">
++    <div class="container footer-shell">
++      <div class="footer-top">
++        <div class="footer-brand">
++          <a class="brand" href="#home" aria-label="Local home">
++            <span class="brand-mark">LO</span>
++            <span class="brand-text">
++              <span class="brand-name">Local</span>
++              <span class="brand-subtitle">Premium Roblox Scripter</span>
++            </span>
++          </a>
++          <p class="footer-copy">Advanced Roblox Luau scripter with 5 years of experience, specialized in building professional-grade systems designed for real player counts.</p>
++        </div>
++
++        <div class="footer-links">
++          <a href="#past-work">Past Work</a>
++          <a href="#rates">Rates</a>
++          <a href="#contact">Contact</a>
++        </div>
++
++        <div class="footer-contact">
++          <span><span class="footer-label">Email</span> imdevlocal@gmail.com</span>
++          <span><span class="footer-label">Discord</span> o1et</span>
++          <span><span class="footer-label">Roblox</span> BlackCH40S</span>
++        </div>
++      </div>
++      <div class="footer-bottom">© 2026 Local. Production-grade Roblox scripting.</div>
++    </div>
++  </footer>
++
++  <script>
++    const themeToggle = document.getElementById("theme-toggle");
++    const scrollProgress = document.getElementById("scroll-progress");
++    const rotatorText = document.getElementById("rotator-text");
++    const imageFrames = document.querySelectorAll(".work-thumb");
++    const revealItems = document.querySelectorAll(".reveal");
++    const phrases = [
++      "full game frameworks",
++      "clean production codebases",
++      "modular and maintainable frameworks",
++      "front-page ready games",
++      "anti-exploit systems",
++      "performance optimized systems",
++      "professional-grade polish"
++    ];
++    const icons = {
++      sun: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.2M12 19.3v2.2M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"></path></svg>',
++      moon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.7A8.8 8.8 0 1 1 9.3 3.8 7.1 7.1 0 0 0 20.2 14.7z"></path></svg>'
++    };
++
++    let activeTheme = localStorage.getItem("local-portfolio-theme") || "dark";
++    let phraseIndex = 0;
++    let rotationBusy = false;
++
++    function applyTheme(theme) {
++      activeTheme = theme;
++      document.body.dataset.theme = theme;
++      themeToggle.innerHTML = theme === "dark" ? icons.sun : icons.moon;
++      themeToggle.setAttribute("aria-label", theme === "dark" ? "Switch to light mode" : "Switch to dark mode");
++      localStorage.setItem("local-portfolio-theme", theme);
++    }
++
++    function updateProgress() {
++      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
++      const ratio = scrollHeight > 0 ? window.scrollY / scrollHeight : 0;
++      scrollProgress.style.transform = `scaleX(${Math.max(0, Math.min(1, ratio))})`;
++    }
++
++    function rotatePhrase() {
++      if (rotationBusy) {
++        return;
++      }
++
++      rotationBusy = true;
++      rotatorText.classList.add("is-changing");
++
++      window.setTimeout(() => {
++        phraseIndex = (phraseIndex + 1) % phrases.length;
++        rotatorText.textContent = phrases[phraseIndex];
++        rotatorText.classList.remove("is-changing");
++        rotatorText.classList.add("is-settling");
++
++        window.setTimeout(() => {
++          rotatorText.classList.remove("is-settling");
++          rotationBusy = false;
++        }, 240);
++      }, 220);
++    }
++
++    function markMissingImage(frame) {
++      frame.classList.add("is-missing");
++    }
++
++    const revealObserver = new IntersectionObserver(
++      entries => {
++        entries.forEach(entry => {
++          if (entry.isIntersecting) {
++            entry.target.classList.add("visible");
++            revealObserver.unobserve(entry.target);
++          }
++        });
++      },
++      {
++        threshold: 0.16,
++        rootMargin: "0px 0px -40px 0px"
++      }
++    );
++
++    applyTheme(activeTheme);
++    updateProgress();
++
++    themeToggle.addEventListener("click", () => {
++      applyTheme(activeTheme === "dark" ? "light" : "dark");
++    });
++
++    window.addEventListener("scroll", updateProgress, { passive: true });
++    window.addEventListener("resize", updateProgress);
++    window.setInterval(rotatePhrase, 3000);
++
++    revealItems.forEach(item => revealObserver.observe(item));
++
++    imageFrames.forEach(frame => {
++      const image = frame.querySelector("img");
++      if (!image) {
++        markMissingImage(frame);
++        return;
++      }
++
++      if (image.complete && image.naturalWidth === 0) {
++        markMissingImage(frame);
++      }
++
++      image.addEventListener("error", () => markMissingImage(frame), { once: true });
++    });
++  </script>
++</body>
++</html>
