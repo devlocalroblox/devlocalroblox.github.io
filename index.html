@@ -150,7 +150,7 @@
     .button,
     .inline-tag,
     .contact-item,
-    .payment-method,
+    .payment-method-card,
     .site-nav a,
     .theme-toggle,
     .work-card {
@@ -160,8 +160,19 @@
     .surface:hover,
     .surface:focus-within,
     .contact-item:hover,
-    .payment-method:hover {
+    .payment-method-card:hover {
       transform: translateY(-6px) scale(1.014);
+      border-color: var(--line-strong);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .why-grid > .card:hover,
+    .workflow-card:hover,
+    .rate-card:hover,
+    .text-card:hover,
+    .testimonial:hover,
+    .cta-panel:hover {
+      transform: translateY(-6px) scale(1.016);
       border-color: var(--line-strong);
       box-shadow: var(--shadow-soft);
     }
@@ -382,10 +393,10 @@
 
     .hero-title {
       margin: 0;
-      font-size: clamp(3.7rem, 8.5vw, 6rem);
+      font-size: clamp(3.52rem, 8.1vw, 5.74rem);
       line-height: 0.92;
-      letter-spacing: -0.078em;
-      font-weight: 760;
+      letter-spacing: -0.072em;
+      font-weight: 740;
       color: transparent;
       background: linear-gradient(135deg, #ffffff 0%, #e7ddff 58%, #b497ff 100%);
       background-clip: text;
@@ -452,6 +463,7 @@
       background: var(--surface-soft);
       box-shadow: var(--shadow-soft);
       overflow: hidden;
+      flex: none;
       transition: width 280ms ease, border-color 220ms ease, box-shadow 220ms ease;
     }
 
@@ -475,6 +487,7 @@
       pointer-events: none;
       left: -9999px;
       top: 0;
+      display: inline-block;
     }
 
     .rotator-text.is-changing {
@@ -565,6 +578,7 @@
     }
 
     .contact-card {
+      margin-top: 28px;
       padding: 18px 18px 16px;
       border: 1px solid var(--line);
       border-radius: 26px;
@@ -576,10 +590,10 @@
 
     .contact-head {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 86px;
-      gap: 8px;
+      grid-template-columns: minmax(0, 1fr) 72px;
+      gap: 12px;
       align-items: start;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
     }
 
     .profile-frame {
@@ -593,7 +607,7 @@
         radial-gradient(circle at 28% 24%, rgba(255, 255, 255, 0.16), transparent 30%),
         linear-gradient(145deg, rgba(153, 122, 255, 0.28), rgba(14, 10, 24, 0.94));
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-      justify-self: end;
+      justify-self: start;
       align-self: start;
     }
 
@@ -645,7 +659,7 @@
     }
 
     .contact-copy p {
-      margin: 8px 0 0;
+      margin: 6px 0 0;
       color: var(--muted);
       font-size: 0.92rem;
     }
@@ -804,7 +818,7 @@
     }
 
     .work-card {
-      padding: 12px 12px 14px;
+      padding: 14px 12px 12px;
       border: 1px solid var(--line);
       border-radius: 26px;
       background:
@@ -813,7 +827,7 @@
       box-shadow: var(--shadow);
       display: grid;
       grid-template-rows: auto auto;
-      gap: 12px;
+      gap: 10px;
       text-align: center;
       align-items: start;
     }
@@ -837,11 +851,12 @@
     .work-thumb {
       position: relative;
       aspect-ratio: 1;
-      width: 100%;
+      width: calc(100% - 18px);
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 0;
+      margin: 0 auto;
       border-radius: 20px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -899,8 +914,8 @@
       width: 100%;
       text-align: center;
       color: var(--text);
-      min-height: 2.5em;
-      font-size: 0.94rem;
+      min-height: 2.35em;
+      font-size: 0.92rem;
       font-weight: 700;
       line-height: 1.28;
       letter-spacing: -0.02em;
@@ -992,7 +1007,7 @@
     }
 
     .rates-secondary {
-      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       align-items: stretch;
     }
 
@@ -1002,6 +1017,15 @@
       flex-direction: column;
       position: relative;
       padding: 22px 22px 20px;
+    }
+
+    .rate-card > p {
+      margin: 0;
+      line-height: 1.62;
+    }
+
+    .rate-card > p + p {
+      margin-top: 10px;
     }
 
     .popular-card {
@@ -1062,13 +1086,9 @@
       letter-spacing: -0.05em;
     }
 
-    .rate-card > p {
-      line-height: 1.62;
-    }
-
     .rate-note {
-      margin-top: 14px;
-      padding-top: 14px;
+      margin-top: 16px;
+      padding-top: 16px;
       border-top: 1px solid var(--line);
       color: var(--muted);
       font-size: 0.93rem;
@@ -1077,29 +1097,39 @@
     .terms-layout {
       margin-top: 22px;
       display: grid;
-      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
-      align-items: start;
-    }
-
-    .terms-stack {
-      display: grid;
-      gap: 18px;
+      align-items: stretch;
     }
 
     .text-card {
       padding: 22px 22px 20px;
     }
 
+    .terms-layout > .text-card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .text-card h3 {
+      margin: 0 0 12px;
+    }
+
     .text-card ol,
     .text-card ul {
-      margin: 18px 0 0;
+      margin: 16px 0 0;
       padding-left: 20px;
       color: var(--muted);
     }
 
     .text-card > p {
+      margin: 0;
       line-height: 1.68;
+    }
+
+    .text-card > p + p {
+      margin-top: 12px;
     }
 
     .text-card li {
@@ -1110,29 +1140,38 @@
       margin-top: 12px;
     }
 
-    .supporting-copy {
+    .text-card ol + .supporting-copy,
+    .text-card ul + .supporting-copy {
       margin-top: 18px;
+    }
+
+    .supporting-block {
+      margin-top: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .supporting-copy {
+      margin: 0;
       color: var(--muted-strong);
     }
 
     .payment-card {
-      margin-top: 0;
+      margin-top: 18px;
     }
 
-    .payment-methods {
-      list-style: none;
+    .payment-method-row {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
-      padding: 0;
-      margin: 18px 0 0;
+      margin-top: 18px;
     }
 
-    .payment-method {
+    .payment-method-card {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      min-height: 58px;
+      gap: 14px;
+      min-height: 68px;
       padding: 14px 16px;
       border: 1px solid var(--line);
       border-radius: 20px;
@@ -1143,25 +1182,52 @@
       line-height: 1.5;
     }
 
+    .payment-method-card .card-number {
+      margin: 0;
+      flex: none;
+    }
+
+    .payment-method-card > span:last-child {
+      font-size: 0.96rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .payment-notes {
+      margin: 18px 0 0;
+      padding-left: 20px;
+      color: var(--muted-strong);
+      display: grid;
+      gap: 10px;
+    }
+
+    .payment-notes li {
+      line-height: 1.68;
+    }
+
     .testimonials-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .testimonial {
-      min-height: 220px;
+      min-height: 188px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 20px;
+      gap: 12px;
+      padding: 22px 22px 18px;
     }
 
     .testimonial .quote {
+      margin: 0;
       color: var(--muted-strong);
       font-size: 1rem;
       line-height: 1.72;
     }
 
     .rating {
+      margin: 0;
+      margin-top: auto;
       color: var(--gold);
       font-weight: 700;
       letter-spacing: 0.04em;
@@ -1280,6 +1346,10 @@
         grid-template-columns: 1fr;
       }
 
+      .contact-card {
+        margin-top: 0;
+      }
+
       .rates-primary {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
@@ -1333,6 +1403,10 @@
       .rates-primary,
       .rates-secondary {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .payment-method-row {
+        grid-template-columns: 1fr;
       }
 
       .cta-panel,
@@ -1389,6 +1463,10 @@
       .work-grid,
       .rates-primary,
       .rates-secondary {
+        grid-template-columns: 1fr;
+      }
+
+      .payment-method-row {
         grid-template-columns: 1fr;
       }
 
@@ -1801,27 +1879,19 @@
         </div>
 
         <div class="terms-layout">
-          <div class="terms-stack">
-            <article class="card text-card surface reveal">
-              <h3>Payment Terms</h3>
-              <p>My core principle is that you never pay upfront. Payment can be handled in 3 different ways:</p>
-              <ol>
-                <li>Milestones (per approved task, pay after each core task is completed)</li>
-                <li>Daily/weekly/monthly (pay every day/every week/every month)</li>
-                <li>Upon completion (pay after all work is done; this payment method requires the most background checking &amp; verification)</li>
-              </ol>
+          <article class="card text-card surface reveal">
+            <h3>Payment Terms</h3>
+            <p>My core principle is that you never pay upfront. Payment can be handled in 3 different ways:</p>
+            <ol>
+              <li>Milestones (per approved task, pay after each core task is completed)</li>
+              <li>Daily/weekly/monthly (pay every day/every week/every month)</li>
+              <li>Upon completion (pay after all work is done; this payment method requires the most background checking &amp; verification)</li>
+            </ol>
+            <div class="supporting-block">
               <p class="supporting-copy">Note that a background check &amp; proof of payment is required before development.</p>
-            </article>
-
-            <article class="card text-card payment-card surface reveal">
-              <h3>Accepted Payment Methods</h3>
-              <ul class="payment-methods">
-                <li class="payment-method">Robux ($1 USD = 150 Robux)</li>
-                <li class="payment-method">PayPal (Goods &amp; Services preferred, Friends &amp; Family accepted)</li>
-                <li class="payment-method">Roblox Gift Cards (Less common &amp; requires more verification, though still an accepted option in some cases)</li>
-              </ul>
-            </article>
-          </div>
+              <p class="supporting-copy">If you have a preference, message me your preferred payment term, and I'll verify it.</p>
+            </div>
+          </article>
 
           <article class="card text-card surface reveal">
             <h3>Percentage Deals (%)</h3>
@@ -1834,6 +1904,29 @@
             <p class="supporting-copy">Percentages can range anywhere from 5% to 25%+</p>
           </article>
         </div>
+
+        <article class="card text-card payment-card surface reveal">
+          <h3>Accepted Payment Methods</h3>
+          <div class="payment-method-row">
+            <div class="payment-method-card">
+              <span class="card-number">01</span>
+              <span>Robux</span>
+            </div>
+            <div class="payment-method-card">
+              <span class="card-number">02</span>
+              <span>PayPal</span>
+            </div>
+            <div class="payment-method-card">
+              <span class="card-number">03</span>
+              <span>Roblox Gift Cards</span>
+            </div>
+          </div>
+          <ul class="payment-notes">
+            <li>Robux Conversion Rate: $1 USD = 150 Robux</li>
+            <li>For PayPal transactions, Goods &amp; Services is preferred, Friends &amp; Family is still accepted</li>
+            <li>Roblox Gift Cards require more verification before being accepted as payment</li>
+          </ul>
+        </article>
       </div>
     </section>
 
@@ -1965,8 +2058,15 @@
       }
 
       window.requestAnimationFrame(() => {
-        const width = Math.ceil(rotatorMeasure.getBoundingClientRect().width + 28);
-        rotatorShell.style.width = `${Math.max(146, width)}px`;
+        const shellStyle = window.getComputedStyle(rotatorShell);
+        const horizontalSpace =
+          parseFloat(shellStyle.paddingLeft) +
+          parseFloat(shellStyle.paddingRight) +
+          parseFloat(shellStyle.borderLeftWidth) +
+          parseFloat(shellStyle.borderRightWidth) +
+          2;
+        const width = Math.ceil(rotatorMeasure.getBoundingClientRect().width + horizontalSpace);
+        rotatorShell.style.width = `${width}px`;
       });
     }
 
