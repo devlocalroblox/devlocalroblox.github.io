@@ -80,6 +80,7 @@
         linear-gradient(var(--grid) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid) 1px, transparent 1px);
       background-size: 48px 48px;
+      -webkit-mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.9), transparent 82%);
       mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.9), transparent 82%);
       opacity: 0.8;
     }
@@ -129,7 +130,7 @@
       margin: 0 auto;
       border: 1px solid var(--line);
       border-radius: 22px;
-      background: color-mix(in srgb, var(--bg-elev) 88%, transparent);
+      background: var(--bg-elev);
       backdrop-filter: blur(22px);
       box-shadow: var(--shadow);
       overflow: hidden;
@@ -322,14 +323,6 @@
       letter-spacing: -0.05em;
     }
 
-    .hero-subtitle {
-      margin: 20px 0 0;
-      color: var(--muted);
-      font-size: clamp(1rem, 1.3vw, 1.18rem);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-
     .rotator-row {
       margin-top: 30px;
       display: flex;
@@ -443,7 +436,7 @@
       border-radius: 28px;
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 18%),
-        color-mix(in srgb, var(--card) 92%, transparent);
+        var(--card);
       box-shadow: var(--shadow);
       overflow: hidden;
     }
@@ -598,7 +591,7 @@
       padding: 22px 24px;
       border: 1px solid var(--line);
       border-radius: 22px;
-      background: color-mix(in srgb, var(--card) 84%, transparent);
+      background: var(--card);
       box-shadow: var(--shadow);
     }
 
@@ -999,7 +992,7 @@
       border-radius: 28px;
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 20%),
-        color-mix(in srgb, var(--bg-elev) 88%, transparent);
+        var(--bg-elev);
       box-shadow: var(--shadow);
     }
 
@@ -1109,7 +1102,10 @@
         justify-content: flex-start;
       }
 
-      .expertise-grid,
+      .expertise-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .testimonials-grid,
       .why-layout {
         grid-template-columns: 1fr;
@@ -1179,15 +1175,24 @@
         border-radius: 22px;
       }
 
-      .expertise-grid,
       .workflow-grid,
-      .testimonials-grid,
-      .work-grid {
+      .testimonials-grid {
         grid-template-columns: 1fr;
+      }
+
+      .work-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .button {
         width: 100%;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .expertise-grid,
+      .work-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -1247,8 +1252,7 @@
     <section class="hero container section" id="home">
       <div class="hero-copy reveal">
         <p class="hero-name">Local</p>
-        <h1 class="hero-title">Premium &amp; Advanced Roblox Scripter</h1>
-        <p class="hero-subtitle">5+ Years Experience</p>
+        <h1 class="hero-title">Premium &amp; Advanced Roblox Scripter • 5+ Years Experience</h1>
         <div class="rotator-row" aria-live="polite">
           <span class="rotator-label">Building</span>
           <span class="rotator-shell">
@@ -1497,6 +1501,248 @@
         </article>
       </div>
     </section>
+
+    <section class="section container" id="rates">
+      <div class="section-head reveal">
+        <h2>Payment &amp; Rates</h2>
+        <p>Pricing varies widely by the project, here is a general pricing tier to give you an idea of my rates.</p>
+      </div>
+
+      <div class="rates-grid">
+        <article class="rate-card reveal">
+          <h3>Small Tasks</h3>
+          <p class="rate-amount">$10 - $20</p>
+          <p>Simple scripts, minor bug fixes, and small gameplay mechanics.</p>
+          <p class="rate-note">(For example, fixing small scripts, adding small mechanics, tweaking UI scripts, etc.)</p>
+        </article>
+        <article class="rate-card reveal">
+          <h3>Gameplay Features</h3>
+          <p class="rate-amount">$25 - $50</p>
+          <p>Standalone gameplay mechanics or feature implementations with moderate complexity.</p>
+          <p class="rate-note">(For example, a UI feature, expanding a feature, a daily rewards system, etc.)</p>
+        </article>
+        <article class="rate-card reveal">
+          <h3>Advanced Systems</h3>
+          <p class="rate-amount">$75 – $200</p>
+          <p>Complex systems that require a structured architecture, networking, or multiple components.</p>
+          <p class="rate-note">(For example, a complex inventory system, saving system, progression system, etc.)</p>
+        </article>
+        <article class="rate-card reveal">
+          <h3>Major Game Systems</h3>
+          <p class="rate-amount">$250 - $500</p>
+          <p>Large-scale systems that power a major portion of the game.</p>
+          <p class="rate-note">(For example, an entire economy system, core gameplay loop, full UI framework, etc.)</p>
+        </article>
+        <article class="rate-card reveal">
+          <h3>Full Game Development</h3>
+          <p class="rate-amount">$500 - $1,000+</p>
+          <p>Scripting full games from the ground up or large-scale production-level projects.</p>
+          <p class="rate-note">(For example, scripting an entire simulator game or an entire RPG game; the full game package.)<br>Note that for full games, pricing varies widely and can be negotiated.</p>
+        </article>
+      </div>
+
+      <div class="info-grid">
+        <article class="text-card reveal">
+          <h3>Payment Terms</h3>
+          <p>My core principle is that you never pay upfront. Payment can be handled in 3 different ways:</p>
+          <ol>
+            <li>Milestones (per approved task, pay after each core task is completed)</li>
+            <li>Daily/weekly/monthly (pay every day/every week/every month)</li>
+            <li>Upon completion (pay after all work is done; this payment method requires the most background checking &amp; verification)</li>
+          </ol>
+          <p class="supporting-copy">Note that a background check &amp; proof of payment is required before development.</p>
+        </article>
+
+        <article class="text-card reveal">
+          <h3>Percentage Deals (%)</h3>
+          <p>Percentage deals are only accepted if:</p>
+          <ul>
+            <li>A) Your game is already generating revenue (requires proof of revenue analytics)</li>
+            <li>B) Your game is legitimately expecting significant revenue (requires proof of ad funds &amp; or an existing fanbase; also requires a personal interview). In some cases, you can hire me entirely on percentage long-term without fixed pay for brand new games if there is legitimate potential; I am always open to serious opportunities and willing to work with developers who are genuinely committed to the project's success.</li>
+            <li>C) The percentage is paired with a fixed payment. If game is not already generating revenue, or does not have concrete proof of expecting significant revenue, a percentage can be added to slightly reduce your fixed payment (though exact amount depends entirely on the revenue proof, project scope, and game potential.)</li>
+          </ul>
+          <p class="supporting-copy">Percentages can range anywhere from 5% to 25%+</p>
+        </article>
+
+        <article class="text-card reveal">
+          <h3>Accepted Payment Methods</h3>
+          <ul class="payment-methods">
+            <li>Robux ($1 USD = 150 Robux)</li>
+            <li>PayPal (Goods &amp; Services preferred, Friends &amp; Family accepted)</li>
+            <li>Roblox Gift Cards (Less common &amp; requires more verification, though still an accepted option in some cases)</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container" id="testimonials">
+      <div class="section-head reveal">
+        <h2>Client Testimonials</h2>
+        <p>Feedback from previous major clients.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <article class="testimonial reveal">
+          <p class="quote">"Scripter here. I also worked with Local, and he is the most technically skilled person I know." - DevKruzy</p>
+          <p class="rating">☆ 5/5</p>
+        </article>
+        <article class="testimonial reveal">
+          <p class="quote">"Best scripter ever. I've worked with 4 different scripters, and Local was 100% the best one." - Lana</p>
+          <p class="rating">☆ 5/5</p>
+        </article>
+        <article class="testimonial reveal">
+          <p class="quote">"Very good scripter. Made me a good army fighting game in 3 days, and it worked perfect." - Warlord</p>
+          <p class="rating">☆ 5/5</p>
+        </article>
+        <article class="testimonial reveal">
+          <p class="quote">"Honestly a really good scripter. Scripts came out clean and exactly how I wanted, and he's very reliable." - Reedz</p>
+          <p class="rating">☆ 5/5</p>
+        </article>
+      </div>
+
+      <div class="cta-panel reveal">
+        <div>
+          <h2>Ready to work with me?</h2>
+          <p>Send over the details, timeline, and target release window. I'll keep delivery structured from day one.</p>
+        </div>
+        <a class="button button-primary" href="mailto:imdevlocal@gmail.com">Contact Me</a>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="container footer-shell">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="#home" aria-label="Local home">
+            <span class="brand-mark">LO</span>
+            <span class="brand-text">
+              <span class="brand-name">Local</span>
+            </span>
+          </a>
+          <p class="footer-copy">Advanced Roblox Luau scripter with 5 years of experience, specialized in building professional-grade systems designed for real player counts.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="#past-work">Past Work</a>
+          <a href="#rates">Rates</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="footer-contact">
+          <span><span class="footer-label">Email</span> <a href="mailto:imdevlocal@gmail.com">imdevlocal@gmail.com</a></span>
+          <span><span class="footer-label">Discord</span> o1et</span>
+          <span><span class="footer-label">Roblox</span> BlackCH40S</span>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Local. Production-grade Roblox scripting.</div>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById("theme-toggle");
+    const scrollProgress = document.getElementById("scroll-progress");
+    const rotatorText = document.getElementById("rotator-text");
+    const imageFrames = document.querySelectorAll(".work-thumb");
+    const revealItems = document.querySelectorAll(".reveal");
+    const phrases = [
+      "full game frameworks",
+      "clean production codebases",
+      "modular and maintainable frameworks",
+      "front-page ready games",
+      "anti-exploit systems",
+      "performance optimized systems",
+      "professional-grade polish"
+    ];
+    const icons = {
+      sun: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.2M12 19.3v2.2M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"></path></svg>',
+      moon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.7A8.8 8.8 0 1 1 9.3 3.8 7.1 7.1 0 0 0 20.2 14.7z"></path></svg>'
+    };
+
+    let activeTheme = localStorage.getItem("local-portfolio-theme") || "dark";
+    let phraseIndex = 0;
+    let rotationBusy = false;
+
+    function applyTheme(theme) {
+      activeTheme = theme;
+      document.body.dataset.theme = theme;
+      themeToggle.innerHTML = theme === "dark" ? icons.sun : icons.moon;
+      themeToggle.setAttribute("aria-label", theme === "dark" ? "Switch to light mode" : "Switch to dark mode");
+      localStorage.setItem("local-portfolio-theme", theme);
+    }
+
+    function updateProgress() {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = scrollHeight > 0 ? window.scrollY / scrollHeight : 0;
+      scrollProgress.style.transform = `scaleX(${Math.max(0, Math.min(1, ratio))})`;
+    }
+
+    function rotatePhrase() {
+      if (rotationBusy) {
+        return;
+      }
+
+      rotationBusy = true;
+      rotatorText.classList.add("is-changing");
+
+      window.setTimeout(() => {
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        rotatorText.textContent = phrases[phraseIndex];
+        rotatorText.classList.remove("is-changing");
+        rotatorText.classList.add("is-settling");
+
+        window.setTimeout(() => {
+          rotatorText.classList.remove("is-settling");
+          rotationBusy = false;
+        }, 240);
+      }, 220);
+    }
+
+    function markMissingImage(frame) {
+      frame.classList.add("is-missing");
+    }
+
+    const revealObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.16,
+        rootMargin: "0px 0px -40px 0px"
+      }
+    );
+
+    applyTheme(activeTheme);
+    updateProgress();
+
+    themeToggle.addEventListener("click", () => {
+      applyTheme(activeTheme === "dark" ? "light" : "dark");
+    });
+
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    window.setInterval(rotatePhrase, 3000);
+
+    revealItems.forEach(item => revealObserver.observe(item));
+
+    imageFrames.forEach(frame => {
+      const image = frame.querySelector("img");
+      if (!image) {
+        markMissingImage(frame);
+        return;
+      }
+
+      if (image.complete && image.naturalWidth === 0) {
+        markMissingImage(frame);
+      }
+
+      image.addEventListener("error", () => markMissingImage(frame), { once: true });
+    });
+  </script>
 </body>
 </html>
