@@ -10,38 +10,53 @@
   <style>
     :root {
       color-scheme: dark;
-      --bg: #09070d;
-      --bg-elev: rgba(17, 13, 26, 0.88);
-      --card: rgba(19, 14, 30, 0.82);
-      --card-strong: rgba(28, 20, 43, 0.94);
-      --text: #f4f1ff;
-      --muted: #b1a8ca;
-      --line: rgba(203, 184, 255, 0.15);
-      --line-strong: rgba(203, 184, 255, 0.26);
-      --surface-glow: 0 28px 80px rgba(77, 30, 139, 0.28);
-      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-      --gold-line: rgba(244, 207, 100, 0.45);
-      --gold-glow: 0 0 30px rgba(244, 207, 100, 0.28);
-      --progress: linear-gradient(90deg, #f4cf64 0%, #c084fc 50%, #8b5cf6 100%);
-      --grid: rgba(242, 236, 255, 0.12);
-      --container: min(1220px, calc(100vw - 40px));
-      --header-height: 88px;
+      --bg: #05040a;
+      --bg-alt: #0a0714;
+      --surface: rgba(15, 12, 24, 0.8);
+      --surface-strong: rgba(17, 13, 29, 0.92);
+      --surface-soft: rgba(24, 18, 39, 0.84);
+      --text: #f5f2ff;
+      --muted: #a9a1bf;
+      --muted-strong: #cdc5e2;
+      --line: rgba(184, 171, 229, 0.14);
+      --line-strong: rgba(184, 171, 229, 0.28);
+      --accent: #9c7bff;
+      --accent-strong: #7a4ef5;
+      --accent-soft: rgba(124, 78, 245, 0.16);
+      --accent-grad: linear-gradient(135deg, #bba5ff 0%, #8d6dff 55%, #7446f2 100%);
+      --shadow: 0 28px 70px rgba(2, 0, 7, 0.45);
+      --shadow-soft: 0 18px 48px rgba(36, 16, 82, 0.2);
+      --gold: #f1cc71;
+      --gold-line: rgba(241, 204, 113, 0.42);
+      --gold-bg: rgba(241, 204, 113, 0.12);
+      --gold-glow: 0 0 28px rgba(241, 204, 113, 0.22);
+      --progress: linear-gradient(90deg, #f1cc71 0%, #ad8bff 44%, #8458ff 100%);
+      --grid: rgba(242, 236, 255, 0.08);
+      --container: min(1220px, calc(100vw - 48px));
+      --header-height: 84px;
+      --rotator-width: 320px;
     }
 
     body[data-theme="light"] {
       color-scheme: light;
-      --bg: #f5f1ff;
-      --bg-elev: rgba(255, 255, 255, 0.9);
-      --card: rgba(255, 255, 255, 0.86);
-      --card-strong: rgba(247, 241, 255, 0.96);
-      --text: #191326;
-      --muted: #65597d;
-      --line: rgba(92, 63, 163, 0.14);
-      --line-strong: rgba(92, 63, 163, 0.24);
-      --surface-glow: 0 24px 70px rgba(137, 86, 231, 0.16);
-      --shadow: 0 20px 60px rgba(77, 41, 134, 0.1);
-      --gold-line: rgba(214, 161, 35, 0.32);
-      --grid: rgba(98, 75, 132, 0.1);
+      --bg: #f3effd;
+      --bg-alt: #ebe4fa;
+      --surface: rgba(255, 255, 255, 0.8);
+      --surface-strong: rgba(255, 255, 255, 0.92);
+      --surface-soft: rgba(242, 235, 255, 0.86);
+      --text: #181225;
+      --muted: #665c7b;
+      --muted-strong: #413855;
+      --line: rgba(105, 84, 151, 0.14);
+      --line-strong: rgba(105, 84, 151, 0.22);
+      --accent: #7d54f7;
+      --accent-strong: #6a37f0;
+      --accent-soft: rgba(106, 55, 240, 0.12);
+      --shadow: 0 26px 64px rgba(78, 44, 138, 0.12);
+      --shadow-soft: 0 16px 42px rgba(78, 44, 138, 0.1);
+      --gold-line: rgba(214, 163, 43, 0.32);
+      --gold-bg: rgba(214, 163, 43, 0.12);
+      --grid: rgba(88, 68, 131, 0.08);
     }
 
     * {
@@ -58,12 +73,15 @@
       font-family: "Inter", "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 12% 16%, rgba(171, 101, 255, 0.16), transparent 24%),
-        radial-gradient(circle at 88% 10%, rgba(110, 55, 212, 0.22), transparent 28%),
-        radial-gradient(circle at 78% 82%, rgba(168, 85, 247, 0.1), transparent 30%),
-        var(--bg);
+        radial-gradient(circle at 22% 18%, rgba(132, 88, 255, 0.2), transparent 24%),
+        radial-gradient(circle at 76% 70%, rgba(124, 78, 245, 0.14), transparent 28%),
+        linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 18%, var(--bg) 100%);
       line-height: 1.6;
       overflow-x: hidden;
+    }
+
+    body * {
+      font-family: inherit;
     }
 
     body::before,
@@ -80,14 +98,17 @@
         linear-gradient(var(--grid) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid) 1px, transparent 1px);
       background-size: 48px 48px;
-      -webkit-mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.9), transparent 82%);
-      mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.9), transparent 82%);
-      opacity: 0.8;
+      opacity: 0.82;
+      -webkit-mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.98), transparent 84%);
+      mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.98), transparent 84%);
     }
 
     body::after {
       z-index: -3;
-      background: radial-gradient(circle at center, transparent 36%, rgba(0, 0, 0, 0.26) 100%);
+      background:
+        radial-gradient(circle at 50% 30%, rgba(114, 72, 224, 0.18), transparent 32%),
+        radial-gradient(circle at 20% 70%, rgba(80, 42, 172, 0.12), transparent 24%),
+        radial-gradient(circle at 100% 12%, rgba(110, 76, 201, 0.1), transparent 18%);
     }
 
     a {
@@ -117,78 +138,91 @@
       scroll-margin-top: 112px;
     }
 
+    .surface,
+    .button,
+    .inline-tag,
+    .contact-item,
+    .payment-method,
+    .site-nav a,
+    .theme-toggle,
+    .work-card {
+      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background-color 220ms ease, color 220ms ease;
+      will-change: transform;
+    }
+
+    .surface:hover,
+    .surface:focus-within,
+    .contact-item:hover,
+    .payment-method:hover {
+      transform: translateY(-6px) scale(1.014);
+      border-color: var(--line-strong);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 560ms ease, transform 560ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 50;
-      padding-top: 14px;
+      z-index: 80;
+      background: rgba(5, 4, 10, 0.72);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
     }
 
-    .header-shell {
-      position: relative;
-      width: var(--container);
-      margin: 0 auto;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: var(--bg-elev);
-      backdrop-filter: blur(22px);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+    body[data-theme="light"] .site-header {
+      background: rgba(243, 239, 253, 0.8);
     }
 
-    .progress-track {
+    .header-progress {
       position: absolute;
-      inset: 0 0 auto;
-      height: 3px;
-      background: rgba(255, 255, 255, 0.04);
+      inset: auto 0 0;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.05);
     }
 
-    .progress-bar {
+    .header-progress-bar {
       display: block;
       width: 100%;
       height: 100%;
       background: var(--progress);
-      transform-origin: left center;
       transform: scaleX(0);
-      transition: transform 0.14s linear;
+      transform-origin: left center;
     }
 
     .header-inner {
+      position: relative;
       min-height: var(--header-height);
-      display: flex;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 18px 22px 18px 20px;
+      gap: 18px;
     }
 
     .brand {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 14px;
       min-width: 0;
-      transition: transform 180ms ease, color 180ms ease;
-    }
-
-    .brand:hover {
-      transform: translateY(-2px);
-      color: #ffffff;
-    }
-
-    body[data-theme="light"] .brand:hover {
-      color: #120e1c;
     }
 
     .brand-mark {
       display: grid;
       place-items: center;
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: 14px;
       border: 1px solid var(--line-strong);
-      background:
-        linear-gradient(160deg, rgba(255, 255, 255, 0.06), transparent 60%),
-        rgba(134, 72, 223, 0.18);
+      background: linear-gradient(135deg, rgba(187, 165, 255, 0.22), rgba(112, 74, 226, 0.22));
       color: var(--text);
       font-size: 0.9rem;
       font-weight: 800;
@@ -197,31 +231,27 @@
       flex: none;
     }
 
-    .brand-text {
+    .brand-copy {
       min-width: 0;
+      display: grid;
+      gap: 3px;
     }
 
-    .brand-name {
-      margin: 0;
+    .brand-copy strong {
       font-size: 1rem;
       font-weight: 700;
       line-height: 1.1;
       letter-spacing: -0.02em;
     }
 
-    .brand-subtitle {
-      margin: 4px 0 0;
+    .brand-copy span {
       color: var(--muted);
-      font-size: 0.79rem;
-      line-height: 1.2;
+      font-size: 0.88rem;
+      line-height: 1.1;
     }
 
-    .header-actions {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 12px;
-      flex: 1;
+    .site-nav {
+      justify-self: center;
       min-width: 0;
     }
 
@@ -229,312 +259,402 @@
       list-style: none;
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 0;
+      gap: 6px;
       margin: 0;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      box-shadow: var(--shadow-soft);
     }
 
     .site-nav a {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 10px 14px;
+      padding: 10px 16px;
       border-radius: 999px;
-      color: var(--muted);
-      font-size: 0.92rem;
-      font-weight: 500;
-      transition: transform 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+      color: var(--muted-strong);
+      font-size: 0.94rem;
+      font-weight: 600;
+      white-space: nowrap;
     }
 
     .site-nav a:hover,
-    .site-nav a:focus-visible {
+    .site-nav a:focus-visible,
+    .site-nav a.is-active {
+      transform: translateY(-2px) scale(1.03);
       color: var(--text);
-      background: rgba(255, 255, 255, 0.05);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
       outline: none;
     }
 
     .theme-toggle {
       width: 46px;
       height: 46px;
-      padding: 0;
-      border: 1px solid var(--line-strong);
-      border-radius: 14px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent),
-        var(--card);
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--surface);
       color: var(--text);
       display: inline-grid;
       place-items: center;
+      padding: 0;
       cursor: pointer;
-      flex: none;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+      box-shadow: var(--shadow-soft);
     }
 
     .theme-toggle:hover,
     .theme-toggle:focus-visible {
-      transform: translateY(-2px);
-      border-color: rgba(203, 184, 255, 0.38);
-      box-shadow: var(--surface-glow);
+      transform: translateY(-2px) scale(1.04);
+      border-color: var(--line-strong);
       outline: none;
     }
 
     .theme-toggle svg {
-      width: 20px;
-      height: 20px;
+      width: 19px;
+      height: 19px;
       stroke: currentColor;
       fill: none;
-      stroke-width: 1.75;
+      stroke-width: 1.9;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
+    main {
+      padding-bottom: 36px;
+    }
+
     .hero {
-      min-height: calc(100svh - 112px);
+      padding-top: 54px;
+    }
+
+    .hero-layout {
       display: grid;
-      align-items: center;
-      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.82fr);
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+      align-items: start;
       gap: 34px;
-      padding-top: 48px;
     }
 
     .hero-copy {
-      padding: 28px 0 18px;
-    }
-
-    .hero-name {
-      margin: 0 0 18px;
-      color: #cfbaf8;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
+      padding-top: 28px;
     }
 
     .hero-title {
-      max-width: 12ch;
       margin: 0;
-      font-size: clamp(2.8rem, 5vw, 5.2rem);
-      line-height: 0.98;
-      letter-spacing: -0.05em;
+      font-size: clamp(4.4rem, 10vw, 7.1rem);
+      line-height: 0.9;
+      letter-spacing: -0.085em;
+      font-weight: 800;
+      color: transparent;
+      background: linear-gradient(135deg, #ffffff 0%, #e7ddff 58%, #b497ff 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    body[data-theme="light"] .hero-title {
+      background: linear-gradient(135deg, #1e172e 0%, #3f3166 58%, #6f49df 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .hero-subtitle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-soft);
+      color: var(--muted-strong);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-subtitle::before {
+      content: "";
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #bba5ff, #7c4dff);
+      box-shadow: 0 0 18px rgba(124, 78, 245, 0.44);
+      flex: none;
     }
 
     .rotator-row {
-      margin-top: 30px;
+      margin-top: 18px;
       display: flex;
       align-items: center;
       gap: 14px;
       flex-wrap: wrap;
-      font-size: clamp(1.05rem, 2vw, 1.35rem);
-      font-weight: 600;
     }
 
     .rotator-label {
-      color: var(--text);
+      font-size: 1.12rem;
+      font-weight: 600;
+      color: var(--muted-strong);
     }
 
     .rotator-shell {
       position: relative;
       display: inline-flex;
       align-items: center;
-      min-height: 56px;
-      min-width: min(100%, 440px);
-      padding: 14px 18px;
-      border-radius: 16px;
+      justify-content: flex-start;
+      width: min(var(--rotator-width), 100%);
+      max-width: 100%;
+      min-height: 48px;
+      padding: 11px 18px;
       border: 1px solid var(--line-strong);
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.07), transparent 70%),
-        rgba(104, 53, 190, 0.15);
-      color: #efe8ff;
+      border-radius: 999px;
+      background: var(--surface-soft);
+      box-shadow: var(--shadow-soft);
       overflow: hidden;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      transition: width 320ms ease, transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
     }
 
-    body[data-theme="light"] .rotator-shell {
-      color: #241c35;
+    .rotator-shell:hover {
+      transform: translateY(-4px) scale(1.02);
+      border-color: var(--line-strong);
+      box-shadow: var(--shadow-soft);
     }
 
-    .rotator-shell::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      background: linear-gradient(120deg, rgba(255, 255, 255, 0.12), transparent 42%, rgba(168, 85, 247, 0.16));
-      opacity: 0.7;
-      pointer-events: none;
+    .rotator-text,
+    .rotator-measure {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
     }
 
     .rotator-text {
       position: relative;
-      display: inline-block;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
+      color: var(--text);
       transition: opacity 220ms ease, transform 220ms ease;
-      will-change: opacity, transform;
+    }
+
+    .rotator-measure {
+      position: absolute;
+      visibility: hidden;
+      pointer-events: none;
+      left: -9999px;
+      top: 0;
     }
 
     .rotator-text.is-changing {
       opacity: 0;
-      transform: translateY(-45%);
+      transform: translateY(-40%);
     }
 
-    .rotator-text.is-settling {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .hero-copy > .lead {
-      max-width: 62ch;
+    .hero-lead {
+      max-width: 60ch;
       margin: 26px 0 0;
-      color: var(--muted);
-      font-size: 1.04rem;
+      color: var(--muted-strong);
+      font-size: 1.06rem;
     }
 
     .hero-actions {
       display: flex;
-      align-items: center;
       gap: 14px;
-      margin-top: 34px;
       flex-wrap: wrap;
+      margin-top: 32px;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 14px 18px;
-      border-radius: 14px;
-      border: 1px solid var(--line-strong);
-      font-weight: 600;
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background-color 180ms ease;
+      padding: 14px 20px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      box-shadow: var(--shadow-soft);
     }
 
     .button:hover,
     .button:focus-visible {
-      transform: translateY(-2px);
-      box-shadow: var(--surface-glow);
+      transform: translateY(-4px) scale(1.03);
+      border-color: var(--line-strong);
       outline: none;
     }
 
     .button-primary {
-      background: linear-gradient(135deg, rgba(192, 132, 252, 0.18), rgba(124, 58, 237, 0.22));
-      color: var(--text);
+      background: linear-gradient(135deg, rgba(187, 165, 255, 0.94), rgba(109, 69, 232, 0.94));
+      color: #0d0818;
     }
 
     .button-secondary {
-      background: rgba(255, 255, 255, 0.04);
+      background: var(--surface-soft);
       color: var(--text);
     }
 
-    .panel {
-      position: relative;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 18%),
-        var(--card);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
     }
 
-    .panel::after {
-      content: "";
-      position: absolute;
-      inset: auto -20% -45% auto;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(168, 85, 247, 0.18), transparent 64%);
-      pointer-events: none;
+    .inline-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .inline-tag:hover {
+      transform: translateY(-3px) scale(1.03);
+      border-color: var(--line-strong);
+      color: var(--text);
     }
 
     .contact-card {
-      padding: 32px;
-      align-self: stretch;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 28px;
-      min-height: 100%;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 22%),
+        var(--surface-strong);
+      box-shadow: var(--shadow);
     }
 
-    .card-title {
+    .contact-head {
+      display: grid;
+      grid-template-columns: 132px minmax(0, 1fr);
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .profile-frame {
+      position: relative;
+      aspect-ratio: 1;
+      width: 100%;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 28% 24%, rgba(255, 255, 255, 0.16), transparent 30%),
+        linear-gradient(145deg, rgba(153, 122, 255, 0.28), rgba(14, 10, 24, 0.94));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    body[data-theme="light"] .profile-frame {
+      background:
+        radial-gradient(circle at 28% 24%, rgba(255, 255, 255, 0.76), transparent 28%),
+        linear-gradient(145deg, rgba(177, 149, 255, 0.34), rgba(238, 230, 255, 0.94));
+    }
+
+    .profile-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-frame.is-missing img {
+      opacity: 0;
+    }
+
+    .profile-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      transition: opacity 180ms ease;
+    }
+
+    body[data-theme="light"] .profile-frame::after {
+      color: rgba(24, 18, 37, 0.84);
+    }
+
+    .profile-frame.is-missing::after {
+      content: attr(data-fallback);
+      opacity: 1;
+    }
+
+    .contact-copy h2 {
       margin: 0;
-      font-size: 1.55rem;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
+      font-size: 2rem;
+      line-height: 1;
+      letter-spacing: -0.05em;
     }
 
-    .card-copy {
+    .contact-copy p {
       margin: 10px 0 0;
       color: var(--muted);
-      font-size: 0.98rem;
+      font-size: 1rem;
     }
 
     .contact-list {
       margin: 0;
       display: grid;
-      gap: 16px;
+      gap: 12px;
     }
 
     .contact-item {
-      padding: 16px 18px;
+      padding: 15px 16px;
       border: 1px solid var(--line);
-      border-radius: 18px;
+      border-radius: 20px;
       background: rgba(255, 255, 255, 0.03);
-      transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
-    }
-
-    .contact-item:hover {
-      transform: translateY(-2px);
-      border-color: var(--line-strong);
-      background: rgba(255, 255, 255, 0.05);
     }
 
     .contact-item dt {
+      margin: 0;
       color: var(--muted);
-      font-size: 0.86rem;
+      font-size: 0.84rem;
       font-weight: 600;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
     }
 
     .contact-item dd {
-      margin: 8px 0 0;
-      font-size: 1rem;
-      font-weight: 600;
+      margin: 7px 0 0;
+      color: var(--text);
+      font-size: 1.02rem;
+      font-weight: 700;
       word-break: break-word;
     }
 
     .section-head {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-bottom: 32px;
+      display: grid;
+      gap: 12px;
+      margin-bottom: 28px;
     }
 
     .section-head h2 {
       margin: 0;
-      font-size: clamp(2rem, 3vw, 3rem);
-      line-height: 1.04;
-      letter-spacing: -0.045em;
+      font-size: clamp(2.3rem, 4vw, 3.4rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
     }
 
     .section-head p {
-      max-width: 62ch;
+      width: min(100%, 80ch);
       margin: 0;
-      color: var(--muted);
+      color: var(--muted-strong);
       font-size: 1rem;
     }
 
     .expertise-grid,
     .workflow-grid,
+    .rates-grid,
     .testimonials-grid,
-    .rates-grid {
+    .terms-grid {
       display: grid;
       gap: 18px;
     }
@@ -543,78 +663,76 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .skill-card {
-      min-height: 220px;
+    .card {
       padding: 24px;
       border: 1px solid var(--line);
-      border-radius: 24px;
+      border-radius: 26px;
       background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 20%),
-        var(--card);
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 18%),
+        var(--surface);
       box-shadow: var(--shadow);
-      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
     }
 
-    .skill-card:hover,
-    .skill-card:focus-within {
-      transform: translateY(-4px);
-      border-color: var(--line-strong);
-      box-shadow: var(--surface-glow);
+    .skill-card {
+      min-height: 224px;
     }
 
-    .skill-number {
-      color: #d7c6ff;
-      font-size: 0.88rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+    .card-number {
+      display: inline-grid;
+      place-items: center;
+      min-width: 44px;
+      height: 34px;
+      padding: 0 10px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
     }
 
-    .skill-card h3 {
-      margin: 14px 0 10px;
-      font-size: 1.15rem;
-      line-height: 1.2;
+    .card h3 {
+      margin: 18px 0 10px;
+      font-size: 1.18rem;
+      line-height: 1.18;
       letter-spacing: -0.03em;
     }
 
-    .skill-card p {
+    .card p {
       margin: 0;
       color: var(--muted);
-      font-size: 0.96rem;
+      font-size: 0.98rem;
     }
 
     .tool-note {
-      margin-top: 24px;
-      display: flex;
-      align-items: flex-start;
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: auto 1fr;
       gap: 16px;
-      padding: 22px 24px;
+      align-items: start;
+      padding: 20px 22px;
       border: 1px solid var(--line);
       border-radius: 22px;
-      background: var(--card);
-      box-shadow: var(--shadow);
+      background: var(--surface-soft);
+      box-shadow: var(--shadow-soft);
     }
 
     .tool-note-mark {
+      display: grid;
+      place-items: center;
       width: 34px;
       height: 34px;
       border-radius: 12px;
-      display: grid;
-      place-items: center;
-      font-size: 1rem;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
       font-weight: 700;
-      background: rgba(255, 255, 255, 0.06);
-      color: #e8ddff;
-      flex: none;
-    }
-
-    body[data-theme="light"] .tool-note-mark {
-      color: #291f3e;
     }
 
     .tool-note p {
       margin: 0;
-      color: var(--muted);
+      color: var(--muted-strong);
     }
 
     .work-grid {
@@ -624,61 +742,62 @@
     }
 
     .work-card {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      padding: 16px;
+      padding: 14px;
       border: 1px solid var(--line);
-      border-radius: 24px;
+      border-radius: 26px;
       background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 20%),
-        var(--card);
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 18%),
+        var(--surface);
       box-shadow: var(--shadow);
-      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: 14px;
+      text-align: center;
     }
 
     .work-card:hover,
     .work-card:focus-visible {
-      transform: translateY(-5px);
+      transform: translateY(-6px) scale(1.02);
       border-color: var(--line-strong);
-      box-shadow: var(--surface-glow);
+      box-shadow: var(--shadow-soft);
       outline: none;
     }
 
     .work-card.featured {
       border-color: var(--gold-line);
-      box-shadow: var(--gold-glow), var(--shadow);
       background:
-        linear-gradient(180deg, rgba(244, 207, 100, 0.09), transparent 22%),
-        var(--card-strong);
+        linear-gradient(180deg, rgba(241, 204, 113, 0.08), transparent 22%),
+        var(--surface-strong);
+      box-shadow: var(--gold-glow), var(--shadow);
     }
 
     .work-thumb {
       position: relative;
       aspect-ratio: 1;
-      border-radius: 18px;
+      width: 100%;
+      border-radius: 20px;
       overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       background:
-        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12), transparent 34%),
-        linear-gradient(145deg, rgba(87, 46, 164, 0.4), rgba(17, 12, 27, 0.84));
-      border: 1px solid rgba(255, 255, 255, 0.06);
+        radial-gradient(circle at 24% 20%, rgba(255, 255, 255, 0.16), transparent 30%),
+        linear-gradient(145deg, rgba(132, 88, 255, 0.28), rgba(14, 10, 24, 0.94));
     }
 
     body[data-theme="light"] .work-thumb {
       background:
-        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.65), transparent 32%),
-        linear-gradient(145deg, rgba(167, 129, 244, 0.34), rgba(232, 221, 255, 0.92));
+        radial-gradient(circle at 24% 20%, rgba(255, 255, 255, 0.76), transparent 28%),
+        linear-gradient(145deg, rgba(170, 136, 255, 0.32), rgba(238, 231, 255, 0.94));
     }
 
     .work-thumb img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 260ms ease, opacity 180ms ease;
+      transition: transform 240ms ease, opacity 180ms ease;
     }
 
     .work-card:hover .work-thumb img {
-      transform: scale(1.03);
+      transform: scale(1.04);
     }
 
     .work-thumb.is-missing img {
@@ -689,20 +808,20 @@
       content: "";
       position: absolute;
       inset: 0;
-      opacity: 0;
       display: grid;
       place-items: center;
       padding: 18px;
-      text-align: center;
-      font-size: 0.94rem;
+      opacity: 0;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.98rem;
       font-weight: 700;
-      line-height: 1.4;
-      color: rgba(255, 255, 255, 0.88);
+      line-height: 1.35;
+      text-align: center;
       transition: opacity 180ms ease;
     }
 
     body[data-theme="light"] .work-thumb::after {
-      color: rgba(25, 19, 38, 0.78);
+      color: rgba(24, 18, 37, 0.82);
     }
 
     .work-thumb.is-missing::after {
@@ -711,6 +830,10 @@
     }
 
     .work-title {
+      display: block;
+      width: 100%;
+      text-align: center;
+      color: var(--text);
       font-size: 1rem;
       font-weight: 700;
       line-height: 1.35;
@@ -718,86 +841,45 @@
     }
 
     .work-card.featured .work-title {
-      color: #ffe7a4;
-      text-shadow: 0 0 16px rgba(244, 207, 100, 0.32), 0 0 32px rgba(244, 207, 100, 0.16);
+      color: #ffe8a9;
+      text-shadow: 0 0 18px rgba(241, 204, 113, 0.24);
     }
 
-    .why-layout {
+    .why-grid {
       display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-      gap: 20px;
+      grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+      gap: 18px;
     }
 
-    .copy-panel,
-    .list-panel,
-    .text-card,
-    .workflow-card,
-    .testimonial,
-    .cta-panel {
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 18%),
-        var(--card);
-      box-shadow: var(--shadow);
-    }
-
-    .copy-panel,
-    .list-panel,
-    .text-card,
-    .workflow-card,
-    .testimonial {
-      padding: 26px;
-      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-    }
-
-    .copy-panel:hover,
-    .list-panel:hover,
-    .text-card:hover,
-    .workflow-card:hover,
-    .testimonial:hover {
-      transform: translateY(-4px);
-      border-color: var(--line-strong);
-      box-shadow: var(--surface-glow);
-    }
-
-    .copy-panel h3,
-    .text-card h3 {
-      margin: 0 0 14px;
-      font-size: 1.3rem;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-    }
-
-    .copy-panel p,
-    .text-card p,
-    .text-card li,
-    .workflow-card p,
-    .testimonial p {
-      color: var(--muted);
-      margin: 0;
+    .copy-panel p {
+      color: var(--muted-strong);
     }
 
     .checklist {
       list-style: none;
+      display: grid;
+      gap: 12px;
       padding: 0;
       margin: 0;
-      display: grid;
-      gap: 16px;
     }
 
     .checklist li {
-      display: flex;
-      align-items: flex-start;
+      display: grid;
+      grid-template-columns: auto 1fr;
       gap: 12px;
-      padding: 15px 16px;
+      align-items: start;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
       border-radius: 18px;
       background: rgba(255, 255, 255, 0.03);
-      transition: transform 180ms ease, background-color 180ms ease;
+      color: var(--text);
+      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
     }
 
     .checklist li:hover {
-      transform: translateX(4px);
+      transform: translateY(-4px) scale(1.012);
+      border-color: var(--line-strong);
+      box-shadow: var(--shadow-soft);
       background: rgba(255, 255, 255, 0.05);
     }
 
@@ -807,11 +889,9 @@
       border-radius: 999px;
       display: inline-grid;
       place-items: center;
+      background: linear-gradient(135deg, #bba5ff, #7a4ef5);
       color: white;
-      background: linear-gradient(135deg, #8b5cf6, #a855f7);
-      box-shadow: 0 10px 22px rgba(139, 92, 246, 0.24);
-      flex: none;
-      margin-top: 1px;
+      box-shadow: 0 10px 22px rgba(122, 78, 245, 0.22);
     }
 
     .check-icon svg {
@@ -829,79 +909,67 @@
     }
 
     .workflow-card {
-      min-height: 220px;
-    }
-
-    .workflow-number {
-      display: inline-block;
-      color: #d7c6ff;
-      font-size: 0.86rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .workflow-card h3 {
-      margin: 16px 0 10px;
-      font-size: 1.15rem;
-      line-height: 1.2;
-      letter-spacing: -0.03em;
+      min-height: 210px;
     }
 
     .rates-grid {
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
     }
 
     .rate-card {
       min-height: 100%;
-      padding: 24px;
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 18%),
-        var(--card);
-      box-shadow: var(--shadow);
-      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      display: flex;
+      flex-direction: column;
     }
 
-    .rate-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--line-strong);
-      box-shadow: var(--surface-glow);
+    .rate-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
     }
 
-    .rate-card h3 {
+    .rate-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--gold-line);
+      background: var(--gold-bg);
+      color: #ffe8a9;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: var(--gold-glow);
+      white-space: nowrap;
+    }
+
+    .rate-head h3 {
       margin: 0;
-      font-size: 1.15rem;
-      line-height: 1.2;
-      letter-spacing: -0.03em;
     }
 
     .rate-amount {
-      margin: 14px 0;
-      font-size: 1.8rem;
+      margin: 16px 0 14px;
+      color: var(--text);
+      font-size: 1.9rem;
       font-weight: 800;
+      line-height: 1;
       letter-spacing: -0.05em;
     }
 
-    .rate-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.96rem;
-    }
-
-    .rate-card .rate-note {
+    .rate-note {
       margin-top: 16px;
       padding-top: 16px;
       border-top: 1px solid var(--line);
-      font-size: 0.92rem;
+      color: var(--muted);
+      font-size: 0.93rem;
     }
 
-    .info-grid {
+    .terms-grid {
       margin-top: 22px;
-      display: grid;
-      grid-template-columns: 1.05fr 1.05fr 0.9fr;
-      gap: 18px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .text-card ol,
@@ -915,22 +983,36 @@
       margin-top: 10px;
     }
 
-    .text-card .supporting-copy {
+    .supporting-copy {
       margin-top: 16px;
+      color: var(--muted-strong);
+    }
+
+    .payment-card {
+      margin-top: 18px;
     }
 
     .payment-methods {
       list-style: none;
-      padding: 0;
-      margin: 16px 0 0;
       display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
+      padding: 0;
+      margin: 18px 0 0;
     }
 
-    .payment-methods li {
-      padding: 14px 16px;
-      border-radius: 18px;
+    .payment-method {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100%;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
       background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      text-align: center;
+      font-weight: 600;
     }
 
     .testimonials-grid {
@@ -938,140 +1020,140 @@
     }
 
     .testimonial {
+      min-height: 220px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 18px;
-      min-height: 210px;
+      gap: 20px;
     }
 
     .testimonial .quote {
+      color: var(--muted-strong);
       font-size: 1rem;
-      line-height: 1.7;
+      line-height: 1.72;
     }
 
     .rating {
-      color: #f4cf64;
+      color: var(--gold);
       font-weight: 700;
       letter-spacing: 0.04em;
     }
 
     .cta-panel {
       margin-top: 22px;
-      padding: 30px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(156, 123, 255, 0.12), transparent 62%),
+        var(--surface-strong);
+      box-shadow: var(--shadow);
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 22px;
-      background:
-        linear-gradient(135deg, rgba(168, 85, 247, 0.12), transparent 64%),
-        var(--card-strong);
     }
 
     .cta-panel h2 {
       margin: 0 0 10px;
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      line-height: 1.05;
-      letter-spacing: -0.04em;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
     }
 
     .cta-panel p {
       margin: 0;
-      max-width: 58ch;
-      color: var(--muted);
+      max-width: 60ch;
+      color: var(--muted-strong);
     }
 
     .site-footer {
-      padding: 24px 0 28px;
+      margin-top: 92px;
+      border-top: 1px solid var(--line);
+      background: rgba(5, 4, 10, 0.72);
+      backdrop-filter: blur(14px);
     }
 
-    .footer-shell {
-      margin-top: 96px;
-      padding: 30px;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 20%),
-        var(--bg-elev);
-      box-shadow: var(--shadow);
+    body[data-theme="light"] .site-footer {
+      background: rgba(243, 239, 253, 0.78);
     }
 
-    .footer-top {
+    .footer-inner {
+      padding: 42px 0 22px;
+    }
+
+    .footer-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) auto auto;
-      gap: 28px;
+      grid-template-columns: minmax(0, 1.15fr) auto auto;
+      gap: 26px;
       align-items: start;
     }
 
-    .footer-brand .brand {
-      margin-bottom: 14px;
-    }
-
     .footer-copy {
-      max-width: 56ch;
-      margin: 0;
+      max-width: 58ch;
+      margin: 16px 0 0;
       color: var(--muted);
     }
 
     .footer-links,
     .footer-contact {
       display: grid;
-      gap: 12px;
-      align-content: start;
+      gap: 14px;
     }
 
-    .footer-links a,
-    .footer-contact a,
-    .footer-contact span {
-      color: var(--muted);
-      transition: color 180ms ease, transform 180ms ease;
+    .footer-links a {
+      color: var(--muted-strong);
+      font-weight: 600;
+      transition: transform 220ms ease, color 220ms ease;
     }
 
     .footer-links a:hover,
-    .footer-links a:focus-visible,
-    .footer-contact a:hover,
-    .footer-contact a:focus-visible {
+    .footer-links a:focus-visible {
+      transform: translateX(3px);
       color: var(--text);
-      transform: translateX(2px);
       outline: none;
     }
 
+    .footer-contact-item {
+      display: grid;
+      gap: 2px;
+    }
+
     .footer-label {
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-value,
+    .footer-value a {
       color: var(--text);
       font-weight: 600;
     }
 
+    .footer-value a:hover,
+    .footer-value a:focus-visible {
+      color: var(--accent);
+      outline: none;
+    }
+
     .footer-bottom {
-      margin-top: 28px;
+      margin-top: 24px;
       padding-top: 18px;
       border-top: 1px solid var(--line);
-      color: rgba(177, 168, 202, 0.84);
-      font-size: 0.9rem;
+      color: rgba(169, 161, 191, 0.84);
+      font-size: 0.92rem;
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(26px);
-      transition: opacity 520ms ease, transform 520ms ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 1120px) {
-      .hero {
+    @media (max-width: 1180px) {
+      .hero-layout {
         grid-template-columns: 1fr;
-        min-height: auto;
       }
 
-      .hero-title {
-        max-width: 14ch;
-      }
-
-      .contact-card {
-        min-height: 0;
+      .rates-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
       .work-grid {
@@ -1082,36 +1164,51 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .info-grid,
-      .footer-top {
-        grid-template-columns: 1fr;
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
-    @media (max-width: 920px) {
+    @media (max-width: 980px) {
       .header-inner {
-        flex-wrap: wrap;
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 16px 0 14px;
       }
 
-      .header-actions {
-        width: 100%;
-        justify-content: space-between;
+      .brand,
+      .theme-toggle,
+      .site-nav {
+        justify-self: stretch;
       }
 
       .site-nav ul {
-        justify-content: flex-start;
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
-      .expertise-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .theme-toggle {
+        justify-self: start;
       }
 
+      .expertise-grid,
+      .why-grid,
       .testimonials-grid,
-      .why-layout {
+      .terms-grid {
         grid-template-columns: 1fr;
       }
 
-      .cta-panel {
+      .rates-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .payment-methods {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-panel,
+      .footer-grid {
+        grid-template-columns: 1fr;
         flex-direction: column;
         align-items: flex-start;
       }
@@ -1126,20 +1223,53 @@
         padding-top: 78px;
       }
 
-      .site-header {
-        padding-top: 10px;
+      .hero {
+        padding-top: 36px;
       }
 
-      .header-shell {
-        border-radius: 20px;
+      .hero-copy {
+        padding-top: 4px;
       }
 
-      .header-inner {
-        padding: 16px;
+      .hero-title {
+        font-size: clamp(3.4rem, 20vw, 4.8rem);
       }
 
+      .hero-subtitle {
+        width: 100%;
+        justify-content: flex-start;
+        border-radius: 22px;
+      }
+
+      .rotator-row {
+        align-items: stretch;
+      }
+
+      .rotator-label {
+        width: 100%;
+      }
+
+      .rotator-shell {
+        width: 100%;
+      }
+
+      .contact-head {
+        grid-template-columns: 1fr;
+      }
+
+      .work-grid,
+      .rates-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 560px) {
       .site-nav ul {
-        gap: 8px;
+        padding: 6px;
       }
 
       .site-nav a {
@@ -1147,51 +1277,13 @@
         font-size: 0.88rem;
       }
 
-      .hero {
-        padding-top: 30px;
-      }
-
-      .hero-copy {
-        padding-top: 12px;
-      }
-
-      .hero-title {
-        max-width: none;
-      }
-
-      .rotator-shell {
-        min-width: 0;
-        width: 100%;
-      }
-
-      .contact-card,
-      .copy-panel,
-      .list-panel,
-      .text-card,
-      .workflow-card,
-      .testimonial,
-      .rate-card,
-      .skill-card {
-        border-radius: 22px;
-      }
-
-      .workflow-grid,
-      .testimonials-grid {
+      .expertise-grid,
+      .workflow-grid {
         grid-template-columns: 1fr;
       }
 
-      .work-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .button {
-        width: 100%;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .expertise-grid,
-      .work-grid {
+      .hero-tags {
+        display: grid;
         grid-template-columns: 1fr;
       }
     }
@@ -1219,405 +1311,429 @@
 </head>
 <body data-theme="dark">
   <header class="site-header">
-    <div class="header-shell">
-      <div class="progress-track" aria-hidden="true">
-        <span class="progress-bar" id="scroll-progress"></span>
-      </div>
-      <div class="header-inner">
-        <a class="brand" href="#home" aria-label="Local home">
-          <span class="brand-mark">LO</span>
-          <span class="brand-text">
-            <span class="brand-name">Local</span>
-            <span class="brand-subtitle">Premium Roblox Scripter</span>
-          </span>
-        </a>
-        <div class="header-actions">
-          <nav class="site-nav" aria-label="Primary">
-            <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#expertise">Expertise</a></li>
-              <li><a href="#past-work">Past Work</a></li>
-              <li><a href="#why-choose-me">Why Choose Me</a></li>
-              <li><a href="#workflow">Workflow</a></li>
-              <li><a href="#rates">Rates</a></li>
-            </ul>
-          </nav>
-          <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch theme"></button>
-        </div>
-      </div>
+    <div class="header-progress" aria-hidden="true">
+      <span class="header-progress-bar" id="scroll-progress"></span>
+    </div>
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="Local home">
+        <span class="brand-mark">LO</span>
+        <span class="brand-copy">
+          <strong>Local</strong>
+          <span>Premium Roblox Scripter</span>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#expertise">Expertise</a></li>
+          <li><a href="#past-work">Past Work</a></li>
+          <li><a href="#why-choose-me">Why Choose Me</a></li>
+          <li><a href="#workflow">Workflow</a></li>
+          <li><a href="#rates">Rates</a></li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch theme"></button>
     </div>
   </header>
 
   <main>
-    <section class="hero container section" id="home">
-      <div class="hero-copy reveal">
-        <p class="hero-name">Local</p>
-        <h1 class="hero-title">Premium &amp; Advanced Roblox Scripter • 5+ Years Experience</h1>
-        <div class="rotator-row" aria-live="polite">
-          <span class="rotator-label">Building</span>
-          <span class="rotator-shell">
-            <span class="rotator-text" id="rotator-text">full game frameworks</span>
-          </span>
-        </div>
-        <p class="lead">Hey! I'm Local. I am an advanced Roblox Luau scripter focused on production-ready codebases designed for real player load. From core features to full game frameworks, I deliver professional-grade work that you can scale and maintain.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#contact">Contact Me</a>
-          <a class="button button-secondary" href="#past-work">Past Work</a>
-        </div>
-      </div>
-
-      <aside class="contact-card panel reveal" id="contact">
-        <div>
-          <h2 class="card-title">Contact Me</h2>
-          <p class="card-copy">Direct contact details to get in touch with me.</p>
-        </div>
-        <dl class="contact-list">
-          <div class="contact-item">
-            <dt>Email</dt>
-            <dd><a href="mailto:imdevlocal@gmail.com">imdevlocal@gmail.com</a></dd>
+    <section class="hero section" id="home">
+      <div class="container hero-layout">
+        <div class="hero-copy reveal">
+          <h1 class="hero-title">Local</h1>
+          <div class="hero-subtitle">Premium &amp; Advanced Roblox Scripter • 5+ Years Experience</div>
+          <div class="rotator-row" aria-live="polite">
+            <span class="rotator-label">Building</span>
+            <span class="rotator-shell" id="rotator-shell">
+              <span class="rotator-text" id="rotator-text">full game frameworks</span>
+              <span class="rotator-measure" id="rotator-measure">full game frameworks</span>
+            </span>
           </div>
-          <div class="contact-item">
-            <dt>Discord Username</dt>
-            <dd>o1et</dd>
+          <p class="hero-lead">Hey! I'm Local. I am an advanced Roblox Luau scripter focused on production-ready codebases designed for real player load. From core features to full game frameworks, I deliver professional-grade work that you can scale and maintain.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#contact">Contact Me</a>
+            <a class="button button-secondary" href="#past-work">Past Work</a>
           </div>
-          <div class="contact-item">
-            <dt>Roblox Username</dt>
-            <dd>BlackCH40S</dd>
+          <div class="hero-tags">
+            <span class="inline-tag">Performance</span>
+            <span class="inline-tag">Security</span>
+            <span class="inline-tag">Scalability</span>
           </div>
-        </dl>
-      </aside>
-    </section>
+        </div>
 
-    <section class="section container" id="expertise">
-      <div class="section-head reveal">
-        <h2>Skills &amp; Expertise</h2>
-        <p>Systems are designed for long-term development, live updates, and predictable behavior at scale.</p>
-      </div>
+        <aside class="contact-card surface reveal" id="contact">
+          <div class="contact-head">
+            <figure class="profile-frame" data-fallback="Local">
+              <img src="Images/Profile.jpg" alt="Local profile portrait" loading="eager">
+            </figure>
+            <div class="contact-copy">
+              <h2>Contact Me</h2>
+              <p>Direct contact details to get in touch with me.</p>
+            </div>
+          </div>
 
-      <div class="expertise-grid">
-        <article class="skill-card reveal">
-          <span class="skill-number">01</span>
-          <h3>Core Architecture</h3>
-          <p>Modular frameworks, scalable system design, OOP patterns, and maintainable game architecture.</p>
-        </article>
-        <article class="skill-card reveal">
-          <span class="skill-number">02</span>
-          <h3>Data Handling</h3>
-          <p>ProfileStore, DataStore2, and custom DataStore wrappers for secure server-owned data handling &amp; data loss prevention.</p>
-        </article>
-        <article class="skill-card reveal">
-          <span class="skill-number">03</span>
-          <h3>Security &amp; Anti-Exploit</h3>
-          <p>Server authority, remote validation, anti-exploit layers, and abuse-resistant logic paths.</p>
-        </article>
-        <article class="skill-card reveal">
-          <span class="skill-number">04</span>
-          <h3>Performance Optimization</h3>
-          <p>Optimized systems that stay smooth under pressure, even at scale with high frame rates &amp; low NetworkPing.</p>
-        </article>
-        <article class="skill-card reveal">
-          <span class="skill-number">05</span>
-          <h3>UI/UX Systems</h3>
-          <p>Appealing frontend with interactive GUIs, dynamic menus, and polished tween behavior that feels responsive.</p>
-        </article>
-        <article class="skill-card reveal">
-          <span class="skill-number">06</span>
-          <h3>Networking</h3>
-          <p>Efficient networking &amp; smart architecture decisions with reliable RemoteEvent and RemoteFunction pipelines &amp; clear client/server responsibility.</p>
-        </article>
-        <article class="skill-card reveal">
-          <span class="skill-number">07</span>
-          <h3>Monetization</h3>
-          <p>DevProducts, Gamepasses, and analytics-ready purchase flows tied to game economy design</p>
-        </article>
-        <article class="skill-card reveal">
-          <span class="skill-number">08</span>
-          <h3>Systems Design</h3>
-          <p>Designing gameplay loops, progression systems, and scalable mechanics that support long-term player retention.</p>
-        </article>
-        <article class="skill-card reveal">
-          <span class="skill-number">09</span>
-          <h3>Debugging &amp; Reliability</h3>
-          <p>Identifying edge cases, fixing complex bugs, and scripting systems that remain stable under load.</p>
-        </article>
-      </div>
-
-      <div class="tool-note reveal">
-        <span class="tool-note-mark">&gt;</span>
-        <p>I am also familiar with various development tools such as Funnels, Knit &amp; Aero, Telemetry, Visual Studio Code &amp; Rojo, Git-based version control, Script performance tools, and much more!</p>
+          <dl class="contact-list">
+            <div class="contact-item">
+              <dt>Email</dt>
+              <dd><a href="mailto:imdevlocal@gmail.com">imdevlocal@gmail.com</a></dd>
+            </div>
+            <div class="contact-item">
+              <dt>Discord Username</dt>
+              <dd>o1et</dd>
+            </div>
+            <div class="contact-item">
+              <dt>Roblox Username</dt>
+              <dd>BlackCH40S</dd>
+            </div>
+          </dl>
+        </aside>
       </div>
     </section>
 
-    <section class="section container" id="past-work">
-      <div class="section-head reveal">
-        <h2>Past Work</h2>
-        <p>A selection of recent projects I've worked on across different genres.</p>
-      </div>
+    <section class="section" id="expertise">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Skills &amp; Expertise</h2>
+          <p>Systems are designed for long-term development, live updates, and predictable behavior at scale.</p>
+        </div>
 
-      <div class="work-grid">
-        <a class="work-card featured reveal" href="https://www.roblox.com/games/134354795189883/Mow-Ur-Snow" target="_blank" rel="noreferrer">
-          <figure class="work-thumb" data-fallback="Mow Ur Snow! ❄️">
-            <img src="Images/MowUrSnow.webp" alt="Mow Ur Snow! ❄️" loading="lazy">
-          </figure>
-          <span class="work-title">Mow Ur Snow! ❄️</span>
-        </a>
-        <a class="work-card featured reveal" href="https://www.roblox.com/games/125718366148964/Miner-Army" target="_blank" rel="noreferrer">
-          <figure class="work-thumb" data-fallback="⛏️ Miner Army!">
-            <img src="Images/MinerArmy.webp" alt="⛏️ Miner Army!" loading="lazy">
-          </figure>
-          <span class="work-title">⛏️ Miner Army!</span>
-        </a>
-        <a class="work-card featured reveal" href="https://www.roblox.com/games/76194768511184/Avoid-Trains-For-Eggs" target="_blank" rel="noreferrer">
-          <figure class="work-thumb" data-fallback="Avoid Trains For Eggs!">
-            <img src="Images/AvoidTrainsForEggs.webp" alt="Avoid Trains For Eggs!" loading="lazy">
-          </figure>
-          <span class="work-title">Avoid Trains For Eggs!</span>
-        </a>
-        <a class="work-card reveal" href="https://www.roblox.com/games/113317945633040/Swing-Obby-for-Brainrot-Eggs" target="_blank" rel="noreferrer">
-          <figure class="work-thumb" data-fallback="Swing Obby for Brainrot Eggs!">
-            <img src="Images/SwingObbyForBrainrotEggs.webp" alt="Swing Obby for Brainrot Eggs!" loading="lazy">
-          </figure>
-          <span class="work-title">Swing Obby for Brainrot Eggs!</span>
-        </a>
-        <a class="work-card reveal" href="https://www.roblox.com/games/103884408720920/One-Punch-Troll-Tower" target="_blank" rel="noreferrer">
-          <figure class="work-thumb" data-fallback="One Punch Troll Tower 👊">
-            <img src="Images/OnePunchTrollTower.webp" alt="One Punch Troll Tower 👊" loading="lazy">
-          </figure>
-          <span class="work-title">One Punch Troll Tower 👊</span>
-        </a>
-        <a class="work-card reveal" href="https://www.roblox.com/games/111982085751100/Mega-Minigames" target="_blank" rel="noreferrer">
-          <figure class="work-thumb" data-fallback="🤡 Mega Minigames">
-            <img src="Images/MegaMinigames.webp" alt="🤡 Mega Minigames" loading="lazy">
-          </figure>
-          <span class="work-title">🤡 Mega Minigames</span>
-        </a>
-        <a class="work-card reveal" href="https://www.roblox.com/games/73699023542441/Button-Trees" target="_blank" rel="noreferrer">
-          <figure class="work-thumb" data-fallback="Button Trees! 🌲">
-            <img src="Images/ButtonTrees.webp" alt="Button Trees! 🌲" loading="lazy">
-          </figure>
-          <span class="work-title">Button Trees! 🌲</span>
-        </a>
-        <a class="work-card reveal" href="https://www.roblox.com/games/103924653201062/Curzys-Incremental" target="_blank" rel="noreferrer">
-          <figure class="work-thumb" data-fallback="Curzy's Incremental! 🤑">
-            <img src="Images/CurzysIncremental.webp" alt="Curzy's Incremental! 🤑" loading="lazy">
-          </figure>
-          <span class="work-title">Curzy's Incremental! 🤑</span>
-        </a>
-        <a class="work-card reveal" href="https://www.roblox.com/games/115656072207322/Color-Bridges" target="_blank" rel="noreferrer">
-          <figure class="work-thumb" data-fallback="Color Bridges 🌈">
-            <img src="Images/ColorBridges.webp" alt="Color Bridges 🌈" loading="lazy">
-          </figure>
-          <span class="work-title">Color Bridges 🌈</span>
-        </a>
-        <a class="work-card reveal" href="https://www.roblox.com/games/82509271555958/Compton-Life-REMASTERED" target="_blank" rel="noreferrer">
-          <figure class="work-thumb" data-fallback="Compton Life REMASTERED">
-            <img src="Images/ComptonLifeREMASTERED.webp" alt="Compton Life REMASTERED" loading="lazy">
-          </figure>
-          <span class="work-title">Compton Life REMASTERED</span>
-        </a>
+        <div class="expertise-grid">
+          <article class="card skill-card surface reveal">
+            <span class="card-number">01</span>
+            <h3>Core Architecture</h3>
+            <p>Modular frameworks, scalable system design, OOP patterns, and maintainable game architecture.</p>
+          </article>
+          <article class="card skill-card surface reveal">
+            <span class="card-number">02</span>
+            <h3>Data Handling</h3>
+            <p>ProfileStore, DataStore2, and custom DataStore wrappers for secure server-owned data handling &amp; data loss prevention.</p>
+          </article>
+          <article class="card skill-card surface reveal">
+            <span class="card-number">03</span>
+            <h3>Security &amp; Anti-Exploit</h3>
+            <p>Server authority, remote validation, anti-exploit layers, and abuse-resistant logic paths.</p>
+          </article>
+          <article class="card skill-card surface reveal">
+            <span class="card-number">04</span>
+            <h3>Performance Optimization</h3>
+            <p>Optimized systems that stay smooth under pressure, even at scale with high frame rates &amp; low NetworkPing.</p>
+          </article>
+          <article class="card skill-card surface reveal">
+            <span class="card-number">05</span>
+            <h3>UI/UX Systems</h3>
+            <p>Appealing frontend with interactive GUIs, dynamic menus, and polished tween behavior that feels responsive.</p>
+          </article>
+          <article class="card skill-card surface reveal">
+            <span class="card-number">06</span>
+            <h3>Networking</h3>
+            <p>Efficient networking &amp; smart architecture decisions with reliable RemoteEvent and RemoteFunction pipelines &amp; clear client/server responsibility.</p>
+          </article>
+          <article class="card skill-card surface reveal">
+            <span class="card-number">07</span>
+            <h3>Monetization</h3>
+            <p>DevProducts, Gamepasses, and analytics-ready purchase flows tied to game economy design</p>
+          </article>
+          <article class="card skill-card surface reveal">
+            <span class="card-number">08</span>
+            <h3>Systems Design</h3>
+            <p>Designing gameplay loops, progression systems, and scalable mechanics that support long-term player retention.</p>
+          </article>
+          <article class="card skill-card surface reveal">
+            <span class="card-number">09</span>
+            <h3>Debugging &amp; Reliability</h3>
+            <p>Identifying edge cases, fixing complex bugs, and scripting systems that remain stable under load.</p>
+          </article>
+        </div>
+
+        <div class="tool-note surface reveal">
+          <span class="tool-note-mark">&gt;</span>
+          <p>I am also familiar with various development tools such as Funnels, Knit &amp; Aero, Telemetry, Visual Studio Code &amp; Rojo, Git-based version control, Script performance tools, and much more!</p>
+        </div>
       </div>
     </section>
 
-    <section class="section container" id="why-choose-me">
-      <div class="section-head reveal">
-        <h2>Why Choose Me</h2>
-        <p>I prioritize codebase quality, clear communication, and reliable delivery so projects move forward without technical debt. I don't just make things work, I make them work well.</p>
-      </div>
+    <section class="section" id="past-work">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Past Work</h2>
+          <p>A selection of recent projects I've worked on across different genres.</p>
+        </div>
 
-      <div class="why-layout">
-        <article class="copy-panel reveal">
-          <h3>Professional Delivery, No Shortcuts</h3>
-          <p>You get clean, professional-grade systems designed for iteration. I build with exploits, edge cases &amp; low-end devices in mind, ensure systems are designed for future updates, keep communication direct, and deliver in milestones so scope and progress stay clear from start to finish. I also structure each delivery so future features can be added without rewriting half of the game.</p>
-        </article>
-        <article class="list-panel reveal">
-          <ul class="checklist">
-            <li>
-              <span class="check-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg>
-              </span>
-              <span>High-quality systems built to last</span>
-            </li>
-            <li>
-              <span class="check-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg>
-              </span>
-              <span>Fast responses and transparent updates</span>
-            </li>
-            <li>
-              <span class="check-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg>
-              </span>
-              <span>On-time milestone delivery</span>
-            </li>
-            <li>
-              <span class="check-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg>
-              </span>
-              <span>Security and performance as baseline standards</span>
-            </li>
-            <li>
-              <span class="check-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg>
-              </span>
-              <span>Comfortable with both single features and full games</span>
-            </li>
-            <li>
-              <span class="check-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg>
-              </span>
-              <span>Implementation aligned to your exact game vision</span>
-            </li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="section container" id="workflow">
-      <div class="section-head reveal">
-        <h2>How I Work</h2>
-        <p>A straightforward process that keeps the workflow quality high.</p>
-      </div>
-
-      <div class="workflow-grid">
-        <article class="workflow-card reveal">
-          <span class="workflow-number">01</span>
-          <h3>Scope Review</h3>
-          <p>Task, requirements, constraints, and technical risks are mapped out before production starts.</p>
-        </article>
-        <article class="workflow-card reveal">
-          <span class="workflow-number">02</span>
-          <h3>System Build</h3>
-          <p>Features are implemented with clean architectures and professional-grade polish from the start with no shortcuts.</p>
-        </article>
-        <article class="workflow-card reveal">
-          <span class="workflow-number">03</span>
-          <h3>Validation</h3>
-          <p>Check &amp; test for bugs, edge cases, performance, and reliability before delivery.</p>
-        </article>
-        <article class="workflow-card reveal">
-          <span class="workflow-number">04</span>
-          <h3>Delivery</h3>
-          <p>Milestone deliveries with clear notes and plans for a professional &amp; clear workflow.</p>
-        </article>
+        <div class="work-grid">
+          <a class="work-card featured reveal" href="https://www.roblox.com/games/134354795189883/Mow-Ur-Snow" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="Mow Ur Snow! ❄️">
+              <img src="Images/MowUrSnow.webp" alt="Mow Ur Snow! ❄️" loading="lazy">
+            </figure>
+            <span class="work-title">Mow Ur Snow! ❄️</span>
+          </a>
+          <a class="work-card featured reveal" href="https://www.roblox.com/games/125718366148964/Miner-Army" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="⛏️ Miner Army!">
+              <img src="Images/MinerArmy.webp" alt="⛏️ Miner Army!" loading="lazy">
+            </figure>
+            <span class="work-title">⛏️ Miner Army!</span>
+          </a>
+          <a class="work-card featured reveal" href="https://www.roblox.com/games/76194768511184/Avoid-Trains-For-Eggs" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="Avoid Trains For Eggs!">
+              <img src="Images/AvoidTrainsForEggs.webp" alt="Avoid Trains For Eggs!" loading="lazy">
+            </figure>
+            <span class="work-title">Avoid Trains For Eggs!</span>
+          </a>
+          <a class="work-card reveal" href="https://www.roblox.com/games/113317945633040/Swing-Obby-for-Brainrot-Eggs" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="Swing Obby for Brainrot Eggs!">
+              <img src="Images/SwingObbyForBrainrotEggs.webp" alt="Swing Obby for Brainrot Eggs!" loading="lazy">
+            </figure>
+            <span class="work-title">Swing Obby for Brainrot Eggs!</span>
+          </a>
+          <a class="work-card reveal" href="https://www.roblox.com/games/103884408720920/One-Punch-Troll-Tower" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="One Punch Troll Tower 👊">
+              <img src="Images/OnePunchTrollTower.webp" alt="One Punch Troll Tower 👊" loading="lazy">
+            </figure>
+            <span class="work-title">One Punch Troll Tower 👊</span>
+          </a>
+          <a class="work-card reveal" href="https://www.roblox.com/games/111982085751100/Mega-Minigames" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="🤡 Mega Minigames">
+              <img src="Images/MegaMinigames.webp" alt="🤡 Mega Minigames" loading="lazy">
+            </figure>
+            <span class="work-title">🤡 Mega Minigames</span>
+          </a>
+          <a class="work-card reveal" href="https://www.roblox.com/games/73699023542441/Button-Trees" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="Button Trees! 🌲">
+              <img src="Images/ButtonTrees.webp" alt="Button Trees! 🌲" loading="lazy">
+            </figure>
+            <span class="work-title">Button Trees! 🌲</span>
+          </a>
+          <a class="work-card reveal" href="https://www.roblox.com/games/103924653201062/Curzys-Incremental" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="Curzy's Incremental! 🤑">
+              <img src="Images/CurzysIncremental.webp" alt="Curzy's Incremental! 🤑" loading="lazy">
+            </figure>
+            <span class="work-title">Curzy's Incremental! 🤑</span>
+          </a>
+          <a class="work-card reveal" href="https://www.roblox.com/games/115656072207322/Color-Bridges" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="Color Bridges 🌈">
+              <img src="Images/ColorBridges.webp" alt="Color Bridges 🌈" loading="lazy">
+            </figure>
+            <span class="work-title">Color Bridges 🌈</span>
+          </a>
+          <a class="work-card reveal" href="https://www.roblox.com/games/82509271555958/Compton-Life-REMASTERED" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="Compton Life REMASTERED">
+              <img src="Images/ComptonLifeREMASTERED.webp" alt="Compton Life REMASTERED" loading="lazy">
+            </figure>
+            <span class="work-title">Compton Life REMASTERED</span>
+          </a>
+        </div>
       </div>
     </section>
 
-    <section class="section container" id="rates">
-      <div class="section-head reveal">
-        <h2>Payment &amp; Rates</h2>
-        <p>Pricing varies widely by the project, here is a general pricing tier to give you an idea of my rates.</p>
+    <section class="section" id="why-choose-me">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Why Choose Me</h2>
+          <p>I prioritize codebase quality, clear communication, and reliable delivery so projects move forward without technical debt. I don't just make things work, I make them work well.</p>
+        </div>
+
+        <div class="why-grid">
+          <article class="card copy-panel surface reveal">
+            <h3>Professional Delivery, No Shortcuts</h3>
+            <p>You get clean, professional-grade systems designed for iteration. I build with exploits, edge cases &amp; low-end devices in mind, ensure systems are designed for future updates, keep communication direct, and deliver in milestones so scope and progress stay clear from start to finish. I also structure each delivery so future features can be added without rewriting half of the game.</p>
+          </article>
+
+          <article class="card surface reveal">
+            <ul class="checklist">
+              <li>
+                <span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg></span>
+                <span>High-quality systems built to last</span>
+              </li>
+              <li>
+                <span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg></span>
+                <span>Fast responses and transparent updates</span>
+              </li>
+              <li>
+                <span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg></span>
+                <span>On-time milestone delivery</span>
+              </li>
+              <li>
+                <span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg></span>
+                <span>Security and performance as baseline standards</span>
+              </li>
+              <li>
+                <span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg></span>
+                <span>Comfortable with both single features and full games</span>
+              </li>
+              <li>
+                <span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg></span>
+                <span>Implementation aligned to your exact game vision</span>
+              </li>
+            </ul>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <div class="rates-grid">
-        <article class="rate-card reveal">
-          <h3>Small Tasks</h3>
-          <p class="rate-amount">$10 - $20</p>
-          <p>Simple scripts, minor bug fixes, and small gameplay mechanics.</p>
-          <p class="rate-note">(For example, fixing small scripts, adding small mechanics, tweaking UI scripts, etc.)</p>
-        </article>
-        <article class="rate-card reveal">
-          <h3>Gameplay Features</h3>
-          <p class="rate-amount">$25 - $50</p>
-          <p>Standalone gameplay mechanics or feature implementations with moderate complexity.</p>
-          <p class="rate-note">(For example, a UI feature, expanding a feature, a daily rewards system, etc.)</p>
-        </article>
-        <article class="rate-card reveal">
-          <h3>Advanced Systems</h3>
-          <p class="rate-amount">$75 – $200</p>
-          <p>Complex systems that require a structured architecture, networking, or multiple components.</p>
-          <p class="rate-note">(For example, a complex inventory system, saving system, progression system, etc.)</p>
-        </article>
-        <article class="rate-card reveal">
-          <h3>Major Game Systems</h3>
-          <p class="rate-amount">$250 - $500</p>
-          <p>Large-scale systems that power a major portion of the game.</p>
-          <p class="rate-note">(For example, an entire economy system, core gameplay loop, full UI framework, etc.)</p>
-        </article>
-        <article class="rate-card reveal">
-          <h3>Full Game Development</h3>
-          <p class="rate-amount">$500 - $1,000+</p>
-          <p>Scripting full games from the ground up or large-scale production-level projects.</p>
-          <p class="rate-note">(For example, scripting an entire simulator game or an entire RPG game; the full game package.)<br>Note that for full games, pricing varies widely and can be negotiated.</p>
-        </article>
+    <section class="section" id="workflow">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>How I Work</h2>
+          <p>A straightforward process that keeps the workflow quality high.</p>
+        </div>
+
+        <div class="workflow-grid">
+          <article class="card workflow-card surface reveal">
+            <span class="card-number">01</span>
+            <h3>Scope Review</h3>
+            <p>Task, requirements, constraints, and technical risks are mapped out before production starts.</p>
+          </article>
+          <article class="card workflow-card surface reveal">
+            <span class="card-number">02</span>
+            <h3>System Build</h3>
+            <p>Features are implemented with clean architectures and professional-grade polish from the start with no shortcuts.</p>
+          </article>
+          <article class="card workflow-card surface reveal">
+            <span class="card-number">03</span>
+            <h3>Validation</h3>
+            <p>Check &amp; test for bugs, edge cases, performance, and reliability before delivery.</p>
+          </article>
+          <article class="card workflow-card surface reveal">
+            <span class="card-number">04</span>
+            <h3>Delivery</h3>
+            <p>Milestone deliveries with clear notes and plans for a professional &amp; clear workflow.</p>
+          </article>
+        </div>
       </div>
+    </section>
 
-      <div class="info-grid">
-        <article class="text-card reveal">
-          <h3>Payment Terms</h3>
-          <p>My core principle is that you never pay upfront. Payment can be handled in 3 different ways:</p>
-          <ol>
-            <li>Milestones (per approved task, pay after each core task is completed)</li>
-            <li>Daily/weekly/monthly (pay every day/every week/every month)</li>
-            <li>Upon completion (pay after all work is done; this payment method requires the most background checking &amp; verification)</li>
-          </ol>
-          <p class="supporting-copy">Note that a background check &amp; proof of payment is required before development.</p>
-        </article>
+    <section class="section" id="rates">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Payment &amp; Rates</h2>
+          <p>Pricing varies widely by the project, here is a general pricing tier to give you an idea of my rates.</p>
+        </div>
 
-        <article class="text-card reveal">
-          <h3>Percentage Deals (%)</h3>
-          <p>Percentage deals are only accepted if:</p>
-          <ul>
-            <li>A) Your game is already generating revenue (requires proof of revenue analytics)</li>
-            <li>B) Your game is legitimately expecting significant revenue (requires proof of ad funds &amp; or an existing fanbase; also requires a personal interview). In some cases, you can hire me entirely on percentage long-term without fixed pay for brand new games if there is legitimate potential; I am always open to serious opportunities and willing to work with developers who are genuinely committed to the project's success.</li>
-            <li>C) The percentage is paired with a fixed payment. If game is not already generating revenue, or does not have concrete proof of expecting significant revenue, a percentage can be added to slightly reduce your fixed payment (though exact amount depends entirely on the revenue proof, project scope, and game potential.)</li>
-          </ul>
-          <p class="supporting-copy">Percentages can range anywhere from 5% to 25%+</p>
-        </article>
+        <div class="rates-grid">
+          <article class="card rate-card surface reveal">
+            <div class="rate-head">
+              <h3>Small Tasks</h3>
+            </div>
+            <p class="rate-amount">$10 - $20</p>
+            <p>Simple scripts, minor bug fixes, and small gameplay mechanics.</p>
+            <p class="rate-note">(For example, fixing small scripts, adding small mechanics, tweaking UI scripts, etc.)</p>
+          </article>
+          <article class="card rate-card surface reveal">
+            <div class="rate-head">
+              <h3>Gameplay Features</h3>
+            </div>
+            <p class="rate-amount">$25 - $50</p>
+            <p>Standalone gameplay mechanics or feature implementations with moderate complexity.</p>
+            <p class="rate-note">(For example, a UI feature, expanding a feature, a daily rewards system, etc.)</p>
+          </article>
+          <article class="card rate-card surface reveal">
+            <div class="rate-head">
+              <h3>Advanced Systems</h3>
+            </div>
+            <p class="rate-amount">$75 – $200</p>
+            <p>Complex systems that require a structured architecture, networking, or multiple components.</p>
+            <p class="rate-note">(For example, a complex inventory system, saving system, progression system, etc.)</p>
+          </article>
+          <article class="card rate-card surface reveal">
+            <div class="rate-head">
+              <h3>Major Game Systems</h3>
+            </div>
+            <p class="rate-amount">$250 - $500</p>
+            <p>Large-scale systems that power a major portion of the game.</p>
+            <p class="rate-note">(For example, an entire economy system, core gameplay loop, full UI framework, etc.)</p>
+          </article>
+          <article class="card rate-card surface reveal">
+            <div class="rate-head">
+              <h3>Full Game Development</h3>
+              <span class="rate-badge">Popular</span>
+            </div>
+            <p class="rate-amount">$500 - $1,000+</p>
+            <p>Scripting full games from the ground up or large-scale production-level projects.</p>
+            <p class="rate-note">(For example, scripting an entire simulator game or an entire RPG game; the full game package.)<br>Note that for full games, pricing varies widely and can be negotiated.</p>
+          </article>
+        </div>
 
-        <article class="text-card reveal">
+        <div class="terms-grid">
+          <article class="card text-card surface reveal">
+            <h3>Payment Terms</h3>
+            <p>My core principle is that you never pay upfront. Payment can be handled in 3 different ways:</p>
+            <ol>
+              <li>Milestones (per approved task, pay after each core task is completed)</li>
+              <li>Daily/weekly/monthly (pay every day/every week/every month)</li>
+              <li>Upon completion (pay after all work is done; this payment method requires the most background checking &amp; verification)</li>
+            </ol>
+            <p class="supporting-copy">Note that a background check &amp; proof of payment is required before development.</p>
+          </article>
+
+          <article class="card text-card surface reveal">
+            <h3>Percentage Deals (%)</h3>
+            <p>Percentage deals are only accepted if:</p>
+            <ul>
+              <li>A) Your game is already generating revenue (requires proof of revenue analytics)</li>
+              <li>B) Your game is legitimately expecting significant revenue (requires proof of ad funds &amp; or an existing fanbase; also requires a personal interview). In some cases, you can hire me entirely on percentage long-term without fixed pay for brand new games if there is legitimate potential; I am always open to serious opportunities and willing to work with developers who are genuinely committed to the project's success.</li>
+              <li>C) The percentage is paired with a fixed payment. If game is not already generating revenue, or does not have concrete proof of expecting significant revenue, a percentage can be added to slightly reduce your fixed payment (though exact amount depends entirely on the revenue proof, project scope, and game potential.)</li>
+            </ul>
+            <p class="supporting-copy">Percentages can range anywhere from 5% to 25%+</p>
+          </article>
+        </div>
+
+        <article class="card text-card payment-card surface reveal">
           <h3>Accepted Payment Methods</h3>
           <ul class="payment-methods">
-            <li>Robux ($1 USD = 150 Robux)</li>
-            <li>PayPal (Goods &amp; Services preferred, Friends &amp; Family accepted)</li>
-            <li>Roblox Gift Cards (Less common &amp; requires more verification, though still an accepted option in some cases)</li>
+            <li class="payment-method">Robux ($1 USD = 150 Robux)</li>
+            <li class="payment-method">PayPal (Goods &amp; Services preferred, Friends &amp; Family accepted)</li>
+            <li class="payment-method">Roblox Gift Cards (Less common &amp; requires more verification, though still an accepted option in some cases)</li>
           </ul>
         </article>
       </div>
     </section>
 
-    <section class="section container" id="testimonials">
-      <div class="section-head reveal">
-        <h2>Client Testimonials</h2>
-        <p>Feedback from previous major clients.</p>
-      </div>
-
-      <div class="testimonials-grid">
-        <article class="testimonial reveal">
-          <p class="quote">"Scripter here. I also worked with Local, and he is the most technically skilled person I know." - DevKruzy</p>
-          <p class="rating">☆ 5/5</p>
-        </article>
-        <article class="testimonial reveal">
-          <p class="quote">"Best scripter ever. I've worked with 4 different scripters, and Local was 100% the best one." - Lana</p>
-          <p class="rating">☆ 5/5</p>
-        </article>
-        <article class="testimonial reveal">
-          <p class="quote">"Very good scripter. Made me a good army fighting game in 3 days, and it worked perfect." - Warlord</p>
-          <p class="rating">☆ 5/5</p>
-        </article>
-        <article class="testimonial reveal">
-          <p class="quote">"Honestly a really good scripter. Scripts came out clean and exactly how I wanted, and he's very reliable." - Reedz</p>
-          <p class="rating">☆ 5/5</p>
-        </article>
-      </div>
-
-      <div class="cta-panel reveal">
-        <div>
-          <h2>Ready to work with me?</h2>
-          <p>Send over the details, timeline, and target release window. I'll keep delivery structured from day one.</p>
+    <section class="section" id="testimonials">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2>Client Testimonials</h2>
+          <p>Feedback from previous major clients.</p>
         </div>
-        <a class="button button-primary" href="mailto:imdevlocal@gmail.com">Contact Me</a>
+
+        <div class="testimonials-grid">
+          <article class="card testimonial surface reveal">
+            <p class="quote">"Scripter here. I also worked with Local, and he is the most technically skilled person I know." - DevKruzy</p>
+            <p class="rating">☆ 5/5</p>
+          </article>
+          <article class="card testimonial surface reveal">
+            <p class="quote">"Best scripter ever. I've worked with 4 different scripters, and Local was 100% the best one." - Lana</p>
+            <p class="rating">☆ 5/5</p>
+          </article>
+          <article class="card testimonial surface reveal">
+            <p class="quote">"Very good scripter. Made me a good army fighting game in 3 days, and it worked perfect." - Warlord</p>
+            <p class="rating">☆ 5/5</p>
+          </article>
+          <article class="card testimonial surface reveal">
+            <p class="quote">"Honestly a really good scripter. Scripts came out clean and exactly how I wanted, and he's very reliable." - Reedz</p>
+            <p class="rating">☆ 5/5</p>
+          </article>
+        </div>
+
+        <div class="cta-panel surface reveal">
+          <div>
+            <h2>Ready to work with me?</h2>
+            <p>Send over the details, timeline, and target release window. I'll keep delivery structured from day one.</p>
+          </div>
+          <a class="button button-primary" href="mailto:imdevlocal@gmail.com">Contact Me</a>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-shell">
-      <div class="footer-top">
-        <div class="footer-brand">
+    <div class="container footer-inner">
+      <div class="footer-grid">
+        <div>
           <a class="brand" href="#home" aria-label="Local home">
             <span class="brand-mark">LO</span>
-            <span class="brand-text">
-              <span class="brand-name">Local</span>
+            <span class="brand-copy">
+              <strong>Local</strong>
             </span>
           </a>
           <p class="footer-copy">Advanced Roblox Luau scripter with 5 years of experience, specialized in building professional-grade systems designed for real player counts.</p>
@@ -1630,21 +1746,35 @@
         </div>
 
         <div class="footer-contact">
-          <span><span class="footer-label">Email</span> <a href="mailto:imdevlocal@gmail.com">imdevlocal@gmail.com</a></span>
-          <span><span class="footer-label">Discord</span> o1et</span>
-          <span><span class="footer-label">Roblox</span> BlackCH40S</span>
+          <div class="footer-contact-item">
+            <span class="footer-label">Email</span>
+            <span class="footer-value"><a href="mailto:imdevlocal@gmail.com">imdevlocal@gmail.com</a></span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-label">Discord</span>
+            <span class="footer-value">o1et</span>
+          </div>
+          <div class="footer-contact-item">
+            <span class="footer-label">Roblox</span>
+            <span class="footer-value">BlackCH40S</span>
+          </div>
         </div>
       </div>
-      <div class="footer-bottom">© 2026 Local. Production-grade Roblox scripting.</div>
+
+      <div class="footer-bottom">&copy; 2026 Local. Production-grade Roblox scripting.</div>
     </div>
   </footer>
 
   <script>
     const themeToggle = document.getElementById("theme-toggle");
     const scrollProgress = document.getElementById("scroll-progress");
+    const rotatorShell = document.getElementById("rotator-shell");
     const rotatorText = document.getElementById("rotator-text");
-    const imageFrames = document.querySelectorAll(".work-thumb");
+    const rotatorMeasure = document.getElementById("rotator-measure");
     const revealItems = document.querySelectorAll(".reveal");
+    const navLinks = document.querySelectorAll(".site-nav a");
+    const observedSections = document.querySelectorAll("main section[id]");
+    const imageFrames = document.querySelectorAll(".work-thumb, .profile-frame");
     const phrases = [
       "full game frameworks",
       "clean production codebases",
@@ -1677,6 +1807,12 @@
       scrollProgress.style.transform = `scaleX(${Math.max(0, Math.min(1, ratio))})`;
     }
 
+    function syncRotatorWidth(text) {
+      rotatorMeasure.textContent = text;
+      const width = Math.ceil(rotatorMeasure.getBoundingClientRect().width + 38);
+      rotatorShell.style.setProperty("--rotator-width", `${Math.max(220, width)}px`);
+    }
+
     function rotatePhrase() {
       if (rotationBusy) {
         return;
@@ -1687,14 +1823,14 @@
 
       window.setTimeout(() => {
         phraseIndex = (phraseIndex + 1) % phrases.length;
-        rotatorText.textContent = phrases[phraseIndex];
+        const nextPhrase = phrases[phraseIndex];
+        rotatorText.textContent = nextPhrase;
+        syncRotatorWidth(nextPhrase);
         rotatorText.classList.remove("is-changing");
-        rotatorText.classList.add("is-settling");
 
         window.setTimeout(() => {
-          rotatorText.classList.remove("is-settling");
           rotationBusy = false;
-        }, 240);
+        }, 220);
       }, 220);
     }
 
@@ -1717,7 +1853,26 @@
       }
     );
 
+    const sectionObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          navLinks.forEach(link => {
+            link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`);
+          });
+        });
+      },
+      {
+        threshold: 0.42,
+        rootMargin: "-18% 0px -44% 0px"
+      }
+    );
+
     applyTheme(activeTheme);
+    syncRotatorWidth(phrases[0]);
     updateProgress();
 
     themeToggle.addEventListener("click", () => {
@@ -1725,10 +1880,15 @@
     });
 
     window.addEventListener("scroll", updateProgress, { passive: true });
-    window.addEventListener("resize", updateProgress);
+    window.addEventListener("resize", () => {
+      updateProgress();
+      syncRotatorWidth(rotatorText.textContent);
+    });
+
     window.setInterval(rotatePhrase, 3000);
 
     revealItems.forEach(item => revealObserver.observe(item));
+    observedSections.forEach(section => sectionObserver.observe(section));
 
     imageFrames.forEach(frame => {
       const image = frame.querySelector("img");
