@@ -19,7 +19,7 @@
       --border-accent: rgba(160, 140, 240, 0.55);
       --text: #f0ecff;
       --text2: #a89ec4;
-      --text3: #6b6286;
+      --text3: #8a82a0;
       --accent: #a07cff;
       --accent2: #7c52f5;
       --accent-dim: rgba(124, 82, 245, 0.14);
@@ -44,7 +44,7 @@
       --border-accent: rgba(100, 80, 170, 0.5);
       --text: #160f2e;
       --text2: #4e4668;
-      --text3: #9189aa;
+      --text3: #7a70909;
       --accent: #6b3ef0;
       --accent2: #5530d4;
       --accent-dim: rgba(107, 62, 240, 0.1);
@@ -66,7 +66,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Background texture */
     body::before {
       content: "";
       position: fixed;
@@ -97,7 +96,6 @@
 
     .container { width: var(--container); margin: 0 auto; }
 
-    /* ── HEADER ── */
     .site-header {
       position: sticky;
       top: 0;
@@ -201,7 +199,6 @@
     .theme-btn:hover { border-color: var(--border-strong); color: var(--text); }
     .theme-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
-    /* ── REVEAL ── */
     .reveal {
       opacity: 0;
       transform: translateY(22px);
@@ -209,10 +206,8 @@
     }
     .reveal.visible { opacity: 1; transform: none; }
 
-    /* ── SECTION ── */
     .section { padding: 96px 0 0; scroll-margin-top: 100px; }
 
-    /* ── SHARED CARD ── */
     .card {
       border: 1px solid var(--border);
       border-radius: var(--radius-xl);
@@ -233,7 +228,6 @@
       transition: transform 220ms ease, border-color 220ms ease;
     }
 
-    /* ── HERO ── */
     .hero { padding-top: 56px; }
 
     .hero-layout {
@@ -281,11 +275,12 @@
     .hero-subtitle {
       display: inline-block;
       font-family: var(--mono);
-      font-size: 0.8rem;
-      color: var(--text3);
-      border: 1px solid var(--border);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #c8bfee;
+      border: 1px solid var(--border-strong);
       border-radius: var(--radius);
-      padding: 6px 10px;
+      padding: 7px 12px;
       margin-bottom: 24px;
       letter-spacing: 0.01em;
     }
@@ -381,7 +376,6 @@
     .tag:hover { border-color: var(--border-strong); color: var(--text2); }
     .tag svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 
-    /* ── CONTACT CARD ── */
     .contact-card {
       padding: 20px;
       border: 1px solid var(--border);
@@ -442,7 +436,6 @@
       word-break: break-word;
     }
 
-    /* ── SECTION HEADER ── */
     .section-head { margin-bottom: 32px; }
     .section-head h2 {
       font-size: clamp(1.9rem, 3.5vw, 2.8rem);
@@ -458,8 +451,9 @@
       align-items: center;
       gap: 8px;
       font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--text3);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #b0a8c8;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-bottom: 12px;
@@ -470,7 +464,6 @@
       background: currentColor;
     }
 
-    /* ── EXPERTISE GRID ── */
     .expertise-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -529,7 +522,6 @@
       color: var(--text2);
     }
 
-    /* ── PAST WORK ── */
     .work-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -587,29 +579,25 @@
     .work-thumb.missing::after { opacity: 1; }
 
     .work-title {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 0.82rem;
       font-weight: 600;
       color: var(--text);
       line-height: 1.3;
       min-height: 2.6em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       letter-spacing: -0.01em;
     }
     .work-card.featured .work-title { color: var(--gold); }
 
-    /* ── WHY CHOOSE ME ── */
     .why-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
     }
 
-    .copy-card {
-      padding: 28px;
-    }
+    .copy-card { padding: 28px; }
 
     .copy-card h3 {
       font-size: 1.15rem;
@@ -666,7 +654,6 @@
       stroke-linejoin: round;
     }
 
-    /* ── WORKFLOW ── */
     .workflow-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -691,7 +678,6 @@
       opacity: 0.7;
     }
 
-    /* ── RATES ── */
     .rates-stack { display: grid; gap: 14px; }
     .rates-row { display: grid; gap: 14px; }
     .rates-row.three { grid-template-columns: repeat(3, 1fr); }
@@ -731,7 +717,7 @@
       padding-top: 14px;
       border-top: 1px solid var(--border);
       font-size: 0.82rem;
-      color: var(--text3);
+      color: #9a93b4;
       font-style: italic;
     }
 
@@ -819,11 +805,10 @@
       margin-top: 14px;
       padding-left: 16px;
       font-size: 0.84rem;
-      color: var(--text3);
+      color: #9a93b4;
     }
     .pay-notes li { margin-bottom: 6px; }
 
-    /* ── TESTIMONIALS ── */
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -861,7 +846,6 @@
 
     .stars { color: var(--gold); font-size: 0.78rem; letter-spacing: 0.06em; }
 
-    /* ── CTA ── */
     .cta-bar {
       margin-top: 18px;
       padding: 28px 32px;
@@ -883,7 +867,6 @@
     }
     .cta-bar p { color: var(--text2); font-size: 0.9rem; max-width: 54ch; }
 
-    /* ── FOOTER ── */
     .site-footer {
       margin-top: 92px;
       border-top: 1px solid var(--border);
@@ -892,9 +875,7 @@
     }
     [data-theme="light"] .site-footer { background: rgba(244, 241, 252, 0.7); }
 
-    .footer-inner {
-      padding: 40px 0 24px;
-    }
+    .footer-inner { padding: 40px 0 24px; }
 
     .footer-grid {
       display: grid;
@@ -906,7 +887,7 @@
 
     .footer-bio {
       font-size: 0.88rem;
-      color: var(--text3);
+      color: #8a82a0;
       margin-top: 12px;
       max-width: 48ch;
       line-height: 1.65;
@@ -941,7 +922,7 @@
     .footer-contact-val {
       font-size: 0.88rem;
       font-weight: 500;
-      color: var(--text2);
+      color: #b8b0d0;
     }
     .footer-contact-val a:hover { color: var(--accent); }
 
@@ -950,11 +931,10 @@
       border-top: 1px solid var(--border);
       font-family: var(--mono);
       font-size: 0.72rem;
-      color: var(--text3);
+      color: #7a7292;
       letter-spacing: 0.02em;
     }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 1100px) {
       .hero-layout { grid-template-columns: 1fr; }
       .work-grid { grid-template-columns: repeat(3, 1fr); }
@@ -1021,23 +1001,22 @@
 
   <main>
 
-    <!-- HERO -->
     <section class="hero section" id="home">
       <div class="container hero-layout">
         <div class="hero-copy reveal">
-          <div class="hero-eyebrow">Available for projects</div>
+          <div class="hero-eyebrow">Open to new projects</div>
           <h1 class="hero-title">Local</h1>
           <div class="hero-subtitle">Premium &amp; Advanced Roblox Scripter &bull; 5+ Years Experience</div>
 
           <div class="rotator-row" aria-live="polite">
-            <span class="rotator-label">Specializing in</span>
+            <span class="rotator-label">Building</span>
             <span class="rotator-shell" id="rotator-shell">
               <span class="rotator-text" id="rotator-text">full game frameworks</span>
               <span class="rotator-measure" id="rotator-measure">full game frameworks</span>
             </span>
           </div>
 
-          <p class="hero-lead">I script production-ready Roblox games — clean architecture, secure remotes, built to handle real player counts. Whether you need a single system or a complete game from scratch, the code I ship is structured for growth, not just for launch.</p>
+          <p class="hero-lead">Hey! I'm Local. I've been scripting Roblox games for 5+ years, and at this point I've worked on pretty much everything: full simulators, complex economy systems, anti-exploit architecture, data pipelines, UI frameworks, you name it. If it involves Luau, I can build it right; clean, scalable, and ready for real players from day one.</p>
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contact">Contact Me</a>
@@ -1090,13 +1069,12 @@
       </div>
     </section>
 
-    <!-- EXPERTISE -->
     <section class="section" id="expertise">
       <div class="container">
         <div class="section-head reveal">
           <div class="section-label">Skills &amp; Expertise</div>
           <h2>What I Build</h2>
-          <p>Every system is written to hold up under real conditions — high concurrency, exploiters, low-end devices, and six months of updates you didn't plan for.</p>
+          <p>Every system is written to hold up under real pressure: high concurrency, exploiters, low-end devices, and six months of updates you didn't plan for.</p>
         </div>
 
         <div class="expertise-grid">
@@ -1118,7 +1096,7 @@
           <article class="card skill-card reveal">
             <div class="skill-num">04</div>
             <h3>Performance</h3>
-            <p>Profiler-guided optimization. High frame rate under load, controlled NetworkPing, and no unnecessary replication.</p>
+            <p>Profiler-guided optimization. High frame rates under load, controlled NetworkPing, and no unnecessary replication.</p>
           </article>
           <article class="card skill-card reveal">
             <div class="skill-num">05</div>
@@ -1133,7 +1111,7 @@
           <article class="card skill-card reveal">
             <div class="skill-num">07</div>
             <h3>Monetization</h3>
-            <p>DevProducts, Gamepasses, and receipt handlers wired correctly — with purchase flows tied to actual game economy logic.</p>
+            <p>DevProducts, Gamepasses, and receipt handlers wired correctly; purchase flows tied to actual game economy logic.</p>
           </article>
           <article class="card skill-card reveal">
             <div class="skill-num">08</div>
@@ -1154,13 +1132,12 @@
       </div>
     </section>
 
-    <!-- PAST WORK -->
     <section class="section" id="past-work">
       <div class="container">
         <div class="section-head reveal">
           <div class="section-label">Past Work</div>
           <h2>Recent Projects</h2>
-          <p>A range of shipped games across genres — simulators, obbies, tycoons, and RPGs.</p>
+          <p>A selection of shipped games I've worked on. The scope varies; what doesn't is the quality of the code underneath.</p>
         </div>
 
         <div class="work-grid">
@@ -1228,19 +1205,18 @@
       </div>
     </section>
 
-    <!-- WHY CHOOSE ME -->
     <section class="section" id="why-choose-me">
       <div class="container">
         <div class="section-head reveal">
           <div class="section-label">Why Choose Me</div>
-          <h2>How I'm Different</h2>
-          <p>Quality, communication, and delivery that actually holds up — not just on launch day.</p>
+          <h2>Why Choose Me</h2>
+          <p>Quality, communication, and delivery that actually holds up; not just on launch day.</p>
         </div>
 
         <div class="why-grid">
           <article class="card copy-card reveal">
-            <h3>No shortcuts, no tech debt</h3>
-            <p>The code I ship is structured to be maintained and extended, not abandoned after launch. I build with exploiters, edge cases, and low-end devices in mind from the start. Scope is agreed on before work begins, milestones keep progress visible, and you'll always have working deliverables at each stage — not a half-finished codebase handed over at the end.</p>
+            <h3>No shortcuts, no technical debt</h3>
+            <p>The code I ship is built to be maintained and extended long-term. Security and performance are baseline requirements on every project, not optional extras. Scope is defined before work begins, milestones keep progress clear, and you'll have working deliverables at each stage; never a half-finished codebase at the end.</p>
           </article>
 
           <article class="card checklist-card reveal">
@@ -1255,7 +1231,7 @@
               </li>
               <li>
                 <span class="check-dot"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"/></svg></span>
-                <span>Security and performance treated as requirements, not afterthoughts</span>
+                <span>Security and performance built in from the start, not added later</span>
               </li>
               <li>
                 <span class="check-dot"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"/></svg></span>
@@ -1263,7 +1239,7 @@
               </li>
               <li>
                 <span class="check-dot"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"/></svg></span>
-                <span>Comfortable owning a full game or dropping into an existing codebase</span>
+                <span>Experienced with full game projects and single-system contracts alike</span>
               </li>
               <li>
                 <span class="check-dot"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"/></svg></span>
@@ -1275,7 +1251,6 @@
       </div>
     </section>
 
-    <!-- WORKFLOW -->
     <section class="section" id="workflow">
       <div class="container">
         <div class="section-head reveal">
@@ -1293,7 +1268,7 @@
           <article class="card workflow-card reveal">
             <div class="step-num">02</div>
             <h3>System Build</h3>
-            <p>Clean architecture from the first commit. No "we'll fix it later" decisions baked into the foundation.</p>
+            <p>Architecture is decided at the start and held to throughout. The foundation doesn't get compromised mid-project.</p>
           </article>
           <article class="card workflow-card reveal">
             <div class="step-num">03</div>
@@ -1309,7 +1284,6 @@
       </div>
     </section>
 
-    <!-- RATES -->
     <section class="section" id="rates">
       <div class="container">
         <div class="section-head reveal">
@@ -1324,19 +1298,19 @@
               <h3>Small Tasks</h3>
               <div class="rate-price">$10 – $20</div>
               <p class="rate-desc">Simple scripts, minor bug fixes, small standalone mechanics.</p>
-              <p class="rate-example">Fixing broken scripts, tweaking UI behavior, adding a small mechanic.</p>
+              <p class="rate-example">Examples: fixing broken scripts, tweaking UI behavior, adding a small mechanic.</p>
             </article>
             <article class="card rate-card reveal">
               <h3>Gameplay Features</h3>
               <div class="rate-price">$25 – $50</div>
               <p class="rate-desc">Standalone gameplay mechanics or feature implementations with moderate complexity.</p>
-              <p class="rate-example">Daily rewards system, a UI feature, expanding an existing system.</p>
+              <p class="rate-example">Examples: daily rewards system, a UI feature, expanding an existing system.</p>
             </article>
             <article class="card rate-card reveal">
               <h3>Advanced Systems</h3>
               <div class="rate-price">$75 – $200</div>
               <p class="rate-desc">Multi-component systems requiring structured architecture and proper networking.</p>
-              <p class="rate-example">Full inventory system, saving system, progression system.</p>
+              <p class="rate-example">Examples: full inventory system, saving system, progression system.</p>
             </article>
           </div>
 
@@ -1345,14 +1319,14 @@
               <h3>Major Game Systems</h3>
               <div class="rate-price">$250 – $500</div>
               <p class="rate-desc">Large-scale systems that power a major portion of the gameplay.</p>
-              <p class="rate-example">Full economy system, core gameplay loop, complete UI framework.</p>
+              <p class="rate-example">Examples: full economy system, core gameplay loop, complete UI framework.</p>
             </article>
             <article class="card rate-card popular reveal">
               <span class="popular-badge">Popular</span>
               <h3>Full Game Development</h3>
               <div class="rate-price">$500 – $1,000+</div>
               <p class="rate-desc">Complete game scripting from the ground up, or large-scale production projects. Pricing negotiated based on scope.</p>
-              <p class="rate-example">Full simulator, RPG, or tycoon — the whole package.</p>
+              <p class="rate-example">Examples: full simulator, RPG, or tycoon; the whole package.</p>
             </article>
           </div>
         </div>
@@ -1405,7 +1379,6 @@
       </div>
     </section>
 
-    <!-- TESTIMONIALS -->
     <section class="section" id="testimonials">
       <div class="container">
         <div class="section-head reveal">
@@ -1470,7 +1443,7 @@
               <span>// roblox scripter</span>
             </span>
           </a>
-          <p class="footer-bio">5+ years scripting Roblox games in Luau. Production-ready systems, clean architecture, built for real player load.</p>
+          <p class="footer-bio">5+ years scripting Roblox games in Luau. I've built everything from full simulators and economy systems to anti-exploit architecture and UI frameworks. Production-ready code, clean structure, built for real player counts.</p>
         </div>
 
         <div class="footer-col">
@@ -1497,12 +1470,11 @@
         </div>
       </div>
 
-      <div class="footer-bottom">&copy; 2026 Local — production-grade Roblox scripting</div>
+      <div class="footer-bottom">&copy; 2026 Local; production-grade Roblox scripting</div>
     </div>
   </footer>
 
   <script>
-    // Theme
     const themeBtn = document.getElementById("theme-btn");
     const scrollBar = document.getElementById("scroll-bar");
     const rotatorShell = document.getElementById("rotator-shell");
@@ -1527,13 +1499,10 @@
     themeBtn.addEventListener("click", () => applyTheme(theme === "dark" ? "light" : "dark"));
     applyTheme(theme);
 
-    // Scroll progress
     function updateScroll() {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const ratio = max > 0 ? window.scrollY / max : 0;
       scrollBar.style.transform = `scaleX(${Math.min(1, Math.max(0, ratio))})`;
-
-      // Active nav
       const offset = window.scrollY + 120;
       let current = sections[0]?.id || "";
       sections.forEach(s => { if (offset >= s.offsetTop) current = s.id; });
@@ -1543,7 +1512,6 @@
     window.addEventListener("scroll", updateScroll, { passive: true });
     updateScroll();
 
-    // Rotator
     const phrases = [
       "full game frameworks",
       "clean production codebases",
@@ -1587,7 +1555,6 @@
     setInterval(rotate, 3000);
     window.addEventListener("resize", () => syncWidth(rotatorText.textContent));
 
-    // Image fallback
     document.querySelectorAll(".work-thumb, .brand-avatar, .contact-avatar").forEach(frame => {
       const img = frame.querySelector("img");
       if (!img) return;
@@ -1595,7 +1562,6 @@
       img.addEventListener("error", () => frame.classList.add("missing"), { once: true });
     });
 
-    // Reveal on scroll
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
