@@ -3,1538 +3,1002 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Local | Premium Roblox Scripter</title>
+  <title>Local | Roblox Scripter</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      color-scheme: dark;
-      --bg: #05040a;
-      --bg-alt: #0a0714;
-      --surface: rgba(15, 12, 24, 0.8);
-      --surface-strong: rgba(17, 13, 29, 0.92);
-      --surface-soft: rgba(24, 18, 39, 0.84);
-      --text: #f5f2ff;
-      --muted: #a9a1bf;
-      --muted-strong: #cdc5e2;
-      --line: rgba(184, 171, 229, 0.14);
-      --line-strong: rgba(184, 171, 229, 0.28);
-      --accent: #9c7bff;
-      --accent-strong: #7a4ef5;
-      --accent-soft: rgba(124, 78, 245, 0.16);
-      --accent-grad: linear-gradient(135deg, #bba5ff 0%, #8d6dff 55%, #7446f2 100%);
-      --shadow: 0 28px 70px rgba(2, 0, 7, 0.45);
-      --shadow-soft: 0 18px 48px rgba(36, 16, 82, 0.2);
-      --gold: #f1cc71;
-      --gold-line: rgba(241, 204, 113, 0.42);
-      --gold-bg: rgba(241, 204, 113, 0.12);
-      --gold-glow: 0 0 28px rgba(241, 204, 113, 0.22);
-      --progress: linear-gradient(90deg, #f1cc71 0%, #ad8bff 44%, #8458ff 100%);
-      --grid: rgba(242, 236, 255, 0.08);
-      --container: min(1220px, calc(100vw - 48px));
-      --header-height: 84px;
-      --rotator-width: 320px;
+      --bg: #080710;
+      --bg2: #0d0b18;
+      --bg3: #110f1f;
+      --surface: #13112200;
+      --surface-solid: #131122;
+      --border: rgba(140, 120, 220, 0.15);
+      --border-strong: rgba(160, 140, 240, 0.32);
+      --border-accent: rgba(160, 140, 240, 0.55);
+      --text: #f0ecff;
+      --text2: #a89ec4;
+      --text3: #6b6286;
+      --accent: #a07cff;
+      --accent2: #7c52f5;
+      --accent-dim: rgba(124, 82, 245, 0.14);
+      --gold: #e8c46a;
+      --gold-dim: rgba(232, 196, 106, 0.12);
+      --gold-border: rgba(232, 196, 106, 0.35);
+      --mono: "JetBrains Mono", monospace;
+      --sans: "DM Sans", sans-serif;
+      --container: min(1200px, calc(100vw - 48px));
+      --radius: 4px;
+      --radius-lg: 8px;
+      --radius-xl: 14px;
     }
 
-    body[data-theme="light"] {
-      color-scheme: light;
-      --bg: #f3effd;
-      --bg-alt: #ebe4fa;
-      --surface: rgba(255, 255, 255, 0.8);
-      --surface-strong: rgba(255, 255, 255, 0.92);
-      --surface-soft: rgba(242, 235, 255, 0.86);
-      --text: #181225;
-      --muted: #665c7b;
-      --muted-strong: #413855;
-      --line: rgba(105, 84, 151, 0.14);
-      --line-strong: rgba(105, 84, 151, 0.22);
-      --accent: #7d54f7;
-      --accent-strong: #6a37f0;
-      --accent-soft: rgba(106, 55, 240, 0.12);
-      --shadow: 0 26px 64px rgba(78, 44, 138, 0.12);
-      --shadow-soft: 0 16px 42px rgba(78, 44, 138, 0.1);
-      --gold-line: rgba(214, 163, 43, 0.32);
-      --gold-bg: rgba(214, 163, 43, 0.12);
-      --grid: rgba(88, 68, 131, 0.08);
+    [data-theme="light"] {
+      --bg: #f4f1fc;
+      --bg2: #ede9f9;
+      --bg3: #e6e1f5;
+      --surface-solid: #ffffff;
+      --border: rgba(100, 80, 170, 0.13);
+      --border-strong: rgba(100, 80, 170, 0.26);
+      --border-accent: rgba(100, 80, 170, 0.5);
+      --text: #160f2e;
+      --text2: #4e4668;
+      --text3: #9189aa;
+      --accent: #6b3ef0;
+      --accent2: #5530d4;
+      --accent-dim: rgba(107, 62, 240, 0.1);
+      --gold: #b8890a;
+      --gold-dim: rgba(184, 137, 10, 0.1);
+      --gold-border: rgba(184, 137, 10, 0.3);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      margin: 0;
-      min-width: 320px;
+      font-family: var(--sans);
       font-size: 15px;
-      font-family: "Inter", "Segoe UI", sans-serif;
+      line-height: 1.65;
       color: var(--text);
-      background:
-        radial-gradient(circle at 22% 18%, rgba(132, 88, 255, 0.2), transparent 24%),
-        radial-gradient(circle at 76% 70%, rgba(124, 78, 245, 0.14), transparent 28%),
-        linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 18%, var(--bg) 100%);
-      line-height: 1.6;
+      background-color: var(--bg);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
     }
 
-    body * {
-      font-family: inherit;
+    /* Background texture */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(130, 100, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(130, 100, 255, 0.035) 1px, transparent 1px);
+      background-size: 40px 40px;
     }
 
-    body::before,
     body::after {
       content: "";
       position: fixed;
       inset: 0;
-      pointer-events: none;
       z-index: -2;
-    }
-
-    body::before {
+      pointer-events: none;
       background:
-        linear-gradient(var(--grid) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-      background-size: 48px 48px;
-      opacity: 0.82;
-      -webkit-mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.98), transparent 84%);
-      mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.98), transparent 84%);
+        radial-gradient(ellipse 60% 40% at 10% 0%, rgba(100, 60, 220, 0.16) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 90% 80%, rgba(80, 40, 200, 0.1) 0%, transparent 70%);
     }
 
-    body::after {
-      z-index: -3;
-      background:
-        radial-gradient(circle at 50% 30%, rgba(114, 72, 224, 0.18), transparent 32%),
-        radial-gradient(circle at 20% 70%, rgba(80, 42, 172, 0.12), transparent 24%),
-        radial-gradient(circle at 100% 12%, rgba(110, 76, 201, 0.1), transparent 18%);
-    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    figure { margin: 0; }
+    button, input { font: inherit; }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    .container { width: var(--container); margin: 0 auto; }
 
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    figure {
-      margin: 0;
-    }
-
-    button,
-    input,
-    textarea,
-    select {
-      font: inherit;
-    }
-
-    .container {
-      width: var(--container);
-      margin: 0 auto;
-    }
-
-    .section {
-      padding: 96px 0 0;
-      scroll-margin-top: 112px;
-    }
-
-    .surface,
-    .button,
-    .inline-tag,
-    .contact-item,
-    .payment-method-card,
-    .site-nav a,
-    .theme-toggle,
-    .work-card {
-      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background-color 220ms ease, color 220ms ease;
-    }
-
-    .surface:hover,
-    .surface:focus-within,
-    .contact-item:hover,
-    .payment-method-card:hover {
-      transform: translateY(-6px) scale(1.014);
-      border-color: var(--line-strong);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .why-grid > .card:hover,
-    .workflow-card.surface:hover,
-    .rate-card.surface:hover {
-      transform: translateY(-6px) scale(1.02);
-    }
-    .text-card:hover,
-    .testimonial:hover,
-    .cta-panel:hover {
-      transform: translateY(-6px) scale(1.016);
-      border-color: var(--line-strong);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .workflow-card:hover,
-    .workflow-card:focus-within,
-    .rate-card:hover,
-    .rate-card:focus-within {
-      transform: translateY(-6px) scale(1.02);
-      border-color: var(--line-strong);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 560ms ease, transform 560ms ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
+    /* ── HEADER ── */
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 80;
-      background: rgba(5, 4, 10, 0.72);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--line);
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8, 7, 16, 0.82);
+      backdrop-filter: blur(20px);
     }
+    [data-theme="light"] .site-header { background: rgba(244, 241, 252, 0.84); }
 
-    body[data-theme="light"] .site-header {
-      background: rgba(243, 239, 253, 0.8);
-    }
-
-    .header-progress {
+    .header-bar {
       position: absolute;
-      inset: auto 0 0;
-      height: 2px;
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .header-progress-bar {
-      display: block;
-      width: 100%;
-      height: 100%;
-      background: var(--progress);
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent) 40%, var(--gold) 70%, transparent 100%);
       transform: scaleX(0);
-      transform-origin: left center;
+      transform-origin: left;
+      transition: transform 0.1s linear;
     }
 
     .header-inner {
-      position: relative;
-      min-height: 78px;
       display: grid;
       grid-template-columns: auto 1fr auto;
       align-items: center;
-      gap: 16px;
+      gap: 20px;
+      height: 72px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 14px;
-      min-width: 0;
+      gap: 12px;
     }
 
-    .brand-mark {
-      display: grid;
-      place-items: center;
-      width: 38px;
-      height: 38px;
-      border-radius: 14px;
-      border: 1px solid var(--line-strong);
-      background: linear-gradient(135deg, rgba(187, 165, 255, 0.22), rgba(112, 74, 226, 0.22));
-      color: var(--text);
+    .brand-avatar {
+      width: 34px; height: 34px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-strong);
       overflow: hidden;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      background: var(--accent-dim);
       flex: none;
-      position: relative;
     }
+    .brand-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .brand-avatar.missing img { opacity: 0; }
 
-    .brand-mark img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .brand-mark.is-missing img {
-      opacity: 0;
-    }
-
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      opacity: 0;
-      color: var(--text);
-      font-size: 0.86rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      transition: opacity 180ms ease;
-    }
-
-    .brand-mark.is-missing::after {
-      content: attr(data-fallback);
-      opacity: 1;
-    }
-
-    .brand-copy {
-      min-width: 0;
-      display: grid;
-      gap: 3px;
-    }
-
-    .brand-copy strong {
-      font-size: 0.96rem;
+    .brand-text strong {
+      display: block;
+      font-size: 0.93rem;
       font-weight: 700;
-      line-height: 1.1;
       letter-spacing: -0.02em;
     }
-
-    .brand-copy span {
-      color: var(--muted);
-      font-size: 0.8rem;
-      line-height: 1.1;
+    .brand-text span {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--text3);
+      letter-spacing: 0.01em;
     }
 
-    .site-nav {
-      justify-self: center;
-      min-width: 0;
-    }
-
+    .site-nav { justify-self: center; }
     .site-nav ul {
       list-style: none;
       display: flex;
-      align-items: center;
-      gap: 6px;
-      margin: 0;
-      padding: 8px;
-      border: 1px solid var(--line);
+      gap: 2px;
+      padding: 5px;
+      border: 1px solid var(--border);
       border-radius: 999px;
-      background: var(--surface);
-      box-shadow: var(--shadow-soft);
+      background: rgba(13, 11, 24, 0.6);
     }
+    [data-theme="light"] .site-nav ul { background: rgba(255,255,255,0.7); }
 
     .site-nav a {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 9px 14px;
+      padding: 7px 13px;
       border-radius: 999px;
-      color: var(--muted-strong);
-      font-size: 0.88rem;
-      font-weight: 600;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text2);
+      transition: color 180ms, background 180ms;
       white-space: nowrap;
     }
-
-    .site-nav a:hover,
-    .site-nav a:focus-visible {
-      transform: translateY(-2px) scale(1.02);
+    .site-nav a:hover, .site-nav a.active {
       color: var(--text);
-      background: rgba(255, 255, 255, 0.06);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
-      outline: none;
+      background: rgba(140, 110, 255, 0.12);
     }
 
-    .site-nav a.is-active {
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.06);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
-    }
+    .header-controls { display: flex; gap: 8px; align-items: center; }
 
-    .theme-toggle {
-      width: 42px;
-      height: 42px;
-      border: 1px solid var(--line);
-      border-radius: 15px;
-      background: var(--surface);
-      color: var(--text);
-      display: inline-grid;
-      place-items: center;
-      padding: 0;
+    .theme-btn {
+      width: 38px; height: 38px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: transparent;
+      color: var(--text2);
       cursor: pointer;
-      box-shadow: var(--shadow-soft);
+      display: grid;
+      place-items: center;
+      transition: border-color 180ms, color 180ms;
+    }
+    .theme-btn:hover { border-color: var(--border-strong); color: var(--text); }
+    .theme-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 540ms ease, transform 540ms ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── SECTION ── */
+    .section { padding: 96px 0 0; scroll-margin-top: 100px; }
+
+    /* ── SHARED CARD ── */
+    .card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      background: var(--surface-solid);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(160, 124, 255, 0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-4px);
+      transition: transform 220ms ease, border-color 220ms ease;
     }
 
-    .theme-toggle:hover,
-    .theme-toggle:focus-visible {
-      transform: translateY(-2px) scale(1.04);
-      border-color: var(--line-strong);
-      outline: none;
-    }
-
-    .theme-toggle svg {
-      width: 19px;
-      height: 19px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.9;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    main {
-      padding-bottom: 36px;
-    }
-
-    .hero {
-      padding-top: 38px;
-    }
+    /* ── HERO ── */
+    .hero { padding-top: 56px; }
 
     .hero-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+      grid-template-columns: 1fr 380px;
+      gap: 32px;
       align-items: start;
-      gap: 28px;
     }
 
-    .hero-copy {
-      padding-top: 20px;
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .hero-eyebrow::before {
+      content: "";
+      width: 20px; height: 1px;
+      background: var(--accent);
+      opacity: 0.6;
     }
 
     .hero-title {
-      margin: 0;
-      font-size: clamp(3.52rem, 8.1vw, 5.74rem);
-      line-height: 0.92;
-      letter-spacing: -0.072em;
-      font-weight: 740;
+      font-size: clamp(4rem, 9vw, 6.5rem);
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+      background: linear-gradient(135deg, #fff 0%, #d4c8ff 50%, #9970ff 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
       color: transparent;
-      background: linear-gradient(135deg, #ffffff 0%, #e7ddff 58%, #b497ff 100%);
+      margin-bottom: 20px;
+    }
+    [data-theme="light"] .hero-title {
+      background: linear-gradient(135deg, #1a1030 0%, #432e8a 50%, #6b3ef0 100%);
       background-clip: text;
       -webkit-background-clip: text;
     }
 
-    body[data-theme="light"] .hero-title {
-      background: linear-gradient(135deg, #1e172e 0%, #3f3166 58%, #6f49df 100%);
-      background-clip: text;
-      -webkit-background-clip: text;
+    .hero-subtitle {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--text3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 6px 10px;
+      margin-bottom: 24px;
+      letter-spacing: 0.01em;
     }
-
-  .hero-subtitle {
-    display: inline-block;
-    margin-top: 16px;
-    padding: 9px 14px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: var(--surface-soft);
-    color: var(--muted-strong);
-    font-size: 0.92rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    box-shadow: var(--shadow-soft);
-  }
 
     .rotator-row {
-      margin-top: 18px;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
+      margin-bottom: 22px;
       flex-wrap: wrap;
     }
-
-    .rotator-label {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--muted-strong);
-    }
+    .rotator-label { font-size: 0.95rem; font-weight: 500; color: var(--text2); }
 
     .rotator-shell {
-      position: relative;
       display: inline-flex;
       align-items: center;
-      justify-content: flex-start;
-      width: auto;
-      max-width: 100%;
-      min-height: 44px;
-      padding: 10px 14px;
-      border: 1px solid var(--line-strong);
-      border-radius: 999px;
-      background: var(--surface-soft);
-      box-shadow: var(--shadow-soft);
+      padding: 8px 14px;
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius);
+      background: var(--accent-dim);
+      min-height: 38px;
       overflow: hidden;
-      flex: none;
-      transition: width 280ms ease, border-color 220ms ease, box-shadow 220ms ease;
+      transition: width 260ms ease;
     }
 
-    .rotator-text,
-    .rotator-measure {
-      font-size: 0.94rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
+    .rotator-text, .rotator-measure {
+      font-family: var(--mono);
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--accent);
       white-space: nowrap;
+      letter-spacing: 0.01em;
     }
-
-    .rotator-text {
-      position: relative;
-      color: var(--text);
-      transition: opacity 220ms ease, transform 220ms ease;
-    }
-
+    .rotator-text { transition: opacity 200ms ease, transform 200ms ease; }
+    .rotator-text.changing { opacity: 0; transform: translateY(-30%); }
     .rotator-measure {
       position: absolute;
       visibility: hidden;
       pointer-events: none;
       left: -9999px;
-      top: 0;
-      display: inline-block;
-    }
-
-    .rotator-text.is-changing {
-      opacity: 0;
-      transform: translateY(-40%);
     }
 
     .hero-lead {
-      max-width: 60ch;
-      margin: 22px 0 0;
-      color: var(--muted-strong);
-      font-size: 0.95rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 26px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 18px;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      font-weight: 700;
-      font-size: 0.94rem;
-      letter-spacing: -0.02em;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .button:hover,
-    .button:focus-visible {
-      transform: translateY(-3px) scale(1.018);
-      border-color: var(--line-strong);
-      outline: none;
-    }
-
-    .button-primary {
-      background: linear-gradient(135deg, rgba(187, 165, 255, 0.94), rgba(109, 69, 232, 0.94));
-      color: #0d0818;
-    }
-
-    .button-secondary {
-      background: var(--surface-soft);
-      color: var(--text);
-    }
-
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .inline-tag {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--muted);
-      font-size: 0.84rem;
-      font-weight: 600;
-    }
-
-    .inline-tag svg {
-      width: 14px;
-      height: 14px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1.9;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      flex: none;
-    }
-
-    .inline-tag:hover {
-      transform: translateY(-3px) scale(1.018);
-      border-color: var(--line-strong);
-      color: var(--text);
-    }
-
-    .contact-card {
-      margin-top: 28px;
-      padding: 18px 18px 16px;
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 22%),
-        var(--surface-strong);
-      box-shadow: var(--shadow);
-    }
-
-    .contact-head {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 72px;
-      gap: 12px;
-      align-items: start;
-      margin-bottom: 6px;
-    }
-
-    .profile-frame {
-      position: relative;
-      aspect-ratio: 1;
-      width: 72px;
-      margin-top: -12px;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background:
-        radial-gradient(circle at 28% 24%, rgba(255, 255, 255, 0.16), transparent 30%),
-        linear-gradient(145deg, rgba(153, 122, 255, 0.28), rgba(14, 10, 24, 0.94));
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-      justify-self: start;
-      align-self: start;
-    }
-
-    body[data-theme="light"] .profile-frame {
-      background:
-        radial-gradient(circle at 28% 24%, rgba(255, 255, 255, 0.76), transparent 28%),
-        linear-gradient(145deg, rgba(177, 149, 255, 0.34), rgba(238, 230, 255, 0.94));
-    }
-
-    .profile-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .profile-frame.is-missing img {
-      opacity: 0;
-    }
-
-    .profile-frame::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      opacity: 0;
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      transition: opacity 180ms ease;
-    }
-
-    body[data-theme="light"] .profile-frame::after {
-      color: rgba(24, 18, 37, 0.84);
-    }
-
-    .profile-frame.is-missing::after {
-      content: attr(data-fallback);
-      opacity: 1;
-    }
-
-    .contact-copy h2 {
-      margin: 0;
-      font-size: 1.68rem;
-      line-height: 1;
-      letter-spacing: -0.05em;
-    }
-
-    .contact-copy p {
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .contact-list {
-      margin: 0;
-      display: grid;
-      gap: 10px;
-    }
-
-    .contact-item {
-      padding: 13px 14px;
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .contact-item dt {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.84rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-    }
-
-    .contact-item dd {
-      margin: 7px 0 0;
-      color: var(--text);
       font-size: 0.96rem;
-      font-weight: 700;
-      word-break: break-word;
-    }
-
-    .section-head {
-      display: grid;
-      gap: 12px;
+      color: var(--text2);
+      max-width: 56ch;
+      line-height: 1.72;
       margin-bottom: 28px;
     }
 
-    .section-head h2 {
-      margin: 0;
-      font-size: clamp(2rem, 3.6vw, 3rem);
-      line-height: 0.98;
-      letter-spacing: -0.055em;
-    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
 
-    .section-head p {
-      width: min(100%, 80ch);
-      margin: 0;
-      color: var(--muted-strong);
-      font-size: 0.94rem;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: var(--radius-lg);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      border: 1px solid transparent;
+      transition: transform 180ms ease, opacity 180ms ease, border-color 180ms ease;
+      cursor: pointer;
     }
-
-    .expertise-grid,
-    .workflow-grid,
-    .rates-primary,
-    .rates-secondary,
-    .testimonials-grid,
-    .terms-layout {
-      display: grid;
-      gap: 18px;
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: linear-gradient(135deg, #b49aff, #7c52f5);
+      color: #0d0820;
+      border-color: rgba(180, 154, 255, 0.3);
     }
-
-    .expertise-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border-strong);
     }
+    .btn-ghost:hover { border-color: var(--border-accent); }
 
-    .card {
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 11px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      color: var(--text3);
+      letter-spacing: 0.02em;
+      transition: border-color 180ms, color 180ms;
+    }
+    .tag:hover { border-color: var(--border-strong); color: var(--text2); }
+    .tag svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+    /* ── CONTACT CARD ── */
+    .contact-card {
       padding: 20px;
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 18%),
-        var(--surface);
-      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      background: var(--surface-solid);
+    }
+
+    .contact-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .contact-top h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+    }
+    .contact-top p { color: var(--text3); font-size: 0.86rem; margin-top: 4px; }
+
+    .contact-avatar {
+      width: 60px; height: 60px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: var(--accent-dim);
+      flex: none;
+    }
+    .contact-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .contact-avatar.missing img { opacity: 0; }
+
+    .contact-fields { display: grid; gap: 8px; }
+
+    .contact-field {
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.02);
+      transition: border-color 180ms;
+    }
+    .contact-field:hover { border-color: var(--border-strong); }
+
+    .contact-field dt {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--text3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .contact-field dd {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      word-break: break-word;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-head { margin-bottom: 32px; }
+    .section-head h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .section-head p { color: var(--text2); font-size: 0.94rem; max-width: 72ch; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--text3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-label::before {
+      content: "";
+      width: 14px; height: 1px;
+      background: currentColor;
+    }
+
+    /* ── EXPERTISE GRID ── */
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
     }
 
     .skill-card {
-      min-height: 206px;
+      padding: 20px;
+      min-height: 180px;
     }
 
-    .card-number {
-      display: inline-grid;
-      place-items: center;
-      min-width: 44px;
-      height: 34px;
-      padding: 0 10px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--text);
-      font-size: 0.84rem;
-      font-weight: 800;
+    .skill-num {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
       letter-spacing: 0.06em;
+      margin-bottom: 14px;
+      opacity: 0.7;
     }
 
-    .card h3 {
-      margin: 16px 0 10px;
-      font-size: 1.08rem;
-      line-height: 1.18;
-      letter-spacing: -0.03em;
+    .skill-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
     }
 
-    .card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .skill-card:hover,
-    .skill-card:focus-within {
-      transform: translateY(-6px) scale(1.025);
-      border-color: var(--line-strong);
-      box-shadow: var(--shadow-soft);
+    .skill-card p {
+      font-size: 0.87rem;
+      color: var(--text2);
+      line-height: 1.6;
     }
 
     .tool-note {
-      margin-top: 22px;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 16px;
-      align-items: start;
-      padding: 20px 22px;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: var(--surface-soft);
-      box-shadow: var(--shadow-soft);
+      margin-top: 16px;
+      padding: 16px 20px;
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--accent);
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      background: var(--accent-dim);
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
     }
 
-    .tool-note-mark {
-      display: grid;
-      place-items: center;
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text);
-      font-weight: 700;
+    .tool-note-icon {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--accent);
+      flex: none;
+      padding-top: 2px;
     }
 
     .tool-note p {
-      margin: 0;
-      color: var(--muted-strong);
+      font-size: 0.88rem;
+      color: var(--text2);
     }
 
-    .tool-note:hover {
-      transform: translateY(-5px) scale(1.015);
-    }
-
+    /* ── PAST WORK ── */
     .work-grid {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
     }
 
     .work-card {
-      padding: 14px 12px 12px;
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 18%),
-        var(--surface);
-      box-shadow: var(--shadow);
-      display: grid;
-      grid-template-rows: auto auto;
-      gap: 10px;
+      padding: 12px 10px 10px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      background: var(--surface-solid);
       text-align: center;
-      align-items: start;
+      transition: transform 220ms ease, border-color 220ms ease;
     }
-
-    .work-card:hover,
-    .work-card:focus-visible {
-      transform: translateY(-6px) scale(1.02);
-      border-color: var(--line-strong);
-      box-shadow: var(--shadow-soft);
-      outline: none;
+    .work-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-strong);
     }
-
     .work-card.featured {
-      border-color: var(--gold-line);
-      background:
-        linear-gradient(180deg, rgba(241, 204, 113, 0.08), transparent 22%),
-        var(--surface-strong);
-      box-shadow: var(--gold-glow), var(--shadow);
+      border-color: var(--gold-border);
+      background: linear-gradient(160deg, rgba(232, 196, 106, 0.06) 0%, var(--surface-solid) 50%);
     }
+    .work-card.featured:hover { border-color: rgba(232, 196, 106, 0.55); }
 
     .work-thumb {
-      position: relative;
       aspect-ratio: 1;
-      width: calc(100% - 18px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      margin: 0 auto;
-      border-radius: 20px;
+      width: calc(100% - 12px);
+      margin: 0 auto 10px;
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background:
-        radial-gradient(circle at 24% 20%, rgba(255, 255, 255, 0.16), transparent 30%),
-        linear-gradient(145deg, rgba(132, 88, 255, 0.28), rgba(14, 10, 24, 0.94));
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      position: relative;
     }
-
-    body[data-theme="light"] .work-thumb {
-      background:
-        radial-gradient(circle at 24% 20%, rgba(255, 255, 255, 0.76), transparent 28%),
-        linear-gradient(145deg, rgba(170, 136, 255, 0.32), rgba(238, 231, 255, 0.94));
-    }
-
     .work-thumb img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center;
-      border-radius: 0;
-      transition: opacity 180ms ease;
+      transition: opacity 180ms;
     }
-
-    .work-thumb.is-missing img {
-      opacity: 0;
-    }
-
+    .work-thumb.missing img { opacity: 0; }
     .work-thumb::after {
-      content: "";
+      content: attr(data-fallback);
       position: absolute;
       inset: 0;
       display: grid;
       place-items: center;
-      padding: 18px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text2);
+      padding: 10px;
+      line-height: 1.3;
       opacity: 0;
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 0.98rem;
-      font-weight: 700;
-      line-height: 1.35;
-      text-align: center;
-      transition: opacity 180ms ease;
+      pointer-events: none;
     }
-
-    body[data-theme="light"] .work-thumb::after {
-      color: rgba(24, 18, 37, 0.82);
-    }
-
-    .work-thumb.is-missing::after {
-      content: attr(data-fallback);
-      opacity: 1;
-    }
+    .work-thumb.missing::after { opacity: 1; }
 
     .work-title {
       display: block;
-      width: 100%;
-      text-align: center;
+      font-size: 0.82rem;
+      font-weight: 600;
       color: var(--text);
-      min-height: 2.35em;
-      font-size: 0.92rem;
-      font-weight: 700;
-      line-height: 1.28;
-      letter-spacing: -0.02em;
+      line-height: 1.3;
+      min-height: 2.6em;
       display: flex;
       align-items: center;
       justify-content: center;
+      letter-spacing: -0.01em;
     }
+    .work-card.featured .work-title { color: var(--gold); }
 
-    .work-card.featured .work-title {
-      color: #ffe8a9;
-      text-shadow: 0 0 18px rgba(241, 204, 113, 0.24);
-    }
-
+    /* ── WHY CHOOSE ME ── */
     .why-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
-      gap: 18px;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
     }
 
-    .copy-panel p {
-      color: var(--muted-strong);
+    .copy-card {
+      padding: 28px;
     }
+
+    .copy-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+    .copy-card p {
+      color: var(--text2);
+      font-size: 0.92rem;
+      line-height: 1.72;
+    }
+
+    .checklist-card { padding: 22px; }
 
     .checklist {
       list-style: none;
       display: grid;
-      gap: 12px;
-      padding: 0;
-      margin: 0;
+      gap: 10px;
     }
 
     .checklist li {
-      display: grid;
-      grid-template-columns: auto 1fr;
+      display: flex;
+      align-items: flex-start;
       gap: 12px;
-      align-items: start;
-      padding: 14px 16px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.03);
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.02);
+      font-size: 0.9rem;
       color: var(--text);
-      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+      transition: border-color 180ms, background 180ms;
     }
-
     .checklist li:hover {
-      transform: translateY(-4px) scale(1.012);
-      border-color: var(--line-strong);
-      box-shadow: var(--shadow-soft);
-      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-strong);
+      background: rgba(160,124,255,0.05);
     }
 
-    .check-icon {
-      width: 22px;
-      height: 22px;
-      border-radius: 999px;
-      display: inline-grid;
+    .check-dot {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c4aaff, #7c52f5);
+      display: grid;
       place-items: center;
-      background: linear-gradient(135deg, #bba5ff, #7a4ef5);
-      color: white;
-      box-shadow: 0 10px 22px rgba(122, 78, 245, 0.22);
+      flex: none;
+      margin-top: 1px;
     }
-
-    .check-icon svg {
-      width: 12px;
-      height: 12px;
-      stroke: currentColor;
+    .check-dot svg {
+      width: 10px; height: 10px;
+      stroke: #fff;
       fill: none;
-      stroke-width: 2.2;
+      stroke-width: 2.4;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
+    /* ── WORKFLOW ── */
     .workflow-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .workflow-card {
-      min-height: 192px;
-    }
-
-    .rates-stack {
       display: grid;
-      gap: 18px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
     }
 
-    .rates-primary {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      align-items: stretch;
+    .workflow-card { padding: 22px; min-height: 176px; }
+    .workflow-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      margin-top: 14px;
+    }
+    .workflow-card p { font-size: 0.87rem; color: var(--text2); line-height: 1.6; }
+
+    .step-num {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      opacity: 0.7;
     }
 
-    .rates-secondary {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      align-items: stretch;
-    }
+    /* ── RATES ── */
+    .rates-stack { display: grid; gap: 14px; }
+    .rates-row { display: grid; gap: 14px; }
+    .rates-row.three { grid-template-columns: repeat(3, 1fr); }
+    .rates-row.two { grid-template-columns: repeat(2, 1fr); }
 
     .rate-card {
-      min-height: 100%;
+      padding: 22px;
       display: flex;
       flex-direction: column;
       position: relative;
-      padding: 22px 22px 20px;
+    }
+    .rate-card.popular {
+      border-color: var(--gold-border);
+      background: linear-gradient(160deg, var(--gold-dim) 0%, var(--surface-solid) 50%);
     }
 
-    .rate-card > p {
-      margin: 0;
-      line-height: 1.62;
-    }
-
-    .rate-card > p + p {
-      margin-top: 10px;
-    }
-
-    .popular-card {
-      border-color: var(--gold-line);
-      box-shadow: var(--gold-glow), var(--shadow);
-    }
-
-    .popular-card:hover,
-    .popular-card:focus-within {
-      border-color: rgba(241, 204, 113, 0.62);
-      box-shadow: 0 0 36px rgba(241, 204, 113, 0.2), var(--shadow-soft);
-    }
-
-    .rate-head {
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-start;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-
-    .rate-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--gold-line);
-      background: var(--gold-bg);
-      color: #ffe8a9;
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      box-shadow: var(--gold-glow);
-      white-space: nowrap;
-      position: absolute;
-      top: 16px;
-      right: 16px;
-    }
-
-    .rate-head h3 {
-      margin: 0;
-      font-size: 1.02rem;
-      line-height: 1.22;
-    }
-
-    .popular-card .rate-head h3 {
-      padding-right: 82px;
-    }
-
-    .rate-amount {
-      margin: 0 0 12px;
-      color: var(--text);
-      font-size: 1.72rem;
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -0.05em;
-    }
-
-    .rate-note {
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.93rem;
-    }
-
-    .terms-layout {
-      margin-top: 22px;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .text-card {
-      padding: 22px 22px 20px;
-    }
-
-    .terms-layout > .text-card {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .text-card h3 {
-      margin: 0 0 12px;
-    }
-
-    .text-card ol,
-    .text-card ul {
-      margin: 16px 0 0;
-      padding-left: 20px;
-      color: var(--muted);
-    }
-
-    .text-card > p {
-      margin: 0;
-      line-height: 1.68;
-    }
-
-    .text-card > p + p {
-      margin-top: 12px;
-    }
-
-    .text-card li {
-      line-height: 1.72;
-    }
-
-    .text-card li + li {
-      margin-top: 12px;
-    }
-
-    .text-card ol + .supporting-copy,
-    .text-card ul + .supporting-copy {
-      margin-top: 18px;
-    }
-
-    .supporting-block {
-      margin-top: 18px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .supporting-copy {
-      margin: 0;
-      color: var(--muted-strong);
-    }
-
-    .payment-card {
-      margin-top: 18px;
-    }
-
-    .payment-method-row {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .payment-method-card {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-height: 68px;
-      padding: 14px 16px;
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--text);
-      text-align: left;
+    .rate-card h3 {
+      font-size: 0.95rem;
       font-weight: 600;
-      line-height: 1.5;
-    }
-
-    .payment-method-card .card-number {
-      margin: 0;
-      flex: none;
-    }
-
-    .payment-method-card > span:last-child {
-      font-size: 0.96rem;
-      font-weight: 700;
       letter-spacing: -0.02em;
+      margin-bottom: 10px;
+      color: var(--text2);
     }
 
-    .payment-notes {
-      margin: 18px 0 0;
-      padding-left: 20px;
-      color: var(--muted-strong);
+    .rate-price {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      color: var(--text);
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+
+    .rate-desc { font-size: 0.87rem; color: var(--text2); line-height: 1.6; }
+    .rate-example {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--text3);
+      font-style: italic;
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: 14px; right: 14px;
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+      background: var(--gold-dim);
+      padding: 4px 8px;
+      border-radius: var(--radius);
+    }
+
+    .terms-grid {
       display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .terms-card, .payment-card { padding: 22px; }
+
+    .terms-card h3, .payment-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .terms-card p, .payment-card p {
+      font-size: 0.9rem;
+      color: var(--text2);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .terms-card ol, .terms-card ul {
+      padding-left: 18px;
+      color: var(--text2);
+      font-size: 0.9rem;
+    }
+    .terms-card li { line-height: 1.7; margin-bottom: 10px; }
+
+    .terms-note {
+      margin-top: 14px;
+      font-size: 0.84rem;
+      color: var(--text3);
+      font-style: italic;
+    }
+
+    .payment-methods {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 10px;
+      margin-top: 16px;
     }
 
-    .payment-notes li {
-      line-height: 1.68;
+    .pay-method {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.02);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: border-color 180ms;
+    }
+    .pay-method:hover { border-color: var(--border-strong); }
+
+    .pay-num {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--text3);
+      min-width: 24px;
     }
 
+    .pay-notes {
+      margin-top: 14px;
+      padding-left: 16px;
+      font-size: 0.84rem;
+      color: var(--text3);
+    }
+    .pay-notes li { margin-bottom: 6px; }
+
+    /* ── TESTIMONIALS ── */
     .testimonials-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
     }
 
     .testimonial {
-      min-height: 188px;
+      padding: 22px;
+      min-height: 160px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 22px 22px 18px;
+      gap: 14px;
     }
 
-    .testimonial .quote {
-      margin: 0;
-      color: var(--muted-strong);
-      font-size: 1rem;
+    .testimonial blockquote {
+      font-size: 0.95rem;
+      color: var(--text2);
       line-height: 1.72;
+      flex: 1;
     }
 
-    .rating {
-      margin: 0;
-      margin-top: auto;
-      color: var(--gold);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-    }
-
-    .cta-panel {
-      margin-top: 22px;
-      padding: 28px;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background:
-        linear-gradient(135deg, rgba(156, 123, 255, 0.12), transparent 62%),
-        var(--surface-strong);
-      box-shadow: var(--shadow);
+    .testimonial-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 22px;
     }
 
-    .cta-panel h2 {
-      margin: 0 0 10px;
-      font-size: clamp(2rem, 3vw, 2.8rem);
-      line-height: 1;
-      letter-spacing: -0.05em;
+    .testimonial-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text3);
+      font-family: var(--mono);
+      letter-spacing: 0.02em;
     }
 
-    .cta-panel p {
-      margin: 0;
-      max-width: 60ch;
-      color: var(--muted-strong);
-    }
+    .stars { color: var(--gold); font-size: 0.78rem; letter-spacing: 0.06em; }
 
+    /* ── CTA ── */
+    .cta-bar {
+      margin-top: 18px;
+      padding: 28px 32px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      background: var(--surface-solid);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .cta-bar:hover { border-color: var(--border-strong); }
+
+    .cta-bar h2 {
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      margin-bottom: 6px;
+    }
+    .cta-bar p { color: var(--text2); font-size: 0.9rem; max-width: 54ch; }
+
+    /* ── FOOTER ── */
     .site-footer {
       margin-top: 92px;
-      border-top: 1px solid var(--line);
-      background: rgba(5, 4, 10, 0.72);
+      border-top: 1px solid var(--border);
+      background: rgba(8, 7, 16, 0.6);
       backdrop-filter: blur(14px);
     }
-
-    body[data-theme="light"] .site-footer {
-      background: rgba(243, 239, 253, 0.78);
-    }
+    [data-theme="light"] .site-footer { background: rgba(244, 241, 252, 0.7); }
 
     .footer-inner {
-      padding: 36px 0 22px;
+      padding: 40px 0 24px;
     }
 
     .footer-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) auto auto;
-      gap: 26px;
+      grid-template-columns: 1fr auto auto;
+      gap: 32px;
       align-items: start;
+      margin-bottom: 28px;
     }
 
-    .footer-copy {
-      max-width: 58ch;
-      margin: 16px 0 0;
-      color: var(--muted);
+    .footer-bio {
+      font-size: 0.88rem;
+      color: var(--text3);
+      margin-top: 12px;
+      max-width: 48ch;
+      line-height: 1.65;
     }
 
-    .footer-links,
-    .footer-contact {
-      display: grid;
-      gap: 14px;
-    }
-
-    .footer-links a {
-      color: var(--muted-strong);
-      font-weight: 600;
-      transition: transform 220ms ease, color 220ms ease;
-    }
-
-    .footer-links a:hover,
-    .footer-links a:focus-visible {
-      transform: translateX(3px);
-      color: var(--text);
-      outline: none;
-    }
-
-    .footer-contact-item {
-      display: grid;
-      gap: 2px;
-    }
-
-    .footer-label {
-      color: var(--muted);
-      font-size: 0.84rem;
-      font-weight: 600;
+    .footer-col { display: grid; gap: 12px; }
+    .footer-col-label {
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      color: var(--text3);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      margin-bottom: 2px;
     }
 
-    .footer-value,
-    .footer-value a {
-      color: var(--text);
-      font-weight: 600;
+    .footer-link {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text2);
+      transition: color 160ms;
     }
+    .footer-link:hover { color: var(--text); }
 
-    .footer-value a:hover,
-    .footer-value a:focus-visible {
-      color: var(--accent);
-      outline: none;
+    .footer-contact-item { display: grid; gap: 2px; }
+    .footer-contact-label {
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      color: var(--text3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
+    .footer-contact-val {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text2);
+    }
+    .footer-contact-val a:hover { color: var(--accent); }
 
     .footer-bottom {
-      margin-top: 24px;
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
-      color: rgba(169, 161, 191, 0.84);
-      font-size: 0.92rem;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text3);
+      letter-spacing: 0.02em;
     }
 
-    @media (max-width: 1180px) {
-      .hero-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-card {
-        margin-top: 0;
-      }
-
-      .rates-primary {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .rates-secondary {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .work-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .workflow-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      .hero-layout { grid-template-columns: 1fr; }
+      .work-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
     }
 
-    @media (max-width: 980px) {
-      .header-inner {
-        grid-template-columns: 1fr;
-        gap: 14px;
-        padding: 16px 0 14px;
-      }
-
-      .brand,
-      .theme-toggle,
-      .site-nav {
-        justify-self: stretch;
-      }
-
-      .site-nav ul {
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-
-      .theme-toggle {
-        justify-self: start;
-      }
-
-      .expertise-grid,
-      .why-grid,
-      .testimonials-grid,
-      .terms-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .rates-primary,
-      .rates-secondary {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .payment-method-row {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-panel,
-      .footer-grid {
-        grid-template-columns: 1fr;
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    @media (max-width: 900px) {
+      .header-inner { grid-template-columns: 1fr auto; }
+      .site-nav { display: none; }
+      .expertise-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid, .testimonials-grid, .terms-grid { grid-template-columns: 1fr; }
+      .rates-row.three { grid-template-columns: repeat(2, 1fr); }
+      .payment-methods { grid-template-columns: 1fr; }
+      .cta-bar { flex-direction: column; align-items: flex-start; }
     }
 
-    @media (max-width: 720px) {
-      :root {
-        --container: min(100vw - 24px, 1220px);
-      }
-
-      .section {
-        padding-top: 78px;
-      }
-
-      .hero {
-        padding-top: 36px;
-      }
-
-      .hero-copy {
-        padding-top: 4px;
-      }
-
-      .hero-title {
-        font-size: clamp(3.4rem, 20vw, 4.8rem);
-      }
-
-      .hero-subtitle {
-        width: 100%;
-        justify-content: flex-start;
-        border-radius: 22px;
-      }
-
-      .rotator-row {
-        align-items: stretch;
-      }
-
-      .rotator-label {
-        width: 100%;
-      }
-
-      .rotator-shell {
-        width: 100%;
-      }
-
-      .contact-head {
-        grid-template-columns: 1fr;
-      }
-
-      .profile-frame {
-        margin-top: 2px;
-      }
-
-      .work-grid,
-      .rates-primary,
-      .rates-secondary {
-        grid-template-columns: 1fr;
-      }
-
-      .payment-method-row {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-actions .button {
-        width: 100%;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .site-nav ul {
-        padding: 6px;
-      }
-
-      .site-nav a {
-        padding: 9px 12px;
-        font-size: 0.88rem;
-      }
-
-      .expertise-grid,
-      .workflow-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-tags {
-        display: grid;
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 640px) {
+      :root { --container: calc(100vw - 28px); }
+      .section { padding-top: 72px; }
+      .hero { padding-top: 36px; }
+      .expertise-grid, .workflow-grid, .rates-row.three, .rates-row.two { grid-template-columns: 1fr; }
+      .work-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-
-      .reveal {
-        opacity: 1;
-        transform: none;
-      }
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body data-theme="dark">
+
   <header class="site-header">
-    <div class="header-progress" aria-hidden="true">
-      <span class="header-progress-bar" id="scroll-progress"></span>
-    </div>
+    <span class="header-bar" id="scroll-bar"></span>
     <div class="container header-inner">
       <a class="brand" href="#home" aria-label="Local home">
-        <span class="brand-mark" data-fallback="L">
-          <img src="Images/Profile.jpg" alt="" loading="eager">
+        <span class="brand-avatar" id="brand-avatar">
+          <img src="Images/Profile.jpg" alt="">
         </span>
-        <span class="brand-copy">
+        <span class="brand-text">
           <strong>Local</strong>
-          <span>Premium Roblox Scripter</span>
+          <span>// roblox scripter</span>
         </span>
       </a>
 
@@ -1543,249 +1007,267 @@
           <li><a href="#home">Home</a></li>
           <li><a href="#expertise">Expertise</a></li>
           <li><a href="#past-work">Past Work</a></li>
-          <li><a href="#why-choose-me">Why Choose Me</a></li>
+          <li><a href="#why-choose-me">Why Me</a></li>
           <li><a href="#workflow">Workflow</a></li>
           <li><a href="#rates">Rates</a></li>
         </ul>
       </nav>
 
-      <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch theme"></button>
+      <div class="header-controls">
+        <button class="theme-btn" id="theme-btn" aria-label="Toggle theme" type="button"></button>
+      </div>
     </div>
   </header>
 
   <main>
+
+    <!-- HERO -->
     <section class="hero section" id="home">
       <div class="container hero-layout">
         <div class="hero-copy reveal">
+          <div class="hero-eyebrow">Available for projects</div>
           <h1 class="hero-title">Local</h1>
           <div class="hero-subtitle">Premium &amp; Advanced Roblox Scripter &bull; 5+ Years Experience</div>
+
           <div class="rotator-row" aria-live="polite">
-            <span class="rotator-label">Building</span>
+            <span class="rotator-label">Specializing in</span>
             <span class="rotator-shell" id="rotator-shell">
               <span class="rotator-text" id="rotator-text">full game frameworks</span>
               <span class="rotator-measure" id="rotator-measure">full game frameworks</span>
             </span>
           </div>
-          <p class="hero-lead">Hey! I'm Local. I am an advanced Roblox Luau scripter focused on production-ready codebases designed for real player load. From core features to full game frameworks, I deliver professional-grade work that you can scale and maintain.</p>
+
+          <p class="hero-lead">I script production-ready Roblox games — clean architecture, secure remotes, built to handle real player counts. Whether you need a single system or a complete game from scratch, the code I ship is structured for growth, not just for launch.</p>
+
           <div class="hero-actions">
-            <a class="button button-primary" href="#contact">Contact Me</a>
-            <a class="button button-secondary" href="#past-work">Past Work</a>
+            <a class="btn btn-primary" href="#contact">Contact Me</a>
+            <a class="btn btn-ghost" href="#past-work">Past Work</a>
           </div>
+
           <div class="hero-tags">
-            <span class="inline-tag">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18h16M7 14l3-3 2 2 5-5"></path><path d="M14 8h3v3"></path></svg>
-              <span>Performance</span>
+            <span class="tag">
+              <svg viewBox="0 0 24 24"><path d="M4 18h16M7 14l3-3 2 2 5-5"/><path d="M14 8h3v3"/></svg>
+              Performance
             </span>
-            <span class="inline-tag">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-2.8 8.4-7 10-4.2-1.6-7-5.5-7-10V6l7-3z"></path><path d="M9.5 12.2l1.7 1.7 3.6-3.6"></path></svg>
-              <span>Security</span>
+            <span class="tag">
+              <svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-2.8 8.4-7 10-4.2-1.6-7-5.5-7-10V6l7-3z"/><path d="M9.5 12.2l1.7 1.7 3.6-3.6"/></svg>
+              Security
             </span>
-            <span class="inline-tag">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16"></path><path d="M7 9l5-5 5 5"></path><path d="M7 15l5 5 5-5"></path></svg>
-              <span>Scalability</span>
+            <span class="tag">
+              <svg viewBox="0 0 24 24"><path d="M12 4v16"/><path d="M7 9l5-5 5 5"/><path d="M7 15l5 5 5-5"/></svg>
+              Scalability
             </span>
           </div>
         </div>
 
-        <aside class="contact-card surface reveal" id="contact">
-          <div class="contact-head">
-            <div class="contact-copy">
-              <h2>Contact Me</h2>
-              <p>Direct contact details to get in touch with me.</p>
+        <aside id="contact">
+          <div class="contact-card reveal">
+            <div class="contact-top">
+              <div>
+                <h2>Contact Me</h2>
+                <p>Available for new projects</p>
+              </div>
+              <span class="contact-avatar" id="contact-avatar">
+                <img src="Images/Profile.jpg" alt="Local">
+              </span>
             </div>
-            <figure class="profile-frame" data-fallback="Local">
-              <img src="Images/Profile.jpg" alt="Local profile portrait" loading="eager">
-            </figure>
+            <dl class="contact-fields">
+              <div class="contact-field">
+                <dt>Email</dt>
+                <dd><a href="mailto:imdevlocal@gmail.com">imdevlocal@gmail.com</a></dd>
+              </div>
+              <div class="contact-field">
+                <dt>Discord</dt>
+                <dd>o1et</dd>
+              </div>
+              <div class="contact-field">
+                <dt>Roblox</dt>
+                <dd>BlackCH40S</dd>
+              </div>
+            </dl>
           </div>
-
-          <dl class="contact-list">
-            <div class="contact-item">
-              <dt>Email</dt>
-              <dd><a href="mailto:imdevlocal@gmail.com">imdevlocal@gmail.com</a></dd>
-            </div>
-            <div class="contact-item">
-              <dt>Discord Username</dt>
-              <dd>o1et</dd>
-            </div>
-            <div class="contact-item">
-              <dt>Roblox Username</dt>
-              <dd>BlackCH40S</dd>
-            </div>
-          </dl>
         </aside>
       </div>
     </section>
 
+    <!-- EXPERTISE -->
     <section class="section" id="expertise">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Skills &amp; Expertise</h2>
-          <p>Systems are designed for long-term development, live updates, and predictable behavior at scale.</p>
+          <div class="section-label">Skills &amp; Expertise</div>
+          <h2>What I Build</h2>
+          <p>Every system is written to hold up under real conditions — high concurrency, exploiters, low-end devices, and six months of updates you didn't plan for.</p>
         </div>
 
         <div class="expertise-grid">
-          <article class="card skill-card surface reveal">
-            <span class="card-number">01</span>
+          <article class="card skill-card reveal">
+            <div class="skill-num">01</div>
             <h3>Core Architecture</h3>
-            <p>Modular frameworks, scalable system design, OOP patterns, and maintainable game architecture.</p>
+            <p>Modular, OOP-based frameworks written to be extended, not rewritten. Structure that makes sense six months after you last touched it.</p>
           </article>
-          <article class="card skill-card surface reveal">
-            <span class="card-number">02</span>
+          <article class="card skill-card reveal">
+            <div class="skill-num">02</div>
             <h3>Data Handling</h3>
-            <p>ProfileStore, DataStore2, and custom DataStore wrappers for secure server-owned data handling &amp; data loss prevention.</p>
+            <p>ProfileStore, DataStore2, and custom wrappers with server-side authority and proper session locking to prevent data loss.</p>
           </article>
-          <article class="card skill-card surface reveal">
-            <span class="card-number">03</span>
+          <article class="card skill-card reveal">
+            <div class="skill-num">03</div>
             <h3>Security &amp; Anti-Exploit</h3>
-            <p>Server authority, remote validation, anti-exploit layers, and abuse-resistant logic paths.</p>
+            <p>Every critical action validated server-side. RemoteEvent input sanitized, rate-limited, and rejected when it doesn't make sense.</p>
           </article>
-          <article class="card skill-card surface reveal">
-            <span class="card-number">04</span>
-            <h3>Performance Optimization</h3>
-            <p>Optimized systems that stay smooth under pressure, even at scale with high frame rates &amp; low NetworkPing.</p>
+          <article class="card skill-card reveal">
+            <div class="skill-num">04</div>
+            <h3>Performance</h3>
+            <p>Profiler-guided optimization. High frame rate under load, controlled NetworkPing, and no unnecessary replication.</p>
           </article>
-          <article class="card skill-card surface reveal">
-            <span class="card-number">05</span>
+          <article class="card skill-card reveal">
+            <div class="skill-num">05</div>
             <h3>UI/UX Systems</h3>
-            <p>Appealing frontend with interactive GUIs, dynamic menus, and polished tween behavior that feels responsive.</p>
+            <p>Clean, responsive GUIs with polished tween behavior. Dynamic menus that feel like they belong in the game, not bolted on after.</p>
           </article>
-          <article class="card skill-card surface reveal">
-            <span class="card-number">06</span>
+          <article class="card skill-card reveal">
+            <div class="skill-num">06</div>
             <h3>Networking</h3>
-            <p>Efficient networking &amp; smart architecture decisions with reliable RemoteEvent and RemoteFunction pipelines &amp; clear client/server responsibility.</p>
+            <p>Clear client/server boundaries. Efficient RemoteEvent and RemoteFunction pipelines where each side owns exactly what it should.</p>
           </article>
-          <article class="card skill-card surface reveal">
-            <span class="card-number">07</span>
+          <article class="card skill-card reveal">
+            <div class="skill-num">07</div>
             <h3>Monetization</h3>
-            <p>DevProducts, Gamepasses, and analytics-ready purchase flows tied to game economy design</p>
+            <p>DevProducts, Gamepasses, and receipt handlers wired correctly — with purchase flows tied to actual game economy logic.</p>
           </article>
-          <article class="card skill-card surface reveal">
-            <span class="card-number">08</span>
+          <article class="card skill-card reveal">
+            <div class="skill-num">08</div>
             <h3>Systems Design</h3>
-            <p>Designing gameplay loops, progression systems, and scalable mechanics that support long-term player retention.</p>
+            <p>Gameplay loops and progression systems built around long-term retention, not just the initial launch rush.</p>
           </article>
-          <article class="card skill-card surface reveal">
-            <span class="card-number">09</span>
+          <article class="card skill-card reveal">
+            <div class="skill-num">09</div>
             <h3>Debugging &amp; Reliability</h3>
-            <p>Identifying edge cases, fixing complex bugs, and scripting systems that remain stable under load.</p>
+            <p>Edge cases caught before they ship. Complex bugs traced to their root cause, not papered over with workarounds.</p>
           </article>
         </div>
 
-        <div class="tool-note surface reveal">
-          <span class="tool-note-mark">&gt;</span>
-          <p>I am also familiar with various development tools such as Funnels, Knit &amp; Aero, Telemetry, Visual Studio Code &amp; Rojo, Git-based version control, Script performance tools, and much more!</p>
+        <div class="tool-note reveal">
+          <span class="tool-note-icon">&gt;_</span>
+          <p>Also familiar with Knit &amp; Aero, Rojo + VS Code workflow, Git-based version control, Telemetry &amp; Funnels, and Script performance tooling.</p>
         </div>
       </div>
     </section>
 
+    <!-- PAST WORK -->
     <section class="section" id="past-work">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Past Work</h2>
-          <p>A selection of recent projects I've worked on across different genres.</p>
+          <div class="section-label">Past Work</div>
+          <h2>Recent Projects</h2>
+          <p>A range of shipped games across genres — simulators, obbies, tycoons, and RPGs.</p>
         </div>
 
         <div class="work-grid">
-  <a class="work-card featured reveal" href="https://www.roblox.com/games/134354795189883/Mow-Ur-Snow" target="_blank" rel="noreferrer">
-    <figure class="work-thumb" data-fallback="Mow Ur Snow! ❄️">
-      <img src="Images/MowUrSnow.webp" alt="Mow Ur Snow! ❄️" loading="lazy">
-    </figure>
-    <span class="work-title">Mow Ur Snow! ❄️</span>
-  </a>
-  <a class="work-card featured reveal" href="https://www.roblox.com/games/103323281597335/NO-MORE-SCHOOL" target="_blank" rel="noreferrer">
-    <figure class="work-thumb" data-fallback="NO MORE SCHOOL">
-      <img src="Images/NoMoreSchool.webp" alt="NO MORE SCHOOL" loading="lazy">
-    </figure>
-    <span class="work-title">NO MORE SCHOOL</span>
-  </a>
-  <a class="work-card featured reveal" href="https://www.roblox.com/games/125718366148964/Miner-Army" target="_blank" rel="noreferrer">
-    <figure class="work-thumb" data-fallback="⛏️ Miner Army!">
-      <img src="Images/MinerArmy.webp" alt="⛏️ Miner Army!" loading="lazy">
-    </figure>
-    <span class="work-title">⛏️ Miner Army!</span>
-  </a>
-  <a class="work-card reveal" href="https://www.roblox.com/games/76194768511184/Avoid-Trains-For-Eggs" target="_blank" rel="noreferrer">
-    <figure class="work-thumb" data-fallback="Avoid Trains For Eggs!">
-      <img src="Images/AvoidTrainsForEggs.webp" alt="Avoid Trains For Eggs!" loading="lazy">
-    </figure>
-    <span class="work-title">Avoid Trains For Eggs!</span>
-  </a>
-  <a class="work-card reveal" href="https://www.roblox.com/games/113317945633040/Swing-Obby-for-Brainrot-Eggs" target="_blank" rel="noreferrer">
-    <figure class="work-thumb" data-fallback="Swing Obby for Brainrot Eggs!">
-      <img src="Images/SwingObbyForBrainrotEggs.webp" alt="Swing Obby for Brainrot Eggs!" loading="lazy">
-    </figure>
-    <span class="work-title">Swing Obby for Brainrot Eggs!</span>
-  </a>
-  <a class="work-card reveal" href="https://www.roblox.com/games/103884408720920/One-Punch-Troll-Tower" target="_blank" rel="noreferrer">
-    <figure class="work-thumb" data-fallback="One Punch Troll Tower 👊">
-      <img src="Images/OnePunchTrollTower.webp" alt="One Punch Troll Tower 👊" loading="lazy">
-    </figure>
-    <span class="work-title">One Punch Troll Tower 👊</span>
-  </a>
-  <a class="work-card reveal" href="https://www.roblox.com/games/73699023542441/Button-Trees" target="_blank" rel="noreferrer">
-    <figure class="work-thumb" data-fallback="Button Trees! 🌲">
-      <img src="Images/ButtonTrees.webp" alt="Button Trees! 🌲" loading="lazy">
-    </figure>
-    <span class="work-title">Button Trees! 🌲</span>
-  </a>
-  <a class="work-card reveal" href="https://www.roblox.com/games/103924653201062/Curzys-Incremental" target="_blank" rel="noreferrer">
-    <figure class="work-thumb" data-fallback="Curzy's Incremental! 🤑">
-      <img src="Images/CurzysIncremental.webp" alt="Curzy's Incremental! 🤑" loading="lazy">
-    </figure>
-    <span class="work-title">Curzy's Incremental! 🤑</span>
-  </a>
-  <a class="work-card reveal" href="https://www.roblox.com/games/115656072207322/Color-Bridges" target="_blank" rel="noreferrer">
-    <figure class="work-thumb" data-fallback="Color Bridges 🌈">
-      <img src="Images/ColorBridges.webp" alt="Color Bridges 🌈" loading="lazy">
-    </figure>
-    <span class="work-title">Color Bridges 🌈</span>
-  </a>
-  <a class="work-card reveal" href="https://www.roblox.com/games/82509271555958/Compton-Life-REMASTERED" target="_blank" rel="noreferrer">
-    <figure class="work-thumb" data-fallback="Compton Life REMASTERED">
-      <img src="Images/ComptonLifeREMASTERED.webp" alt="Compton Life REMASTERED" loading="lazy">
-    </figure>
-    <span class="work-title">Compton Life REMASTERED</span>
-  </a>
-</div>
+          <a class="work-card featured reveal" href="https://www.roblox.com/games/134354795189883/Mow-Ur-Snow" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="Mow Ur Snow">
+              <img src="Images/MowUrSnow.webp" alt="Mow Ur Snow!" loading="lazy">
+            </figure>
+            <span class="work-title">Mow Ur Snow! ❄️</span>
+          </a>
+          <a class="work-card featured reveal" href="https://www.roblox.com/games/103323281597335/NO-MORE-SCHOOL" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="NO MORE SCHOOL">
+              <img src="Images/NoMoreSchool.webp" alt="NO MORE SCHOOL" loading="lazy">
+            </figure>
+            <span class="work-title">NO MORE SCHOOL</span>
+          </a>
+          <a class="work-card featured reveal" href="https://www.roblox.com/games/125718366148964/Miner-Army" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="Miner Army">
+              <img src="Images/MinerArmy.webp" alt="Miner Army!" loading="lazy">
+            </figure>
+            <span class="work-title">⛏️ Miner Army!</span>
+          </a>
+          <a class="work-card reveal" href="https://www.roblox.com/games/76194768511184/Avoid-Trains-For-Eggs" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="Avoid Trains For Eggs">
+              <img src="Images/AvoidTrainsForEggs.webp" alt="Avoid Trains For Eggs" loading="lazy">
+            </figure>
+            <span class="work-title">Avoid Trains For Eggs!</span>
+          </a>
+          <a class="work-card reveal" href="https://www.roblox.com/games/113317945633040/Swing-Obby-for-Brainrot-Eggs" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="Swing Obby for Brainrot Eggs">
+              <img src="Images/SwingObbyForBrainrotEggs.webp" alt="Swing Obby for Brainrot Eggs" loading="lazy">
+            </figure>
+            <span class="work-title">Swing Obby for Brainrot Eggs!</span>
+          </a>
+          <a class="work-card reveal" href="https://www.roblox.com/games/103884408720920/One-Punch-Troll-Tower" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="One Punch Troll Tower">
+              <img src="Images/OnePunchTrollTower.webp" alt="One Punch Troll Tower" loading="lazy">
+            </figure>
+            <span class="work-title">One Punch Troll Tower 👊</span>
+          </a>
+          <a class="work-card reveal" href="https://www.roblox.com/games/73699023542441/Button-Trees" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="Button Trees">
+              <img src="Images/ButtonTrees.webp" alt="Button Trees!" loading="lazy">
+            </figure>
+            <span class="work-title">Button Trees! 🌲</span>
+          </a>
+          <a class="work-card reveal" href="https://www.roblox.com/games/103924653201062/Curzys-Incremental" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="Curzy's Incremental">
+              <img src="Images/CurzysIncremental.webp" alt="Curzy's Incremental" loading="lazy">
+            </figure>
+            <span class="work-title">Curzy's Incremental! 🤑</span>
+          </a>
+          <a class="work-card reveal" href="https://www.roblox.com/games/115656072207322/Color-Bridges" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="Color Bridges">
+              <img src="Images/ColorBridges.webp" alt="Color Bridges" loading="lazy">
+            </figure>
+            <span class="work-title">Color Bridges 🌈</span>
+          </a>
+          <a class="work-card reveal" href="https://www.roblox.com/games/82509271555958/Compton-Life-REMASTERED" target="_blank" rel="noreferrer">
+            <figure class="work-thumb" data-fallback="Compton Life REMASTERED">
+              <img src="Images/ComptonLifeREMASTERED.webp" alt="Compton Life REMASTERED" loading="lazy">
+            </figure>
+            <span class="work-title">Compton Life REMASTERED</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
+    <!-- WHY CHOOSE ME -->
     <section class="section" id="why-choose-me">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Why Choose Me</h2>
-          <p>I prioritize codebase quality, clear communication, and reliable delivery so projects move forward without technical debt. I don't just make things work, I make them work well.</p>
+          <div class="section-label">Why Choose Me</div>
+          <h2>How I'm Different</h2>
+          <p>Quality, communication, and delivery that actually holds up — not just on launch day.</p>
         </div>
 
         <div class="why-grid">
-          <article class="card copy-panel surface reveal">
-            <h3>Professional Delivery, No Shortcuts</h3>
-            <p>You get clean, professional-grade systems designed for iteration. I build with exploits, edge cases &amp; low-end devices in mind, ensure systems are designed for future updates, keep communication direct, and deliver in milestones so scope and progress stay clear from start to finish. I also structure each delivery so future features can be added without rewriting half of the game.</p>
+          <article class="card copy-card reveal">
+            <h3>No shortcuts, no tech debt</h3>
+            <p>The code I ship is structured to be maintained and extended, not abandoned after launch. I build with exploiters, edge cases, and low-end devices in mind from the start. Scope is agreed on before work begins, milestones keep progress visible, and you'll always have working deliverables at each stage — not a half-finished codebase handed over at the end.</p>
           </article>
 
-          <article class="card surface reveal">
+          <article class="card checklist-card reveal">
             <ul class="checklist">
               <li>
-                <span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg></span>
-                <span>High-quality systems built to last</span>
+                <span class="check-dot"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"/></svg></span>
+                <span>Systems built to handle real player load, not just studio testing</span>
               </li>
               <li>
-                <span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg></span>
-                <span>Fast responses and transparent updates</span>
+                <span class="check-dot"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"/></svg></span>
+                <span>Predictable delivery with clear scope defined before work begins</span>
               </li>
               <li>
-                <span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg></span>
-                <span>On-time milestone delivery</span>
+                <span class="check-dot"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"/></svg></span>
+                <span>Security and performance treated as requirements, not afterthoughts</span>
               </li>
               <li>
-                <span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg></span>
-                <span>Security and performance as baseline standards</span>
+                <span class="check-dot"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"/></svg></span>
+                <span>Code structured so future features don't require rewriting existing systems</span>
               </li>
               <li>
-                <span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg></span>
-                <span>Comfortable with both single features and full games</span>
+                <span class="check-dot"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"/></svg></span>
+                <span>Comfortable owning a full game or dropping into an existing codebase</span>
               </li>
               <li>
-                <span class="check-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"></path></svg></span>
-                <span>Implementation aligned to your exact game vision</span>
+                <span class="check-dot"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7.5"/></svg></span>
+                <span>Direct communication; you'll always know where things stand</span>
               </li>
             </ul>
           </article>
@@ -1793,180 +1275,186 @@
       </div>
     </section>
 
+    <!-- WORKFLOW -->
     <section class="section" id="workflow">
       <div class="container">
         <div class="section-head reveal">
+          <div class="section-label">Workflow</div>
           <h2>How I Work</h2>
-          <p>A straightforward process that keeps the workflow quality high.</p>
+          <p>A structured process so nothing gets missed and nothing gets rushed.</p>
         </div>
 
         <div class="workflow-grid">
-          <article class="card workflow-card surface reveal">
-            <span class="card-number">01</span>
+          <article class="card workflow-card reveal">
+            <div class="step-num">01</div>
             <h3>Scope Review</h3>
-            <p>Task, requirements, constraints, and technical risks are mapped out before production starts.</p>
+            <p>Requirements, constraints, and technical risks mapped out before a single line is written.</p>
           </article>
-          <article class="card workflow-card surface reveal">
-            <span class="card-number">02</span>
+          <article class="card workflow-card reveal">
+            <div class="step-num">02</div>
             <h3>System Build</h3>
-            <p>Features are implemented with clean architectures and professional-grade polish from the start with no shortcuts.</p>
+            <p>Clean architecture from the first commit. No "we'll fix it later" decisions baked into the foundation.</p>
           </article>
-          <article class="card workflow-card surface reveal">
-            <span class="card-number">03</span>
+          <article class="card workflow-card reveal">
+            <div class="step-num">03</div>
             <h3>Validation</h3>
-            <p>Check &amp; test for bugs, edge cases, performance, and reliability before delivery.</p>
+            <p>Bug testing, edge case coverage, performance checks, and reliability testing before anything ships.</p>
           </article>
-          <article class="card workflow-card surface reveal">
-            <span class="card-number">04</span>
+          <article class="card workflow-card reveal">
+            <div class="step-num">04</div>
             <h3>Delivery</h3>
-            <p>Milestone deliveries with clear notes and plans for a professional &amp; clear workflow.</p>
+            <p>Milestone handoffs with clear notes. You know what was built, why, and how to extend it.</p>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- RATES -->
     <section class="section" id="rates">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Payment &amp; Rates</h2>
-          <p>Pricing varies widely by the project, here is a general pricing tier to give you an idea of my rates.</p>
+          <div class="section-label">Rates</div>
+          <h2>Payment &amp; Pricing</h2>
+          <p>Pricing varies by project scope. These tiers give a general idea; complex projects are always quoted individually.</p>
         </div>
 
         <div class="rates-stack">
-          <div class="rates-primary">
-            <article class="card rate-card surface reveal">
-              <div class="rate-head">
-                <h3>Small Tasks</h3>
-              </div>
-              <p class="rate-amount">$10 - $20</p>
-              <p>Simple scripts, minor bug fixes, and small gameplay mechanics.</p>
-              <p class="rate-note">(For example, fixing small scripts, adding small mechanics, tweaking UI scripts, etc.)</p>
+          <div class="rates-row three">
+            <article class="card rate-card reveal">
+              <h3>Small Tasks</h3>
+              <div class="rate-price">$10 – $20</div>
+              <p class="rate-desc">Simple scripts, minor bug fixes, small standalone mechanics.</p>
+              <p class="rate-example">Fixing broken scripts, tweaking UI behavior, adding a small mechanic.</p>
             </article>
-            <article class="card rate-card surface reveal">
-              <div class="rate-head">
-                <h3>Gameplay Features</h3>
-              </div>
-              <p class="rate-amount">$25 - $50</p>
-              <p>Standalone gameplay mechanics or feature implementations with moderate complexity.</p>
-              <p class="rate-note">(For example, a UI feature, expanding a feature, a daily rewards system, etc.)</p>
+            <article class="card rate-card reveal">
+              <h3>Gameplay Features</h3>
+              <div class="rate-price">$25 – $50</div>
+              <p class="rate-desc">Standalone gameplay mechanics or feature implementations with moderate complexity.</p>
+              <p class="rate-example">Daily rewards system, a UI feature, expanding an existing system.</p>
             </article>
-            <article class="card rate-card surface reveal">
-              <div class="rate-head">
-                <h3>Advanced Systems</h3>
-              </div>
-              <p class="rate-amount">$75 &ndash; $200</p>
-              <p>Complex systems that require a structured architecture, networking, or multiple components.</p>
-              <p class="rate-note">(For example, a complex inventory system, saving system, progression system, etc.)</p>
+            <article class="card rate-card reveal">
+              <h3>Advanced Systems</h3>
+              <div class="rate-price">$75 – $200</div>
+              <p class="rate-desc">Multi-component systems requiring structured architecture and proper networking.</p>
+              <p class="rate-example">Full inventory system, saving system, progression system.</p>
             </article>
           </div>
 
-          <div class="rates-secondary">
-            <article class="card rate-card surface reveal">
-              <div class="rate-head">
-                <h3>Major Game Systems</h3>
-              </div>
-              <p class="rate-amount">$250 - $500</p>
-              <p>Large-scale systems that power a major portion of the game.</p>
-              <p class="rate-note">(For example, an entire economy system, core gameplay loop, full UI framework, etc.)</p>
+          <div class="rates-row two">
+            <article class="card rate-card reveal">
+              <h3>Major Game Systems</h3>
+              <div class="rate-price">$250 – $500</div>
+              <p class="rate-desc">Large-scale systems that power a major portion of the gameplay.</p>
+              <p class="rate-example">Full economy system, core gameplay loop, complete UI framework.</p>
             </article>
-            <article class="card rate-card popular-card surface reveal">
-              <span class="rate-badge">Popular</span>
-              <div class="rate-head">
-                <h3>Full Game Development</h3>
-              </div>
-              <p class="rate-amount">$500 - $1,000+</p>
-              <p>Scripting full games from the ground up or large-scale production-level projects.</p>
-              <p class="rate-note">(For example, scripting an entire simulator game or an entire RPG game; the full game package.)<br>Note that for full games, pricing varies widely and can be negotiated.</p>
+            <article class="card rate-card popular reveal">
+              <span class="popular-badge">Popular</span>
+              <h3>Full Game Development</h3>
+              <div class="rate-price">$500 – $1,000+</div>
+              <p class="rate-desc">Complete game scripting from the ground up, or large-scale production projects. Pricing negotiated based on scope.</p>
+              <p class="rate-example">Full simulator, RPG, or tycoon — the whole package.</p>
             </article>
           </div>
         </div>
 
-        <div class="terms-layout">
-          <article class="card text-card surface reveal">
+        <div class="terms-grid">
+          <article class="card terms-card reveal">
             <h3>Payment Terms</h3>
-            <p>My core principle is that you never pay upfront. Payment can be handled in 3 different ways:</p>
+            <p>No upfront payments. Payment is handled one of three ways:</p>
             <ol>
-              <li>Milestones (per approved task, pay after each core task is completed)</li>
-              <li>Daily/weekly/monthly (pay every day/every week/every month)</li>
-              <li>Upon completion (pay after all work is done; this payment method requires the most background checking &amp; verification)</li>
+              <li><strong>Milestones</strong> — pay after each core deliverable is approved</li>
+              <li><strong>Time-based</strong> — daily, weekly, or monthly billing</li>
+              <li><strong>Upon completion</strong> — full payment after everything is done; requires the most background verification before starting</li>
             </ol>
-            <div class="supporting-block">
-              <p class="supporting-copy">Note that a background check &amp; proof of payment is required before development.</p>
-              <p class="supporting-copy">If you have a preference, message me your preferred payment term, and I'll verify it.</p>
-            </div>
+            <p class="terms-note">Background check and proof of prior payment required before development begins. Message me your preference and I'll confirm from there.</p>
           </article>
 
-          <article class="card text-card surface reveal">
-            <h3>Percentage Deals (%)</h3>
-            <p>Percentage deals are only accepted if:</p>
+          <article class="card terms-card reveal">
+            <h3>Percentage Deals</h3>
+            <p>Revenue share is accepted under specific conditions:</p>
             <ul>
-              <li>A) Your game is already generating revenue (requires proof of revenue analytics)</li>
-              <li>B) Your game is legitimately expecting significant revenue (requires proof of ad funds &amp; or an existing fanbase; also requires a personal interview). In some cases, you can hire me entirely on percentage long-term without fixed pay for brand new games if there is legitimate potential; I am always open to serious opportunities and willing to work with developers who are genuinely committed to the project's success.</li>
-              <li>C) The percentage is paired with a fixed payment. If game is not already generating revenue, or does not have concrete proof of expecting significant revenue, a percentage can be added to slightly reduce your fixed payment (though exact amount depends entirely on the revenue proof, project scope, and game potential.)</li>
+              <li><strong>A)</strong> Your game is already generating revenue — requires proof of analytics</li>
+              <li><strong>B)</strong> Your game has legitimate revenue expectations — requires proof of ad spend or an existing fanbase, plus a short interview. Pure rev-share on new games with genuine potential is open for discussion.</li>
+              <li><strong>C)</strong> Percentage paired with a fixed payment, to reduce your upfront cost — exact split depends on scope and proof of revenue potential</li>
             </ul>
-            <p class="supporting-copy">Percentages can range anywhere from 5% to 25%+</p>
+            <p class="terms-note">Percentages range from 5% to 25%+ depending on the deal.</p>
           </article>
         </div>
 
-        <article class="card text-card payment-card surface reveal">
+        <article class="card payment-card reveal" style="margin-top: 14px;">
           <h3>Accepted Payment Methods</h3>
-          <div class="payment-method-row">
-            <div class="payment-method-card">
-              <span class="card-number">01</span>
-              <span>Robux ($1 USD = 150 Robux)</span>
+          <div class="payment-methods">
+            <div class="pay-method">
+              <span class="pay-num">01</span>
+              <span>Robux ($1 USD = 150 R$)</span>
             </div>
-            <div class="payment-method-card">
-              <span class="card-number">02</span>
+            <div class="pay-method">
+              <span class="pay-num">02</span>
               <span>PayPal (G&amp;S or F&amp;F)</span>
             </div>
-            <div class="payment-method-card">
-              <span class="card-number">03</span>
+            <div class="pay-method">
+              <span class="pay-num">03</span>
               <span>Roblox Gift Cards</span>
             </div>
           </div>
-          <ul class="payment-notes">
-            <li>For PayPal transactions, Goods &amp; Services is preferred, Friends &amp; Family is still accepted</li>
-            <li>Roblox Gift Cards require more verification before being accepted as payment</li>
+          <ul class="pay-notes">
+            <li>PayPal Goods &amp; Services preferred; Friends &amp; Family accepted</li>
+            <li>Gift Cards require additional verification before being accepted</li>
           </ul>
         </article>
       </div>
     </section>
 
+    <!-- TESTIMONIALS -->
     <section class="section" id="testimonials">
       <div class="container">
         <div class="section-head reveal">
-          <h2>Client Testimonials</h2>
-          <p>Feedback from previous major clients.</p>
+          <div class="section-label">Testimonials</div>
+          <h2>Client Feedback</h2>
+          <p>From developers who've shipped games with me.</p>
         </div>
 
         <div class="testimonials-grid">
-          <article class="card testimonial surface reveal">
-            <p class="quote">"Scripter here. I also worked with Local, and he is the most technically skilled person I know." - DevKruzy</p>
-            <p class="rating">☆ 5/5</p>
+          <article class="card testimonial reveal">
+            <blockquote>"I also worked with Local, and he is the most technically skilled person I know."</blockquote>
+            <div class="testimonial-footer">
+              <span class="testimonial-name">DevKruzy</span>
+              <span class="stars">★★★★★</span>
+            </div>
           </article>
-          <article class="card testimonial surface reveal">
-            <p class="quote">"Best scripter ever. I've worked with 4 different scripters, and Local was 100% the best one." - Lana</p>
-            <p class="rating">☆ 5/5</p>
+          <article class="card testimonial reveal">
+            <blockquote>"I've worked with 4 different scripters, and Local was 100% the best one."</blockquote>
+            <div class="testimonial-footer">
+              <span class="testimonial-name">Lana</span>
+              <span class="stars">★★★★★</span>
+            </div>
           </article>
-          <article class="card testimonial surface reveal">
-            <p class="quote">"Very good scripter. Made me a good army fighting game in 3 days, and it worked perfect." - Warlord</p>
-            <p class="rating">☆ 5/5</p>
+          <article class="card testimonial reveal">
+            <blockquote>"Made me a good army fighting game in 3 days, and it worked perfect."</blockquote>
+            <div class="testimonial-footer">
+              <span class="testimonial-name">Warlord</span>
+              <span class="stars">★★★★★</span>
+            </div>
           </article>
-          <article class="card testimonial surface reveal">
-            <p class="quote">"Honestly a really good scripter. Scripts came out clean and exactly how I wanted, and he's very reliable." - Reedz</p>
-            <p class="rating">☆ 5/5</p>
+          <article class="card testimonial reveal">
+            <blockquote>"Scripts came out clean and exactly how I wanted, and he's very reliable."</blockquote>
+            <div class="testimonial-footer">
+              <span class="testimonial-name">Reedz</span>
+              <span class="stars">★★★★★</span>
+            </div>
           </article>
         </div>
 
-        <div class="cta-panel surface reveal">
+        <div class="cta-bar card reveal">
           <div>
-            <h2>Ready to work with me?</h2>
-            <p>Send over the details, timeline, and target release window. I'll keep delivery structured from day one.</p>
+            <h2>Ready to build something?</h2>
+            <p>Send the scope, timeline, and target release window. I'll keep delivery structured from day one.</p>
           </div>
-          <a class="button button-primary" href="mailto:imdevlocal@gmail.com">Contact Me</a>
+          <a class="btn btn-primary" href="mailto:imdevlocal@gmail.com">Get in Touch</a>
         </div>
       </div>
     </section>
+
   </main>
 
   <footer class="site-footer">
@@ -1974,199 +1462,150 @@
       <div class="footer-grid">
         <div>
           <a class="brand" href="#home" aria-label="Local home">
-            <span class="brand-mark" data-fallback="L">
-              <img src="Images/Profile.jpg" alt="" loading="lazy">
+            <span class="brand-avatar">
+              <img src="Images/Profile.jpg" alt="">
             </span>
-            <span class="brand-copy">
+            <span class="brand-text">
               <strong>Local</strong>
+              <span>// roblox scripter</span>
             </span>
           </a>
-          <p class="footer-copy">Advanced Roblox Luau scripter with 5 years of experience, specialized in building professional-grade systems designed for real player counts.</p>
+          <p class="footer-bio">5+ years scripting Roblox games in Luau. Production-ready systems, clean architecture, built for real player load.</p>
         </div>
 
-        <div class="footer-links">
-          <a href="#past-work">Past Work</a>
-          <a href="#rates">Rates</a>
-          <a href="#contact">Contact</a>
+        <div class="footer-col">
+          <span class="footer-col-label">Links</span>
+          <a class="footer-link" href="#past-work">Past Work</a>
+          <a class="footer-link" href="#rates">Rates</a>
+          <a class="footer-link" href="#contact">Contact</a>
         </div>
 
-        <div class="footer-contact">
+        <div class="footer-col">
+          <span class="footer-col-label">Contact</span>
           <div class="footer-contact-item">
-            <span class="footer-label">Email</span>
-            <span class="footer-value"><a href="mailto:imdevlocal@gmail.com">imdevlocal@gmail.com</a></span>
+            <span class="footer-contact-label">Email</span>
+            <span class="footer-contact-val"><a href="mailto:imdevlocal@gmail.com">imdevlocal@gmail.com</a></span>
           </div>
           <div class="footer-contact-item">
-            <span class="footer-label">Discord</span>
-            <span class="footer-value">o1et</span>
+            <span class="footer-contact-label">Discord</span>
+            <span class="footer-contact-val">o1et</span>
           </div>
           <div class="footer-contact-item">
-            <span class="footer-label">Roblox</span>
-            <span class="footer-value">BlackCH40S</span>
+            <span class="footer-contact-label">Roblox</span>
+            <span class="footer-contact-val">BlackCH40S</span>
           </div>
         </div>
       </div>
 
-      <div class="footer-bottom">&copy; 2026 Local. Production-grade Roblox scripting.</div>
+      <div class="footer-bottom">&copy; 2026 Local — production-grade Roblox scripting</div>
     </div>
   </footer>
 
   <script>
-    const themeToggle = document.getElementById("theme-toggle");
-    const scrollProgress = document.getElementById("scroll-progress");
+    // Theme
+    const themeBtn = document.getElementById("theme-btn");
+    const scrollBar = document.getElementById("scroll-bar");
     const rotatorShell = document.getElementById("rotator-shell");
     const rotatorText = document.getElementById("rotator-text");
     const rotatorMeasure = document.getElementById("rotator-measure");
-    const revealItems = document.querySelectorAll(".reveal");
     const navLinks = document.querySelectorAll(".site-nav a");
-    const observedSections = document.querySelectorAll("main section[id]");
-    const imageFrames = document.querySelectorAll(".work-thumb, .profile-frame, .brand-mark");
+    const sections = document.querySelectorAll("main section[id]");
+
+    const sunIcon = `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg>`;
+    const moonIcon = `<svg viewBox="0 0 24 24"><path d="M20.2 14.7A8.8 8.8 0 1 1 9.3 3.8 7.1 7.1 0 0 0 20.2 14.7z"/></svg>`;
+
+    let theme = localStorage.getItem("lp-theme") || "dark";
+
+    function applyTheme(t) {
+      theme = t;
+      document.body.dataset.theme = t;
+      themeBtn.innerHTML = t === "dark" ? sunIcon : moonIcon;
+      themeBtn.setAttribute("aria-label", t === "dark" ? "Switch to light mode" : "Switch to dark mode");
+      localStorage.setItem("lp-theme", t);
+    }
+
+    themeBtn.addEventListener("click", () => applyTheme(theme === "dark" ? "light" : "dark"));
+    applyTheme(theme);
+
+    // Scroll progress
+    function updateScroll() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = max > 0 ? window.scrollY / max : 0;
+      scrollBar.style.transform = `scaleX(${Math.min(1, Math.max(0, ratio))})`;
+
+      // Active nav
+      const offset = window.scrollY + 120;
+      let current = sections[0]?.id || "";
+      sections.forEach(s => { if (offset >= s.offsetTop) current = s.id; });
+      navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === `#${current}`));
+    }
+
+    window.addEventListener("scroll", updateScroll, { passive: true });
+    updateScroll();
+
+    // Rotator
     const phrases = [
       "full game frameworks",
       "clean production codebases",
-      "modular and maintainable frameworks",
+      "modular maintainable systems",
       "front-page ready games",
-      "anti-exploit systems",
-      "performance optimized systems",
+      "anti-exploit architecture",
+      "performance-first systems",
       "professional-grade polish"
     ];
-    const icons = {
-      sun: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2.5v2.2M12 19.3v2.2M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"></path></svg>',
-      moon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 14.7A8.8 8.8 0 1 1 9.3 3.8 7.1 7.1 0 0 0 20.2 14.7z"></path></svg>'
-    };
+    let idx = 0;
+    let busy = false;
 
-    let activeTheme = localStorage.getItem("local-portfolio-theme") || "dark";
-    let phraseIndex = 0;
-    let rotationBusy = false;
-
-    function applyTheme(theme) {
-      activeTheme = theme;
-      document.body.dataset.theme = theme;
-      themeToggle.innerHTML = theme === "dark" ? icons.sun : icons.moon;
-      themeToggle.setAttribute("aria-label", theme === "dark" ? "Switch to light mode" : "Switch to dark mode");
-      localStorage.setItem("local-portfolio-theme", theme);
-    }
-
-    function updateProgress() {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const ratio = scrollHeight > 0 ? window.scrollY / scrollHeight : 0;
-      scrollProgress.style.transform = `scaleX(${Math.max(0, Math.min(1, ratio))})`;
-    }
-
-    function syncRotatorWidth(text) {
+    function syncWidth(text) {
       rotatorMeasure.textContent = text;
-      if (window.matchMedia("(max-width: 720px)").matches) {
+      if (window.matchMedia("(max-width: 640px)").matches) {
         rotatorShell.style.width = "100%";
         return;
       }
-
-      window.requestAnimationFrame(() => {
-        const shellStyle = window.getComputedStyle(rotatorShell);
-        const horizontalSpace =
-          parseFloat(shellStyle.paddingLeft) +
-          parseFloat(shellStyle.paddingRight) +
-          parseFloat(shellStyle.borderLeftWidth) +
-          parseFloat(shellStyle.borderRightWidth) +
-          2;
-        const width = Math.ceil(rotatorMeasure.getBoundingClientRect().width + horizontalSpace);
-        rotatorShell.style.width = `${width}px`;
+      requestAnimationFrame(() => {
+        const s = getComputedStyle(rotatorShell);
+        const pad = parseFloat(s.paddingLeft) + parseFloat(s.paddingRight) + parseFloat(s.borderLeftWidth) + parseFloat(s.borderRightWidth) + 2;
+        rotatorShell.style.width = Math.ceil(rotatorMeasure.getBoundingClientRect().width + pad) + "px";
       });
     }
 
-    function rotatePhrase() {
-      if (rotationBusy) {
-        return;
-      }
-
-      rotationBusy = true;
-      rotatorText.classList.add("is-changing");
-
-      window.setTimeout(() => {
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        const nextPhrase = phrases[phraseIndex];
-        rotatorText.textContent = nextPhrase;
-        syncRotatorWidth(nextPhrase);
-        rotatorText.classList.remove("is-changing");
-
-        window.setTimeout(() => {
-          rotationBusy = false;
-        }, 220);
-      }, 220);
+    function rotate() {
+      if (busy) return;
+      busy = true;
+      rotatorText.classList.add("changing");
+      setTimeout(() => {
+        idx = (idx + 1) % phrases.length;
+        rotatorText.textContent = phrases[idx];
+        syncWidth(phrases[idx]);
+        rotatorText.classList.remove("changing");
+        setTimeout(() => { busy = false; }, 200);
+      }, 200);
     }
 
-    function markMissingImage(frame) {
-      frame.classList.add("is-missing");
-    }
+    syncWidth(phrases[0]);
+    document.fonts?.ready?.then(() => syncWidth(rotatorText.textContent));
+    setInterval(rotate, 3000);
+    window.addEventListener("resize", () => syncWidth(rotatorText.textContent));
 
-    const revealObserver = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.16,
-        rootMargin: "0px 0px -40px 0px"
-      }
-    );
+    // Image fallback
+    document.querySelectorAll(".work-thumb, .brand-avatar, .contact-avatar").forEach(frame => {
+      const img = frame.querySelector("img");
+      if (!img) return;
+      if (img.complete && img.naturalWidth === 0) frame.classList.add("missing");
+      img.addEventListener("error", () => frame.classList.add("missing"), { once: true });
+    });
 
-    function updateActiveNav() {
-      const offset = window.scrollY + 140;
-      let currentId = observedSections[0] ? observedSections[0].id : "";
-
-      observedSections.forEach(section => {
-        if (offset >= section.offsetTop) {
-          currentId = section.id;
+    // Reveal on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add("visible");
+          observer.unobserve(e.target);
         }
       });
+    }, { threshold: 0.12, rootMargin: "0px 0px -36px 0px" });
 
-      navLinks.forEach(link => {
-        link.classList.toggle("is-active", link.getAttribute("href") === `#${currentId}`);
-      });
-    }
-
-    applyTheme(activeTheme);
-    syncRotatorWidth(phrases[0]);
-    updateProgress();
-    updateActiveNav();
-
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(() => syncRotatorWidth(rotatorText.textContent));
-    }
-
-    themeToggle.addEventListener("click", () => {
-      applyTheme(activeTheme === "dark" ? "light" : "dark");
-    });
-
-    window.addEventListener("scroll", () => {
-      updateProgress();
-      updateActiveNav();
-    }, { passive: true });
-    window.addEventListener("resize", () => {
-      updateProgress();
-      syncRotatorWidth(rotatorText.textContent);
-      updateActiveNav();
-    });
-
-    window.setInterval(rotatePhrase, 3000);
-
-    revealItems.forEach(item => revealObserver.observe(item));
-
-    imageFrames.forEach(frame => {
-      const image = frame.querySelector("img");
-      if (!image) {
-        markMissingImage(frame);
-        return;
-      }
-
-      if (image.complete && image.naturalWidth === 0) {
-        markMissingImage(frame);
-      }
-
-      image.addEventListener("error", () => markMissingImage(frame), { once: true });
-    });
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
