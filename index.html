@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Local | Professional Roblox Scripter</title>
+<title>Local — Roblox Scripter</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@400;500;600;700;800;900&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
@@ -68,10 +68,10 @@
   .nav-logo {
     font-family: var(--mono);
     font-size: 13px;
+    font-weight: 700;
     color: var(--accent);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.01em;
   }
-  .nav-logo span { color: var(--text3); }
   .nav-links {
     display: flex;
     gap: 32px;
@@ -494,7 +494,7 @@
   .game-card-accent.gold { background: linear-gradient(90deg, var(--accent3), var(--accent2)); }
   .game-image {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 1 / 1;
     display: block;
     object-fit: cover;
     background: var(--bg3);
@@ -644,6 +644,13 @@
     color: var(--text2);
     line-height: 1.3;
   }
+  .mini-game-note {
+    font-size: 12px;
+    color: var(--text3);
+    line-height: 1.55;
+    margin-top: 8px;
+    font-weight: 400;
+  }
 
   /* PROCESS */
   #process { background: var(--bg); }
@@ -785,9 +792,9 @@
   .rev-items { display: flex; flex-direction: column; gap: 10px; }
   .rev-item {
     display: grid;
-    grid-template-columns: 32px 1fr;
-    gap: 8px;
-    align-items: baseline;
+    grid-template-columns: 26px 1fr;
+    gap: 6px;
+    align-items: start;
     font-size: 13px;
     color: var(--text2);
     line-height: 1.6;
@@ -798,6 +805,7 @@
     font-size: 11px;
     font-weight: 700;
     color: var(--accent);
+    line-height: 1.6;
     flex-shrink: 0;
   }
   .rev-range { margin-top: 16px; font-family: var(--mono); font-size: 12px; color: var(--text2); padding-top: 16px; border-top: 1px solid var(--border); font-weight: 400; }
@@ -1058,7 +1066,7 @@
 <body>
 
 <nav>
-  <div class="nav-logo"><span>//</span> local.dev</div>
+  <div class="nav-logo">devlocal</div>
   <ul class="nav-links">
     <li><a href="#about">About Me</a></li>
     <li><a href="#skills">Skills</a></li>
@@ -1206,7 +1214,7 @@
       </div>
     </div>
     <div class="skills-note fade-in">
-      I am effectively able to work through existing codebases. I've turned various messy codebases into professional-level codebases with all technical debt cleared. I can follow through existing codebases and continue working with it (new features, bug fixes, refactors, etc) from there.
+      Whether I'm scripting from scratch or continuing someone else's work, the approach stays the same. The standards stay high, the process doesn't change, and the work gets done right.
     </div>
   </div>
 </section>
@@ -1346,6 +1354,7 @@
         <div class="mini-game-info">
           <span class="mini-role-badge head">Head Scripter</span>
           <div class="mini-game-title">Avoid Trains For Eggs!</div>
+          <div class="mini-game-note">Scripted the full game from scratch under a tight deadline.</div>
         </div>
       </a>
       <a href="https://www.roblox.com/games/113317945633040/Swing-Obby-for-Brainrot-Eggs" target="_blank" class="mini-game-card">
@@ -1353,6 +1362,7 @@
         <div class="mini-game-info">
           <span class="mini-role-badge assist">Assistant Scripter</span>
           <div class="mini-game-title">Swing Obby For Brainrot Eggs!</div>
+          <div class="mini-game-note">Improved security and performance due to exploiters and low-end devices.</div>
         </div>
       </a>
       <a href="https://www.roblox.com/games/112437468779514/Fling-Tower" target="_blank" class="mini-game-card">
@@ -1360,6 +1370,7 @@
         <div class="mini-game-info">
           <span class="mini-role-badge head">Head Scripter</span>
           <div class="mini-game-title">Fling Tower [TROLL]</div>
+          <div class="mini-game-note">Scripted the full game and integrated fast updates.</div>
         </div>
       </a>
       <a href="https://www.roblox.com/games/115656072207322/Color-Bridges" target="_blank" class="mini-game-card">
@@ -1367,6 +1378,7 @@
         <div class="mini-game-info">
           <span class="mini-role-badge head">Head Scripter</span>
           <div class="mini-game-title">Color Bridges 🌈</div>
+          <div class="mini-game-note">Scripted the full game within a day.</div>
         </div>
       </a>
       <a href="https://www.roblox.com/games/82509271555958/Compton-Life-REMASTERED" target="_blank" class="mini-game-card">
@@ -1374,6 +1386,7 @@
         <div class="mini-game-info">
           <span class="mini-role-badge fix">Bug Fixer</span>
           <div class="mini-game-title">Compton Life REMASTERED</div>
+          <div class="mini-game-note">Fixed a complex bug before release.</div>
         </div>
       </a>
       <a href="https://www.roblox.com/games/73699023542441/Button-Trees" target="_blank" class="mini-game-card">
@@ -1381,6 +1394,7 @@
         <div class="mini-game-info">
           <span class="mini-role-badge head">Head Scripter</span>
           <div class="mini-game-title">Button Trees! 🌳</div>
+          <div class="mini-game-note">Solved a complex data loss issue with a custom datastore wrapper.</div>
         </div>
       </a>
       <a href="https://www.roblox.com/games/103924653201062/Curzys-Incremental" target="_blank" class="mini-game-card">
@@ -1388,6 +1402,7 @@
         <div class="mini-game-info">
           <span class="mini-role-badge head">Head Scripter</span>
           <div class="mini-game-title">Curzy's Incremental! 🤑</div>
+          <div class="mini-game-note">Improved the UI animations and polish.</div>
         </div>
       </a>
       <a href="https://www.roblox.com/games/103884408720920/One-Punch-Troll-Tower" target="_blank" class="mini-game-card">
@@ -1395,6 +1410,7 @@
         <div class="mini-game-info">
           <span class="mini-role-badge gameplay">Gameplay Scripter</span>
           <div class="mini-game-title">One Punch Troll Tower 👊</div>
+          <div class="mini-game-note">Fixed complex bugs &amp; integrated new features under a tight deadline.</div>
         </div>
       </a>
     </div>
